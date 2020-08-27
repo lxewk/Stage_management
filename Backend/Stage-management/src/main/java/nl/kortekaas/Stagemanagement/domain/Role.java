@@ -6,12 +6,14 @@ public class Role {
     private String name;
     private String password;
     private boolean loggedIn;
+    private int receivedNote;
 
     public Role(long id, String name){
         this.id = id;
         this.name = name;
         this.password = password;
         this.loggedIn = false;
+        this.receivedNote = 0;
     }
 
     public long getId(){ return id; }
@@ -29,6 +31,10 @@ public class Role {
     public boolean getLoggedIn() { return loggedIn; }
 
     public void setLoggedIn(boolean loggedIn) { this.loggedIn = loggedIn; }
+
+    public int getReceivedNote(){ return receivedNote; }
+
+    public void setReceivedNote(int receivedNote) { this.receivedNote++;}
 
 
 }
