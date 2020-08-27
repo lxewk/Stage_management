@@ -2,6 +2,8 @@ package nl.kortekaas.Stagemanagement.domain;
 
 public class Item {
 
+    private long itemId;
+
     private Role managerRole;
     private String itemName;
     private Department section;

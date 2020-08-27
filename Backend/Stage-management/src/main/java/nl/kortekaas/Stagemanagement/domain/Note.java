@@ -2,6 +2,8 @@ package nl.kortekaas.Stagemanagement.domain;
 
 public class Note {
 
+    private long noteId;
+
     private Role activeRole;
     private Role receiverRole;
     private Todo activeTODO;

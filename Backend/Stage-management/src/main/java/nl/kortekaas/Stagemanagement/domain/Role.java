@@ -2,23 +2,23 @@ package nl.kortekaas.Stagemanagement.domain;
 
 public class Role {
 
-    private long id;
+    private long roleId;
     private String name;
     private String password;
     private boolean loggedIn;
     private int receivedNote;
 
-    public Role(long id, String name){
-        this.id = id;
+    public Role(long roleId, String name){
+        this.roleId = roleId;
         this.name = name;
         this.password = password;
         this.loggedIn = false;
         this.receivedNote = 0;
     }
 
-    public long getId(){ return id; }
+    public long getId(){ return roleId; }
 
-    public void setId(long id) { this.id = id;}
+    public void setId(long id) { this.roleId = id;}
 
     public String getName() { return name;}
 
