@@ -1,42 +1,63 @@
 package nl.kortekaas.Stagemanagement.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.Entity;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+@Entity
 public class Note {
 
+    @Id
+    @GeneratedValue(
+            strategy= GenerationType.AUTO,
+            generator="native"
+    )
+    @GenericGenerator(
+            name = "native",
+            strategy = "native"
+    )
+    @Column(columnDefinition = "serial")
     private long noteId;
 
-    private Role activeRole;
-    private Role receiverRole;
+    private User activeUser;
+    private User receiverUser;
     private Todo activeTODO;
     private char priority;
 
+    public Note(){}
 
-    public Note(Role activeRole, Role receiverRole, Todo activeTODO) {
-        this.activeRole = activeRole;
-        this.receiverRole = receiverRole;
+    public Note(User activeUser, User receiverUser, Todo activeTODO) {
+        this.activeUser = activeUser;
+        this.receiverUser = receiverUser;
         this. activeTODO = activeTODO;
         this.priority = ' ';
     }
 
-    public void sendNote(Role receiverRole, Role activeRole) {
-        System.out.println(receiverRole + " You've got a note");
-        int toSend = receiverRole.getReceivedNote();
-        receiverRole.setReceivedNote(toSend);
+    public void sendNote(User receiverUser, User activeUser) {
+        System.out.println(receiverUser + " You've got a note");
+        int toSend = receiverUser.getReceivedNote();
+        receiverUser.setReceivedNote(toSend);
     }
 
-    public Role getActiveRole() {
-        return activeRole;
+    public User getActiveRole() {
+        return activeUser;
     }
 
-    public void setActiveRole(Role activeRole) {
-        this.activeRole = activeRole;
+    public void setActiveRole(User activeUser) {
+        this.activeUser = activeUser;
     }
 
-    public Role getReceiverRole() {
-        return receiverRole;
+    public User getReceiverRole() {
+        return receiverUser;
     }
 
-    public void setReceiverRole(Role receiverRole) {
-        this.receiverRole = receiverRole;
+    public void setReceiverRole(User receiverUser) {
+        this.receiverUser = receiverUser;
     }
 
     public Todo getActiveTODO() {

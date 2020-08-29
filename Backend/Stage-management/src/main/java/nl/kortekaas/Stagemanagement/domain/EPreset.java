@@ -1,6 +1,6 @@
 package nl.kortekaas.Stagemanagement.domain;
 
-public enum PositionOnStage {
+public enum EPreset {
 
     UPSTAGE,
     DOWNSTAGE,

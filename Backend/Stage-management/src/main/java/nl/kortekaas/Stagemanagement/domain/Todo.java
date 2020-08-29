@@ -1,11 +1,35 @@
 package nl.kortekaas.Stagemanagement.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.Entity;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+@Entity
 public class Todo {
+
+    @Id
+    @GeneratedValue(
+            strategy= GenerationType.AUTO,
+            generator="native"
+    )
+    @GenericGenerator(
+            name = "native",
+            strategy = "native"
+    )
+    @Column(columnDefinition = "serial")
+    private long todoId;
 
     private Item item;
     private String doneBy;
     private char priority;
     private boolean check;
+
+    public Todo() {}
 
     public Todo(Item item) {
         this.item = item;
