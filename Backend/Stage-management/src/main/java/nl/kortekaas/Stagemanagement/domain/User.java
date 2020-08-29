@@ -30,15 +30,13 @@ public class User {
     private long userId;
 
     private String name;
-    private Account account;
     private boolean loggedIn;
     private int receivedNote;
 
     public User() {}
 
-    public User(String name, Account account){
+    public User(String name){
         this.name = name;
-        this.account = new Account();
         this.loggedIn = false;
         this.receivedNote = 0;
 
@@ -51,14 +49,6 @@ public class User {
     public String getName() { return name;}
 
     public void setName(String name) { this.name = name; }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
 
     public boolean getLoggedIn() { return loggedIn; }
 
