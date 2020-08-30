@@ -10,6 +10,7 @@ public enum ETask {
     SR_1,
     SR_2,
     SR_3,
+    SWING,
     AUTO_OPERATOR,
     AUTO_TROUBLE,
     LX_TROUBLE,
