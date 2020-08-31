@@ -2,15 +2,8 @@ package nl.kortekaas.Stagemanagement.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,6 +25,33 @@ public class User {
     private String name;
     private boolean loggedIn;
     private int receivedNote;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_Id", referencedColumnName = "accountId")
+    private Account account;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "item_user",
+    cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Item> items;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "track_user",
+    cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Track> tracks;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_note",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "note_id"))
+    Set<Note> sendNotes;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_todo",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "todo_id"))
+    Set<Todo> doesTodo;
+
 
     public User() {}
 

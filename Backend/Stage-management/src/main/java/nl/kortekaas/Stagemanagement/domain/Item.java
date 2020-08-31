@@ -1,14 +1,9 @@
 package nl.kortekaas.Stagemanagement.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Item {
@@ -35,6 +30,10 @@ public class Item {
     private String itemName;
     private Todo todo;
     private Risk risk;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("items")
+    private User item_user;
 
     public Item(){}
 

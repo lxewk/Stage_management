@@ -2,11 +2,8 @@ package nl.kortekaas.Stagemanagement.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -28,6 +25,9 @@ public class Todo {
     private String doneBy;
     private char priority;
     private boolean check;
+
+    @ManyToMany(mappedBy = "doesTodo")
+    Set<User> doingTodo;
 
     public Todo() {}
 
