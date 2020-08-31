@@ -29,6 +29,13 @@ public class Todo {
     @ManyToMany(mappedBy = "doesTodo")
     Set<User> doingTodo;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "note_id", referencedColumnName = "noteId")
+    private Note todo_note;
+
+    @OneToOne(mappedBy = "hasItem")
+    private Item hasTodo;
+
     public Todo() {}
 
     public Todo(Item item) {

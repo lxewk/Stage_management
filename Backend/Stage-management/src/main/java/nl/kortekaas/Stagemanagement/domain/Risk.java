@@ -22,6 +22,14 @@ public class Risk {
     private String itemName;
     private String trackName;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "track_id", referencedColumnName = "trackId")
+    private Track hasRisk;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_id", referencedColumnName = "itemId")
+    private Item hasOneRisk;
+
     public Risk(){
         this.itemName = itemName;
         this.trackName = trackName;

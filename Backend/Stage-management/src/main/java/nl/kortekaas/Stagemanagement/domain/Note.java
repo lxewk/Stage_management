@@ -29,6 +29,9 @@ public class Note {
     @ManyToMany(mappedBy = "sendNotes")
     Set<User> sends;
 
+    @OneToOne(mappedBy = "todo_note")
+    private Todo hasNote;
+
     public Note(){}
 
     public Note(User activeUser, User receiverUser, Todo activeTODO) {

@@ -25,8 +25,8 @@ public class Account {
     private String nameNewUser;
     private String password;
 
-    @OneToOne(mappedBy = "Account")
-    private User user;
+    @OneToOne(mappedBy = "account_user")
+    private User hasAccount;
 
     public Account() {}
 

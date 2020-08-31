@@ -28,7 +28,7 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_Id", referencedColumnName = "accountId")
-    private Account account;
+    private Account account_user;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "item_user",
     cascade = CascadeType.ALL, orphanRemoval = true)

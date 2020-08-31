@@ -35,6 +35,13 @@ public class Item {
     @JsonIgnoreProperties("items")
     private User item_user;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "todo_id", referencedColumnName = "todoId")
+    private Todo hasItem;
+
+    @OneToOne(mappedBy = "hasOneRisk")
+    private Risk hasOneItem;
+
     public Item(){}
 
     public Item(User managerRole, String itemName, EDepartment department) {

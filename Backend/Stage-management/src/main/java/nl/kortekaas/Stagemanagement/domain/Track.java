@@ -29,6 +29,9 @@ public class Track {
     @JsonIgnoreProperties("tracks")
     private User track_user;
 
+    @OneToOne(mappedBy = "hasRisk")
+    private Risk hasTrack;
+
     public Track() {}
 
     public long getTrackId() {
