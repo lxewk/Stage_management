@@ -1,9 +1,7 @@
 package nl.kortekaas.Stagemanagement.controller;
 
 import nl.kortekaas.Stagemanagement.payload.request.LoginRequest;
-import nl.kortekaas.Stagemanagement.payload.request.SignUpRequest;
 import nl.kortekaas.Stagemanagement.payload.response.JwtResponse;
-import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
 import nl.kortekaas.Stagemanagement.service.AuthorizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +18,5 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<JwtResponse> authenticateUser(@RequestBody LoginRequest loginRequest) {
         return authorizationService.authenticateUser(loginRequest);
-    }
-
-    @PostMapping("/singup")
-    public ResponseEntity<MessageResponse> registerUser(@RequestBody SignUpRequest signUpRequest) {
-        return authorizationService.registerUser(signUpRequest);
     }
 }

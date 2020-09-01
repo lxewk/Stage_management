@@ -3,6 +3,7 @@ package nl.kortekaas.Stagemanagement.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
@@ -34,11 +35,11 @@ public class User {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "item_user",
     cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "track_user",
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user_track",
     cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Track> tracks;
+    private List<Track> tracks = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(

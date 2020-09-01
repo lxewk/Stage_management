@@ -27,7 +27,7 @@ public class Track {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnoreProperties("tracks")
-    private User track_user;
+    private User user_track;
 
     @OneToOne(mappedBy = "hasRisk")
     private Risk hasTrack;
