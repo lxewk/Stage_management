@@ -3,6 +3,8 @@ package nl.kortekaas.Stagemanagement.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Account {
@@ -19,25 +21,28 @@ public class Account {
     @Column(columnDefinition = "serial")
     private long accountId;
 
-    @Enumerated(EnumType.STRING)
-    private ERole role;
-
+    private Role role;
     private String nameNewUser;
     private String password;
+    private String newPassword;
 
-    @OneToOne(mappedBy = "account_user")
-    private User hasAccount;
+    @OneToOne(mappedBy = "user_account")
+    private User user;
+
+    @ManyToMany(mappedBy = "account")
+    private Set<Role> roles = new HashSet<>();
 
     public Account() {}
 
-    public Account(ERole role, String nameNewUser) {
+    public Account(Role role, String nameNewUser) {
         this.role = role;
         this.nameNewUser = nameNewUser;
-        this.password = password;
+        this.password = getNewPassword();
+        this.newPassword = newPassword;
     }
 
-    public void createPassword(String nameNewUser, ERole roleInApp) {
-        System.out.println(password);
+    public String createPassword(String nameNewUser) {
+        return newPassword;
     }
 
     public long getAccountId() {
@@ -52,15 +57,39 @@ public class Account {
 
     public void setNameNewUser(String nameNewUser) { this.nameNewUser = nameNewUser;}
 
-    public ERole getRole() { return role; }
+    public String getPassword() { return password; }
 
-    public void setRole(ERole roleInApp) { this.role = roleInApp; }
+    public void setPassword(String password) { this.password = password; }
 
-    public String getPassword() {
-        return password;
+    public String getNewPassword() {
+        return newPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setNewPassword(String password) {
+        this.newPassword = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

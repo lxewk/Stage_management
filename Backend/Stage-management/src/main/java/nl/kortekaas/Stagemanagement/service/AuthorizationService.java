@@ -1,6 +1,6 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.persistence.AccountRepository;
+import nl.kortekaas.Stagemanagement.persistence.RoleRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import nl.kortekaas.Stagemanagement.service.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class AuthorizationService {
     private static final String ROLE_NOT_FOUND_ERROR = "Error: Role is not found.";
 
     private UserRepository userRepository;
-    private AccountRepository accountRepository;
+    private RoleRepository roleRepository;
     private PasswordEncoder encoder;
     private AuthenticationManager authenticationManager;
     private JwtUtils jwtUtils;
@@ -32,7 +32,7 @@ public class AuthorizationService {
     }
 
     @Autowired
-    public void setAccountRepository(AccountRepository accountRepository) { this.accountRepository = accountRepository; }
+    public void setRoleRepository(RoleRepository roleRepository) { this.roleRepository = roleRepository; }
 
     @Autowired
     public void setAuthenticationManager(AuthenticationManager authenticationManager) {

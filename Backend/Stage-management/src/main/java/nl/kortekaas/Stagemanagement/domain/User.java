@@ -3,11 +3,13 @@ package nl.kortekaas.Stagemanagement.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
+import java.util.List;
+
 
 @Entity
-@Table(name = "app_user")
+@Table(name = "APP_USER")
 public class User {
 
     @Id
@@ -27,8 +29,8 @@ public class User {
     private int receivedNote;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_Id", referencedColumnName = "accountId")
-    private Account account_user;
+    @JoinColumn(name = "account_id", referencedColumnName = "accountId")
+    private Account user_account;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "item_user",
     cascade = CascadeType.ALL, orphanRemoval = true)
@@ -40,17 +42,17 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "user_note",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "note_id"))
-    Set<Note> sendNotes;
+            name = "USER_NOTE",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "NOTE_ID"))
+    private Set<Note> Notes = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
-            name = "user_todo",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "todo_id"))
-    Set<Todo> doesTodo;
+            name = "USER_TODO",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TODO_ID"))
+    private Set<Todo> Todos = new HashSet<>();
 
 
     public User() {}

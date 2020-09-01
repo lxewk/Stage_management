@@ -3,6 +3,7 @@ package nl.kortekaas.Stagemanagement.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -26,8 +27,8 @@ public class Todo {
     private char priority;
     private boolean check;
 
-    @ManyToMany(mappedBy = "doesTodo")
-    Set<User> doingTodo;
+    @ManyToMany(mappedBy = "Todo")
+    private Set<User> users = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "note_id", referencedColumnName = "noteId")
