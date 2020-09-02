@@ -1,25 +1,42 @@
 package nl.kortekaas.Stagemanagement.service;
 
+import nl.kortekaas.Stagemanagement.domain.Account;
+import nl.kortekaas.Stagemanagement.domain.Role;
 import nl.kortekaas.Stagemanagement.persistence.AccountRepository;
+import nl.kortekaas.Stagemanagement.persistence.RoleRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.text.RandomStringGenerator;
 
+import javax.security.auth.login.AccountNotFoundException;
 import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.Random;
 
 
 @Service
-public class AccountService {
-
-    AccountRepository accountRepository;
+public class AccountService implements IAccountService {
 
     @Autowired
-    public AccountService(AccountRepository accountRepository) { this.accountRepository = accountRepository; }
+    private AccountRepository accountRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Override
+    public Account addAccount(Account tempAccount) {
+        Role userRole = tempAccount.getRole();
+        String userName = tempAccount.getNameNewUser();
+
+        Account newAccount = new Account(userRole, userName);
+
+        return accountRepository.save(newAccount);
+    }
+
 
     public String generateRandomSpecialCharacters(int length) {
         RandomStringGenerator pwdGenerator = new RandomStringGenerator.Builder().withinRange(33, 45)
@@ -27,14 +44,14 @@ public class AccountService {
         return pwdGenerator.generate(length);
     }
 
-    @Autowired
+
     public String generateRandomNumbers(int length) {
         RandomStringGenerator nmbGenerator = new RandomStringGenerator().Builder().withinRange(48, 57)
                 .build();
         return nmbGenerator.generate(length);
     }
 
-    @Autowired
+
     public String generateRandomAlphabet(int length, boolean lowCase) {
 
         String upperCaseLetters = RandomStringUtils.random(2, 65, 90, true, true);
@@ -47,7 +64,7 @@ public class AccountService {
         return alpGenerator.generate(length);
     }
 
-    @Autowired
+
     public String generateRandomCharacters(int length) {
         RandomStringGenerator charGenerator = new RandomStringGenerator().Builder().withinRange(33,45)
                 .build();
