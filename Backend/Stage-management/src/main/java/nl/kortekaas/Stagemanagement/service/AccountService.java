@@ -2,7 +2,7 @@ package nl.kortekaas.Stagemanagement.service;
 
 import nl.kortekaas.Stagemanagement.persistence.AccountRepository;
 import org.apache.commons.text.RandomStringGenerator;
-import org.apache.commons.text.TextRandomProvider;
+import org.apache.syncope.common.lib.SecureTextRandomProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
