@@ -81,5 +81,8 @@ public class User {
 
     public void setReceivedNote(int receivedNote) { this.receivedNote++;}
 
+    public Account getUser_account() { return user_account; }
+
+    public void setUser_account(Account user_account) { this.user_account = user_account; }
 
 }

@@ -24,7 +24,7 @@ public class RoleService implements IRoleService {
     @Override
     public Role getRoleById(Long id) {
         return roleRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Role not found"));
+                .orElseThrow(() -> new RuntimeException(String.valueOf(id)));
     }
 
 }

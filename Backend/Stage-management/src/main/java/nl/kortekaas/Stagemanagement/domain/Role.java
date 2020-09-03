@@ -50,4 +50,12 @@ public class Role {
     public void setName(ERole name) {
         this.name = name;
     }
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
 }

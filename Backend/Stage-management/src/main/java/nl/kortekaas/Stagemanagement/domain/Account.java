@@ -28,7 +28,7 @@ public class Account {
     private String newPassword;
 
     @OneToOne(mappedBy = "user_account")
-    private User user;
+    private User accountUser;
 
     @ManyToMany(mappedBy = "account")
     private Set<Role> roles = new HashSet<>();
@@ -79,12 +79,12 @@ public class Account {
         this.role = role;
     }
 
-    public User getUser() {
-        return user;
+    public User getAccountUser() {
+        return accountUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAccountUser(User user) {
+        this.accountUser = user;
     }
 
     public Set<Role> getRoles() {

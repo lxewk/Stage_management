@@ -2,6 +2,7 @@ package nl.kortekaas.Stagemanagement.service;
 
 import nl.kortekaas.Stagemanagement.payload.request.LoginRequest;
 import nl.kortekaas.Stagemanagement.payload.response.JwtResponse;
+import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
 import nl.kortekaas.Stagemanagement.persistence.RoleRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import nl.kortekaas.Stagemanagement.service.security.jwt.JwtUtils;
@@ -49,9 +50,6 @@ public class AuthorizationService {
         this.authenticationManager = authenticationManager;
     }
 
-    // check login request
-    // TODO
-
 
     @Autowired
     public void setJwtUtils(JwtUtils jwtUtils) {
@@ -77,10 +75,6 @@ public class AuthorizationService {
                 userDetails.getUsername(),
                 roles));
     }
-
-
-
-
 }
 
 
