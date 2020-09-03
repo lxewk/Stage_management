@@ -1,9 +1,12 @@
 package nl.kortekaas.Stagemanagement.service;
 
 import nl.kortekaas.Stagemanagement.domain.Account;
+import nl.kortekaas.Stagemanagement.domain.ERole;
 import nl.kortekaas.Stagemanagement.domain.Role;
+import nl.kortekaas.Stagemanagement.domain.User;
 import nl.kortekaas.Stagemanagement.persistence.AccountRepository;
 import nl.kortekaas.Stagemanagement.persistence.RoleRepository;
+import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,11 +14,8 @@ import org.apache.commons.text.RandomStringGenerator;
 
 import javax.security.auth.login.AccountNotFoundException;
 import java.security.SecureRandom;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.Random;
 
 
 @Service
@@ -27,15 +27,60 @@ public class AccountService implements IAccountService {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
-    public Account addAccount(Account tempAccount) {
+    public User addAccountToUser(Account tempAccount) {
         Role userRole = tempAccount.getRole();
         String userName = tempAccount.getNameNewUser();
 
         Account newAccount = new Account(userRole, userName);
 
+        if (userRole == null) {
+            Role roleUser = roleRepository.findByName(ERole.ROLE_USER)
+                    .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+            roles.add(userRole);
+
+
+        } else {
+        strRoles.forEach(role -> {
+            switch (role) {
+                case "admin":
+                    Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+                    roles.add(adminRole);
+
+                    break;
+                case "mod":
+                    Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+                    roles.add(modRole);
+
+                    break;
+                default:
+                    Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+                    roles.add(userRole);
+            }
+        });
+      }
+
+        user.setRoles(roles);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+
+
+
         return accountRepository.save(newAccount);
     }
+
+
+
+
+
+
 
 
     public String generateRandomSpecialCharacters(int length) {

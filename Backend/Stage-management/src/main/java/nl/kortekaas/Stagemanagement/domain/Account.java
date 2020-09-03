@@ -22,6 +22,7 @@ public class Account {
     private long accountId;
 
     private Role role;
+    private User newUser;
     private String nameNewUser;
     private String password;
     private String newPassword;
@@ -36,6 +37,7 @@ public class Account {
 
     public Account(Role role, String nameNewUser) {
         this.role = role;
+        this.newUser = newUser;
         this.nameNewUser = nameNewUser;
         this.password = getNewPassword();
         this.newPassword = newPassword;
