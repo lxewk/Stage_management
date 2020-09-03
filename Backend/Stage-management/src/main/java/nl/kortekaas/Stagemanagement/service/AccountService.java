@@ -7,7 +7,6 @@ import nl.kortekaas.Stagemanagement.domain.User;
 import nl.kortekaas.Stagemanagement.persistence.AccountRepository;
 import nl.kortekaas.Stagemanagement.persistence.RoleRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.text.RandomStringGenerator;

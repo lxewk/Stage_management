@@ -26,6 +26,7 @@ public class User {
     private long userId;
 
     private String name;
+    private String password;
     private boolean loggedIn;
     private int receivedNote;
 
@@ -60,18 +61,67 @@ public class User {
 
     public User(String name){
         this.name = name;
+        this.password = password;
         this.loggedIn = false;
         this.receivedNote = 0;
 
     }
 
-    public long getId(){ return userId; }
+    public long getUserId() {
+        return userId;
+    }
 
-    public void setId(long id) { this.userId = id;}
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
     public String getName() { return name;}
 
     public void setName(String name) { this.name = name; }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<Track> getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(List<Track> tracks) {
+        this.tracks = tracks;
+    }
+
+    public Set<Note> getNotes() {
+        return Notes;
+    }
+
+    public void setNotes(Set<Note> notes) {
+        Notes = notes;
+    }
+
+    public Set<Todo> getTodos() {
+        return Todos;
+    }
+
+    public void setTodos(Set<Todo> todos) {
+        Todos = todos;
+    }
 
     public boolean getLoggedIn() { return loggedIn; }
 
