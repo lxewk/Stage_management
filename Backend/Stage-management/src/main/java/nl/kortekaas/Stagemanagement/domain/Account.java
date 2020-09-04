@@ -3,8 +3,7 @@ package nl.kortekaas.Stagemanagement.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Account {
@@ -32,8 +31,7 @@ public class Account {
 
     public Account() {}
 
-    public Account(Role roles, String nameNewUser) {
-        this.roles = getRoles();
+    public Account(String nameNewUser) {
         this.nameNewUser = nameNewUser;
         this.newPassword = newPassword;
     }
@@ -41,6 +39,8 @@ public class Account {
     public String createPassword(String nameNewUser) {
         return newPassword;
     }
+
+
 
     public long getAccountId() {
         return accountId;

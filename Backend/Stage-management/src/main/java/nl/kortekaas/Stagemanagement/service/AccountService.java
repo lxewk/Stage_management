@@ -37,10 +37,9 @@ public class AccountService implements IAccountService {
 
     @Override
     public Account addRoleToAccount(Account tempAccount) {
-        Role userRole = tempAccount.getRole();
         String userName = tempAccount.getNameNewUser();
 
-        Account newAccount = new Account(userRole, userName);
+        Account newAccount = new Account(userName);
         return accountRepository.save(newAccount);
 
     }

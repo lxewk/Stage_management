@@ -39,7 +39,7 @@ public class UserDetailsImpl implements UserDetails {
         return new UserDetailsImpl(
                 account.getAccountId(),
                 account.getNameNewUser(),
-                account.getPassword(),
+                account.getNewPassword(),
                 authorities);
     }
 
