@@ -22,6 +22,7 @@ public class Account {
 
     private String nameNewUser;
     private String newPassword;
+    private String userRole;
 
     @OneToOne(mappedBy = "user_account")
     private User accountUser;
@@ -31,9 +32,10 @@ public class Account {
 
     public Account() {}
 
-    public Account(String nameNewUser) {
+    public Account(String nameNewUser, String userRole) {
         this.nameNewUser = nameNewUser;
         this.newPassword = newPassword;
+        this.userRole = userRole;
     }
 
     public String createPassword(String nameNewUser) {
@@ -77,5 +79,13 @@ public class Account {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 }

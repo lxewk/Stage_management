@@ -1,33 +1,35 @@
 package nl.kortekaas.Stagemanagement.service;
 
 import nl.kortekaas.Stagemanagement.domain.Account;
-import nl.kortekaas.Stagemanagement.domain.ERole;
-import nl.kortekaas.Stagemanagement.domain.Role;
-import nl.kortekaas.Stagemanagement.domain.User;
+import nl.kortekaas.Stagemanagement.payload.request.AccountRequest;
+import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
 import nl.kortekaas.Stagemanagement.persistence.AccountRepository;
 import nl.kortekaas.Stagemanagement.persistence.RoleRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.apache.commons.text.RandomStringGenerator;
 
 
-import java.security.SecureRandom;
+import javax.validation.Valid;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 @Service
 public class AccountService implements IAccountService {
 
-    @Autowired
     private AccountRepository accountRepository;
-
-    @Autowired
     private RoleRepository roleRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    public void setAccountRepository(AccountRepository accountRepository) { this.accountRepository = accountRepository; }
+
+    @Autowired
+    public void setRoleRepository(RoleRepository roleRepository) { this.roleRepository = roleRepository; }
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) { this.userRepository = userRepository; }
 
     @Override
     public List<Account> getAccounts() {
@@ -35,12 +37,15 @@ public class AccountService implements IAccountService {
         return accountList;
     }
 
-    @Override
-    public Account addRoleToAccount(Account tempAccount) {
-        String userName = tempAccount.getNameNewUser();
 
-        Account newAccount = new Account(userName);
-        return accountRepository.save(newAccount);
+    public ResponseEntity<MessageResponse> addRoleToAccount(@Valid AccountRequest accountRequest) {
+
+        Account account = new Account(accountRequest.getUsername(),
+                accountRequest.getRoleName());
+
+
+
+        return ResponseEntity.ok(new MessageResponse("Account is created"));
 
     }
 

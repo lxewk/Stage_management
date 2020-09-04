@@ -32,7 +32,7 @@ public class DatabaseLoader implements CommandLineRunner {
         authorizationService.authenticateUser(deputy);
 
         LoginRequest stagemanager = new LoginRequest();
-        stagemanager.setUsername("Jos Vervelde");
+        stagemanager.setUsername("Nick Stuivenberg");
         stagemanager.setPassword("smBoogieWoogie");
         authorizationService.authenticateUser(stagemanager);
 
