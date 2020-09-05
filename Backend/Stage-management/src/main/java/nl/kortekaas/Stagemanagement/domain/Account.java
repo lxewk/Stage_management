@@ -1,27 +1,91 @@
 package nl.kortekaas.Stagemanagement.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.util.*;
+
+@Entity
 public class Account {
 
-    private String nameNewUser;
-    private RolesInApp roleInApp;
-    private Role role;
+    @Id
+    @GeneratedValue(
+            strategy= GenerationType.AUTO,
+            generator="native"
+    )
+    @GenericGenerator(
+            name = "native",
+            strategy = "native"
+    )
+    @Column(columnDefinition = "serial")
+    private long accountId;
 
-    public Account(Role role) {
-        this.role = role;
+    private String nameNewUser;
+    private String newPassword;
+    private Set<String> userRole;
+
+    @OneToOne(mappedBy = "user_account")
+    private User accountUser;
+
+    @ManyToMany(mappedBy = "accounts")
+    private Set<Role> roles = new HashSet<>();
+
+    public Account() {}
+
+    public Account(String nameNewUser, Set<String> userRole) {
         this.nameNewUser = nameNewUser;
-        this.roleInApp = roleInApp;
+        this.newPassword = newPassword;
+        this.userRole = userRole;
     }
 
-    public void createPassword(String nameNewUser, RolesInApp roleInApp) {
-        Account newUser = new Account(this.role);
+    public String createPassword(String nameNewUser) {
+        return newPassword;
+    }
 
+
+
+    public long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
     }
 
     public String getNameNewUser() { return nameNewUser; }
 
     public void setNameNewUser(String nameNewUser) { this.nameNewUser = nameNewUser;}
 
-    public RolesInApp getRoleInApp() { return roleInApp; }
 
-    public void setRoleInApp(RolesInApp roleInApp) { this.roleInApp = roleInApp; }
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String password) {
+        this.newPassword = password;
+    }
+
+    public User getAccountUser() {
+        return accountUser;
+    }
+
+    public void setAccountUser(User user) {
+        this.accountUser = user;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<String> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Set<String> userRole) {
+        this.userRole = userRole;
+    }
 }

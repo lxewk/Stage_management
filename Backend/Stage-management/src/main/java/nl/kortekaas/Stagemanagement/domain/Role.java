@@ -1,40 +1,61 @@
 package nl.kortekaas.Stagemanagement.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "USER_ROLE")
 public class Role {
 
+    @Id
+    @GeneratedValue(
+            strategy= GenerationType.AUTO,
+            generator="native"
+    )
+    @GenericGenerator(
+            name = "native",
+            strategy = "native"
+    )
+    @Column(columnDefinition = "serial")
     private long roleId;
-    private String name;
-    private String password;
-    private boolean loggedIn;
-    private int receivedNote;
 
-    public Role(long roleId, String name){
-        this.roleId = roleId;
-        this.name = name;
-        this.password = password;
-        this.loggedIn = false;
-        this.receivedNote = 0;
+    @Enumerated(EnumType.STRING)
+    private ERole name;
+
+    @ManyToMany
+    @JoinTable(name = "ROLE_ACCOUNT",
+    joinColumns = @JoinColumn(name = "ROLE_ID"),
+    inverseJoinColumns = @JoinColumn(name = "ACCOUNT_ID"))
+    private Set<Account> accounts = new HashSet<>();
+
+    public Role() {}
+
+    public Role(ERole name) { this.name = name; }
+
+    public long getRoleId() {
+        return roleId;
     }
 
-    public long getId(){ return roleId; }
+    public void setRoleId(long roleId) {
+        this.roleId = roleId;
+    }
 
-    public void setId(long id) { this.roleId = id;}
+    public ERole getName() {
+        return name;
+    }
 
-    public String getName() { return name;}
+    public void setName(ERole name) {
+        this.name = name;
+    }
 
-    public void setName(String name) { this.name = name; }
-    
-    public String getPassword() { return password; }
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
 
-    public void setPassword(String password) { this.password = password; }
-
-    public boolean getLoggedIn() { return loggedIn; }
-
-    public void setLoggedIn(boolean loggedIn) { this.loggedIn = loggedIn; }
-
-    public int getReceivedNote(){ return receivedNote; }
-
-    public void setReceivedNote(int receivedNote) { this.receivedNote++;}
-
-
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
 }

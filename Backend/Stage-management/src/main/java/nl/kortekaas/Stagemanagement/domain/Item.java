@@ -1,22 +1,55 @@
 package nl.kortekaas.Stagemanagement.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Entity
 public class Item {
 
+    @Id
+    @GeneratedValue(
+            strategy= GenerationType.AUTO,
+            generator="native"
+    )
+    @GenericGenerator(
+            name = "native",
+            strategy = "native"
+    )
+    @Column(columnDefinition = "serial")
     private long itemId;
 
-    private Role managerRole;
+    @Enumerated(EnumType.STRING)
+    private EDepartment department;
+
+    @Enumerated(EnumType.STRING)
+    private EPreset preset;
+
+    private User managerRole;
     private String itemName;
-    private Department section;
-    private PositionOnStage preset;
     private Todo todo;
     private Risk risk;
 
-    public Item(Role managerRole, String itemName, Department section ) {
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("items")
+    private User item_user;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "todo_id", referencedColumnName = "todoId")
+    private Todo hasItem;
+
+    @OneToOne(mappedBy = "hasOneRisk")
+    private Risk hasOneItem;
+
+    public Item(){}
+
+    public Item(User managerRole, String itemName, EDepartment department) {
         this.managerRole = managerRole;
         this.itemName = itemName;
-        this.section = section;
+        this.department = department;
         this.preset = preset;
-        Item todoItem = new Item(managerRole, itemName, section);
+        Item todoItem = new Item(managerRole, itemName, department);
         this.todo = new Todo(todoItem);
         this.risk = risk;
     }
@@ -29,11 +62,11 @@ public class Item {
         System.out.println("here should be a video");
     }
 
-    public Role getManagerRole() {
+    public User getManagerRole() {
         return managerRole;
     }
 
-    public void setManagerRole(Role managerRole) {
+    public void setManagerRole(User managerRole) {
         this.managerRole = managerRole;
     }
 
@@ -45,19 +78,19 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public Department getSection() {
-        return section;
+    public EDepartment getDepartment() {
+        return department;
     }
 
-    public void setSection(Department section) {
-        this.section = section;
+    public void setDepartment(EDepartment section) {
+        this.department = section;
     }
 
-    public PositionOnStage getPreset() {
+    public EPreset getPreset() {
         return preset;
     }
 
-    public void setPreset(PositionOnStage preset) {
+    public void setPreset(EPreset preset) {
         this.preset = preset;
     }
 

@@ -1,6 +1,6 @@
 package nl.kortekaas.Stagemanagement.domain;
 
-public enum RolesInApp {
+public enum ERole {
     STAGEMANAGER,
     DEPUTY,
     ASSISTANT,

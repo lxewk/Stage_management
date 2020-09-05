@@ -1,11 +1,43 @@
 package nl.kortekaas.Stagemanagement.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+
+@Entity
 public class Todo {
+
+    @Id
+    @GeneratedValue(
+            strategy= GenerationType.AUTO,
+            generator="native"
+    )
+    @GenericGenerator(
+            name = "native",
+            strategy = "native"
+    )
+    @Column(columnDefinition = "serial")
+    private long todoId;
 
     private Item item;
     private String doneBy;
     private char priority;
     private boolean check;
+
+    @ManyToMany(mappedBy = "Todo")
+    private Set<User> users = new HashSet<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "note_id", referencedColumnName = "noteId")
+    private Note todo_note;
+
+    @OneToOne(mappedBy = "hasItem")
+    private Item hasTodo;
+
+    public Todo() {}
 
     public Todo(Item item) {
         this.item = item;
