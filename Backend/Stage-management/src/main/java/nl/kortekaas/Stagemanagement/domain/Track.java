@@ -30,8 +30,8 @@ public class Track {
     @ManyToMany(mappedBy = "tracks")
     private Set<User> users = new HashSet<>();
 
-    @OneToOne(mappedBy = "hasRisk")
-    private Risk hasTrack;
+    @ManyToMany(mappedBy = "tracks")
+    private Set<Risk> risks = new HashSet<>();
 
     public Track() {}
 

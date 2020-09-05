@@ -27,15 +27,14 @@ public class Todo {
     private char priority;
     private boolean check;
 
-    @ManyToMany(mappedBy = "Todo")
+    @ManyToMany(mappedBy = "todos")
     private Set<User> users = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "note_id", referencedColumnName = "noteId")
-    private Note todo_note;
+    @ManyToMany(mappedBy = "todos")
+    private Set<Note> notes = new HashSet<>();
 
-    @OneToOne(mappedBy = "hasItem")
-    private Item hasTodo;
+    @ManyToMany(mappedBy = "todos")
+    private Set<Item> items = new HashSet<>();
 
     public Todo() {}
 

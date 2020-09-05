@@ -3,6 +3,8 @@ package nl.kortekaas.Stagemanagement.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Risk {
@@ -22,13 +24,18 @@ public class Risk {
     private String itemName;
     private String trackName;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "track_id", referencedColumnName = "trackId")
-    private Track hasRisk;
+    @ManyToMany
+    @JoinTable(name = "TRACK_RISK",
+    joinColumns = @JoinColumn(name = "RISK_ID"),
+    inverseJoinColumns = @JoinColumn(name = "TRACK_ID"))
+    private Set<Track> tracks = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_id", referencedColumnName = "itemId")
-    private Item hasOneRisk;
+    @ManyToMany
+    @JoinTable(name = "ITEM_RISK",
+            joinColumns = @JoinColumn(name = "RISK_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ITEM_ID"))
+    private Set<Item> items = new HashSet<>();
+
 
     public Risk() {}
 

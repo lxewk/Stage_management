@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Item {
@@ -35,12 +37,15 @@ public class Item {
     @JsonIgnoreProperties("items")
     private User item_user;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "todo_id", referencedColumnName = "todoId")
-    private Todo hasItem;
+    @ManyToMany
+    @JoinTable(
+            name = "ITEM_TODO",
+            joinColumns = @JoinColumn(name = "ITEM_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TODO_ID"))
+    private Set<Todo> todos = new HashSet<>();
 
-    @OneToOne(mappedBy = "hasOneRisk")
-    private Risk hasOneItem;
+    @ManyToMany(mappedBy = "items")
+    private Set<Risk> risks = new HashSet<>();
 
     public Item(){}
 

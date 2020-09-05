@@ -1,6 +1,7 @@
 package nl.kortekaas.Stagemanagement.domain;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 import java.util.*;

@@ -27,11 +27,15 @@ public class Note {
     private Todo activeTODO;
     private char priority;
 
-    @ManyToMany(mappedBy = "note")
+    @ManyToMany(mappedBy = "notes")
     private Set<User> users = new HashSet<>();
 
-    @OneToOne(mappedBy = "todo_note")
-    private Todo hasNote;
+    @ManyToMany
+    @JoinTable(
+            name = "NOTE_TODO",
+            joinColumns = @JoinColumn(name = "NOTE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TODO_ID"))
+    private Set<Todo> todos = new HashSet<>();
 
     public Note(){}
 
@@ -78,5 +82,21 @@ public class Note {
 
     public void setPriority(char priority) {
         this.priority = priority;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public Set<Todo> getTodos() {
+        return todos;
+    }
+
+    public void setTodos(Set<Todo> todos) {
+        this.todos = todos;
     }
 }

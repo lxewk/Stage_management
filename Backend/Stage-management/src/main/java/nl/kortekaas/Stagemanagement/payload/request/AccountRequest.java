@@ -1,10 +1,16 @@
 package nl.kortekaas.Stagemanagement.payload.request;
 
+import org.springframework.context.annotation.Bean;
+
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 public class AccountRequest {
 
+    @NotBlank
     private String username;
+
+    @NotBlank
     private Set<String> roleName;
 
     public String getUsername() {
