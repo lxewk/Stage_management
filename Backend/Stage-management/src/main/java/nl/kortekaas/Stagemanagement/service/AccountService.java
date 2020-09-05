@@ -9,6 +9,7 @@ import nl.kortekaas.Stagemanagement.persistence.AccountRepository;
 import nl.kortekaas.Stagemanagement.persistence.RoleRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,7 @@ public class AccountService implements IAccountService {
         return accountList;
     }
 
-
+    @Bean
     public ResponseEntity<MessageResponse> addRoleToAccount(@Valid AccountRequest accountRequest) {
 
         Account account = new Account(accountRequest.getUsername(),
