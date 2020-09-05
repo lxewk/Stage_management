@@ -36,7 +36,7 @@ public class AccountService implements IAccountService {
     @Autowired
     public void setUserRepository(UserRepository userRepository) { this.userRepository = userRepository; }
 
-    @Override
+    @Bean
     public List<Account> getAccounts() {
         List<Account> accountList = accountRepository.findAll();
         return accountList;

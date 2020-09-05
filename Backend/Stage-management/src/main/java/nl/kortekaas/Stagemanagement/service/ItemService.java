@@ -4,6 +4,7 @@ import nl.kortekaas.Stagemanagement.domain.Item;
 import nl.kortekaas.Stagemanagement.domain.Risk;
 import nl.kortekaas.Stagemanagement.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class ItemService implements IItemService {
     public void setItemRepository(ItemRepository itemRepository) { this.itemRepository = itemRepository; }
 
 
-    @Override
+    @Bean
     public List<Item> getItem() {
         List<Item> itemList = itemRepository.findAll();
         return itemList;
