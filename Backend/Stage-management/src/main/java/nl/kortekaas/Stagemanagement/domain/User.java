@@ -29,6 +29,7 @@ public class User {
     private String password;
     private boolean loggedIn;
     private int receivedNote;
+    private Set<String> userTrack;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id", referencedColumnName = "accountId")
@@ -67,7 +68,10 @@ public class User {
         this.password = password;
         this.loggedIn = false;
         this.receivedNote = 0;
+    }
 
+    public User(Set<String> userTrack) {
+        this.userTrack = userTrack;
     }
 
     public long getUserId() {
@@ -108,6 +112,14 @@ public class User {
 
     public void setTracks(Set<Track> tracks) {
         this.tracks = tracks;
+    }
+
+    public Set<String> getUserTrack() {
+        return userTrack;
+    }
+
+    public void setUserTrack(Set<String> userTrack) {
+        this.userTrack = userTrack;
     }
 
     public Set<Note> getNotes() {

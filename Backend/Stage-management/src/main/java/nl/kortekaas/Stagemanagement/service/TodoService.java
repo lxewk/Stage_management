@@ -4,6 +4,7 @@ import nl.kortekaas.Stagemanagement.domain.Item;
 import nl.kortekaas.Stagemanagement.domain.Todo;
 import nl.kortekaas.Stagemanagement.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class TodoService implements ITodoService {
     @Autowired
     public void setNoteRepository(NoteRepository noteRepository) { this.noteRepository = noteRepository; }
 
-    @Override
+    @Bean
     public List<Todo> getTodo() {
         List<Todo> todoList = todoRepository.findAll();
         return todoList;

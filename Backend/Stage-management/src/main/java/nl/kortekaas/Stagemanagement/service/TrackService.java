@@ -5,6 +5,7 @@ import nl.kortekaas.Stagemanagement.persistence.RiskRepository;
 import nl.kortekaas.Stagemanagement.persistence.TrackRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class TrackService implements ITrackService {
     @Autowired
     public void setUserRepository(UserRepository userRepository) { this.userRepository = userRepository; }
 
-    @Override
+    @Bean
     public List<Track> getTracks() {
         List<Track> trackList = trackRepository.findAll();
         return trackList;

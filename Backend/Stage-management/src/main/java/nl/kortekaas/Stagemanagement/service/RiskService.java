@@ -7,6 +7,7 @@ import nl.kortekaas.Stagemanagement.persistence.RiskRepository;
 import nl.kortekaas.Stagemanagement.persistence.TrackRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class RiskService implements IRiskService {
     @Autowired
     public void setItemRepository(ItemRepository itemRepository) { this.itemRepository = itemRepository; }
 
-    @Override
+    @Bean
     public List<Risk> getRisk() {
         List<Risk> riskList = riskRepository.findAll();
         return riskList;
