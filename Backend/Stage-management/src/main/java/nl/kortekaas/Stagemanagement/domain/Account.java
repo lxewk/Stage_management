@@ -22,17 +22,17 @@ public class Account {
 
     private String nameNewUser;
     private String newPassword;
-    private String userRole;
+    private Set<String> userRole;
 
     @OneToOne(mappedBy = "user_account")
     private User accountUser;
 
-    @ManyToMany(mappedBy = "account")
+    @ManyToMany(mappedBy = "accounts")
     private Set<Role> roles = new HashSet<>();
 
     public Account() {}
 
-    public Account(String nameNewUser, String userRole) {
+    public Account(String nameNewUser, Set<String> userRole) {
         this.nameNewUser = nameNewUser;
         this.newPassword = newPassword;
         this.userRole = userRole;
@@ -81,11 +81,11 @@ public class Account {
         this.roles = roles;
     }
 
-    public String getUserRole() {
+    public Set<String> getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(String userRole) {
+    public void setUserRole(Set<String> userRole) {
         this.userRole = userRole;
     }
 }

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Track {
@@ -25,14 +27,17 @@ public class Track {
 
     private String trackName;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("tracks")
-    private User user_track;
+    @ManyToMany(mappedBy = "tracks")
+    private Set<User> users = new HashSet<>();
 
     @OneToOne(mappedBy = "hasRisk")
     private Risk hasTrack;
 
     public Track() {}
+
+    public Track(ETask task) {
+        this.task = task;
+    }
 
     public long getTrackId() {
         return trackId;

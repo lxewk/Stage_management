@@ -1,6 +1,8 @@
 package nl.kortekaas.Stagemanagement.service;
 
 import nl.kortekaas.Stagemanagement.domain.Account;
+import nl.kortekaas.Stagemanagement.domain.ERole;
+import nl.kortekaas.Stagemanagement.domain.Role;
 import nl.kortekaas.Stagemanagement.payload.request.AccountRequest;
 import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
 import nl.kortekaas.Stagemanagement.persistence.AccountRepository;
@@ -17,6 +19,8 @@ import java.util.*;
 
 @Service
 public class AccountService implements IAccountService {
+
+    private static final String ROLE_NOT_FOUND_ERROR = "Error: Role is not found.";
 
     private AccountRepository accountRepository;
     private RoleRepository roleRepository;
@@ -43,7 +47,56 @@ public class AccountService implements IAccountService {
         Account account = new Account(accountRequest.getUsername(),
                 accountRequest.getRoleName());
 
+        Set<String> strRoles = accountRequest.getRoleName();
+        Set<Role> roles = new HashSet<>();
 
+        strRoles.forEach(role -> {
+            switch (role) {
+                case "stagemanager":
+                    Role stagemanagerRole = roleRepository.findByName(ERole.STAGEMANAGER)
+                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+                    roles.add(stagemanagerRole);
+
+                    break;
+                case "deputy":
+                    Role deputyRole = roleRepository.findByName(ERole.DEPUTY)
+                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+                    roles.add(deputyRole);
+
+                    break;
+                case "assistant":
+                    Role assistantRole = roleRepository.findByName(ERole.ASSISTANT)
+                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+                    roles.add(assistantRole);
+
+                    break;
+                case "crew":
+                    Role crewRole = roleRepository.findByName(ERole.CREW)
+                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+                    roles.add(crewRole);
+
+                    break;
+                case "props":
+                    Role propsRole = roleRepository.findByName(ERole.PROPS)
+                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+                    roles.add(propsRole);
+
+                    break;
+                case "creative":
+                    Role creativeRole = roleRepository.findByName(ERole.CREATIVE)
+                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+                    roles.add(creativeRole);
+
+                    break;
+                case "production":
+                    Role productionRole = roleRepository.findByName(ERole.PRODUCTION)
+                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+                    roles.add(productionRole);
+            }
+        });
+
+        account.setRoles(roles);
+        accountRepository.save(account);
 
         return ResponseEntity.ok(new MessageResponse("Account is created"));
 

@@ -30,10 +30,13 @@ public class Risk {
     @JoinColumn(name = "item_id", referencedColumnName = "itemId")
     private Item hasOneRisk;
 
-    public Risk(){
+    public Risk() {}
+
+    public Risk(String itemName) {
         this.itemName = itemName;
         this.trackName = trackName;
     }
+
 
     public long getRiskId() {
         return riskId;

@@ -1,9 +1,11 @@
 package nl.kortekaas.Stagemanagement.payload.request;
 
+import java.util.Set;
+
 public class AccountRequest {
 
     private String username;
-    private String roleName;
+    private Set<String> roleName;
 
     public String getUsername() {
         return username;
@@ -13,11 +15,11 @@ public class AccountRequest {
         this.username = username;
     }
 
-    public String getRoleName() {
+    public Set<String> getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
+    public void setRoleName(Set<String> roleName) {
         this.roleName = roleName;
     }
 }
