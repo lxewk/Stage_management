@@ -1,26 +1,17 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Account;
-import nl.kortekaas.Stagemanagement.domain.ERole;
-import nl.kortekaas.Stagemanagement.domain.Role;
 import nl.kortekaas.Stagemanagement.domain.User;
-import nl.kortekaas.Stagemanagement.payload.request.AccountRequest;
 import nl.kortekaas.Stagemanagement.payload.request.UserRequest;
 import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
 import nl.kortekaas.Stagemanagement.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @Service
 @Validated
@@ -33,7 +24,6 @@ public class UserService implements IUserService {
     private ItemRepository itemRepository;
     private NoteRepository noteRepository;
     private TrackRepository trackRepository;
-    private AccountRepository accountRepository;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) { this.userRepository = userRepository; }
@@ -50,9 +40,6 @@ public class UserService implements IUserService {
     @Autowired
     public void setTrackRepository(TrackRepository trackRepository) { this.trackRepository = trackRepository; }
 
-    @Autowired
-    public void setAccountRepository(AccountRepository accountRepository) { this.accountRepository = accountRepository; }
-
 
     @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY')")
     public List<User> getUsers() {
@@ -60,21 +47,6 @@ public class UserService implements IUserService {
         return userList;
     }
 
-    @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY')")
-    public User addUserToAccount(Long id, Account tempAccount) {
-        Optional<User> _user = userRepository.findById(id);
-
-        if (_user.isPresent()) {
-            User userFromDb = _user.get();
-
-            if (tempAccount.getAccountUser() == null || tempAccount.getAccountUser().getUserId() != id) {
-                tempAccount.setAccountUser(userFromDb);
-            }
-
-            return userRepository.save(userFromDb);
-        }
-        throw new RuntimeException(String.valueOf(id));
-    }
 
     @PreAuthorize("hasRole('STAGEMANAGER')")
     public ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest) {
@@ -135,6 +107,11 @@ public class UserService implements IUserService {
 
         return ResponseEntity.ok(new MessageResponse("Add track to crew"));
 
+    }
+
+    @Override
+    public User addUserToAccount() {
+        return null; //TODO, staat misschien al in account
     }
 
 }
