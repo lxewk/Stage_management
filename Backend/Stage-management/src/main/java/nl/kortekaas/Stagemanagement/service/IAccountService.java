@@ -13,6 +13,5 @@ import java.util.List;
 public interface IAccountService {
 
     List<Account> getAccounts();
-    @Bean
     ResponseEntity<MessageResponse> addRoleToAccount(@Valid AccountRequest accountRequest);
 }

@@ -17,15 +17,24 @@ public class TestController {
     @Autowired
     public TestController(TestService testService) { this.testService = testService; }
 
-    @GetMapping("/all")
-    public String allAccess() { return testService.generatePublicContent(); }
+    @GetMapping("/stagemanager")
+    public String stagemanagerAccess() { return testService.generateStagemanagerContent(); }
 
-    @GetMapping("/user")
-    public String userAccess() { return testService.generateUserContent(); }
+    @GetMapping("/deputy")
+    public String deputyAccess() { return testService.generateDeputyContent(); }
 
-    @GetMapping("/mod")
-    public String moderatorAccess() { return testService.generateModContent(); }
+    @GetMapping("/assistant")
+    public String assistantAccess() { return testService.generateAssContent(); }
 
-    @GetMapping("/admin")
-    public String adminAccess() { return testService.generateAdminContent();  }
+    @GetMapping("/crew")
+    public String crewAccess() { return testService.generateCrewContent();  }
+
+    @GetMapping("/props")
+    public String propsAccess() { return testService.generatePropsContent();  }
+
+    @GetMapping("/creative")
+    public String creativeAccess() { return testService.generateCreativeContent();  }
+
+    @GetMapping("/production")
+    public String productionAccess() { return testService.generateProductionContent();  }
 }

@@ -11,7 +11,9 @@ import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 
 import javax.validation.Valid;
@@ -19,6 +21,7 @@ import java.util.*;
 
 
 @Service
+@Validated
 public class AccountService implements IAccountService {
 
     private static final String ROLE_NOT_FOUND_ERROR = "Error: Role is not found.";
@@ -36,13 +39,13 @@ public class AccountService implements IAccountService {
     @Autowired
     public void setUserRepository(UserRepository userRepository) { this.userRepository = userRepository; }
 
-    @Bean
+    @PreAuthorize("hasRole('DEPUTY') or hasRole('STAGEMANAGER')")
     public List<Account> getAccounts() {
         List<Account> accountList = accountRepository.findAll();
         return accountList;
     }
 
-    @Bean
+    @PreAuthorize("hasRole('DEPUTY') or hasRole('STAGEMANAGER')")
     public ResponseEntity<MessageResponse> addRoleToAccount(@Valid AccountRequest accountRequest) {
 
         Account account = new Account(accountRequest.getUsername(),

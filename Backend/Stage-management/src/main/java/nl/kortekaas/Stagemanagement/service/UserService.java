@@ -11,8 +11,10 @@ import nl.kortekaas.Stagemanagement.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import java.util.HashSet;
@@ -21,6 +23,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
+@Validated
 public class UserService implements IUserService {
 
     private static final String TRACK_NOT_FOUND_ERROR = "Error: Track is not found.";
@@ -51,13 +54,13 @@ public class UserService implements IUserService {
     public void setAccountRepository(AccountRepository accountRepository) { this.accountRepository = accountRepository; }
 
 
-    @Bean
+    @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY')")
     public List<User> getUsers() {
         List<User> userList = userRepository.findAll();
         return userList;
     }
 
-
+    @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY')")
     public User addUserToAccount(Long id, Account tempAccount) {
         Optional<User> _user = userRepository.findById(id);
 
@@ -73,11 +76,11 @@ public class UserService implements IUserService {
         throw new RuntimeException(String.valueOf(id));
     }
 
-//    @Bean
-//    public ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest) {
-//
-//        User userTrack = new User(userRequest.getUsername(),
-//                userRequest.getTrackName());
+    @PreAuthorize("hasRole('STAGEMANAGER')")
+    public ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest) {
+
+        User userTrack = new User(userRequest.getUsername(),
+                userRequest.getTrackName());
 //
 //        Set<String> strRoles = accountRequest.getRoleName();
 //        Set<Role> roles = new HashSet<>();
@@ -126,12 +129,12 @@ public class UserService implements IUserService {
 //                    roles.add(productionRole);
 //            }
 //        });
-//
-//        account.setRoles(roles);
-//        accountRepository.save(account);
-//
-//        return ResponseEntity.ok(new MessageResponse("Account is created"));
-//
-//    }
+
+        userTrack.getTracks();
+        userRepository.save(userTrack);
+
+        return ResponseEntity.ok(new MessageResponse("Add track to crew"));
+
+    }
 
 }
