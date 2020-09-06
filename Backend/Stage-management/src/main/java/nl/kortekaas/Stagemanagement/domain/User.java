@@ -70,7 +70,8 @@ public class User {
         this.receivedNote = 0;
     }
 
-    public User(Set<String> userTrack) {
+    public User(String name, Set<String> userTrack) {
+        this.name = name;
         this.userTrack = userTrack;
     }
 

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IRiskService {
 
-    List<Risk> getRisk();
+    List<Risk> getRisks();
 }

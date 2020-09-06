@@ -7,7 +7,7 @@ import nl.kortekaas.Stagemanagement.persistence.NoteRepository;
 import nl.kortekaas.Stagemanagement.persistence.TodoRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class NoteService implements INoteService {
     @Autowired
     public void setNoteRepository(NoteRepository noteRepository) { this.noteRepository = noteRepository; }
 
-    @Bean
+    @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY') or hasRole('ASSISTANT')")
     public List<Note> getNote() {
         List<Note> noteList = noteRepository.findAll();
         return noteList;

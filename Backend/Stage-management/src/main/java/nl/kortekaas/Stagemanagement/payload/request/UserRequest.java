@@ -1,7 +1,5 @@
 package nl.kortekaas.Stagemanagement.payload.request;
 
-import org.springframework.context.annotation.Bean;
-
 import javax.validation.constraints.NotBlank;
 import java.util.Set;
 

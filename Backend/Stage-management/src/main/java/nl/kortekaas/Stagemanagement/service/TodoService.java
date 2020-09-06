@@ -5,6 +5,7 @@ import nl.kortekaas.Stagemanagement.domain.Todo;
 import nl.kortekaas.Stagemanagement.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class TodoService implements ITodoService {
     @Autowired
     public void setNoteRepository(NoteRepository noteRepository) { this.noteRepository = noteRepository; }
 
-    @Bean
+    @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY') or hasRole('ASSISTANT') or hasRole('PROPS') or hasRole('CREW')")
     public List<Todo> getTodo() {
         List<Todo> todoList = todoRepository.findAll();
         return todoList;
