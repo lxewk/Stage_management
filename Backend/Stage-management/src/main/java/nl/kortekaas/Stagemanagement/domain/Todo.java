@@ -22,35 +22,32 @@ public class Todo {
     @Column(columnDefinition = "serial")
     private long todoId;
 
-    private Item item;
+
+    /*
+    Dit kwam een paar keer voor:
+    appedBy reference an unknown target entity property: nl.kortekaas.Stagemanagement.domain.Note.todos in
+    nl.kortekaas.Stagemanagement.domain.Todo.notes
+     */
+
     private String doneBy;
     private char priority;
     private boolean check;
 
-    @ManyToMany(mappedBy = "todos")
+    @ManyToMany(mappedBy = "todos") // TODO
     private Set<User> users = new HashSet<>();
 
-    @ManyToMany(mappedBy = "todos")
-    private Set<Note> notes = new HashSet<>();
-
-    @ManyToMany(mappedBy = "todos")
-    private Set<Item> items = new HashSet<>();
+    @ManyToOne
+    private Item item;
 
     public Todo() {}
 
-    public Todo(Item item) {
-        this.item = item;
-        this.doneBy = doneBy;
-        this.priority = ' ';
-        this.check = false;
+
+    public long getTodoId() {
+        return todoId;
     }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
+    public void setTodoId(long todoId) {
+        this.todoId = todoId;
     }
 
     public String getDoneBy() {
@@ -75,5 +72,21 @@ public class Todo {
 
     public void setCheck(boolean check) {
         this.check = check;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

@@ -25,19 +25,23 @@ public class User {
     @Column(columnDefinition = "serial")
     private long userId;
 
+    private String username;
     private String name;
     private String password;
     private boolean loggedIn;
     private int receivedNote;
-    private Set<String> userTrack;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id", referencedColumnName = "accountId")
-    private Account user_account;
+    @ManyToMany
+    @JoinTable (name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "item_user",
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "creator",
     cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
+
 
     @ManyToMany
     @JoinTable(
@@ -46,12 +50,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "TRACK_ID"))
     private Set<Track> tracks = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "USER_NOTE",
-            joinColumns = @JoinColumn(name = "USER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "NOTE_ID"))
-    private Set<Note> notes = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sender")
+    private Set<Note> sentNotes = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
+    private Set<Note> receivedNotes = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -63,16 +67,9 @@ public class User {
 
     public User() {}
 
-    public User(String name){
-        this.name = name;
-        this.password = password;
-        this.loggedIn = false;
-        this.receivedNote = 0;
-    }
-
     public User(String name, Set<String> userTrack) {
         this.name = name;
-        this.userTrack = userTrack;
+        //this.userTrack = userTrack;
     }
 
     public long getUserId() {
@@ -83,9 +80,21 @@ public class User {
         this.userId = userId;
     }
 
-    public String getName() { return name;}
+    public String getUsername() {
+        return username;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getPassword() {
         return password;
@@ -97,6 +106,26 @@ public class User {
 
     public boolean isLoggedIn() {
         return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
+
+    public int getReceivedNote() {
+        return receivedNote;
+    }
+
+    public void setReceivedNote(int receivedNote) {
+        this.receivedNote = receivedNote;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public List<Item> getItems() {
@@ -115,20 +144,20 @@ public class User {
         this.tracks = tracks;
     }
 
-    public Set<String> getUserTrack() {
-        return userTrack;
+    public Set<Note> getSentNotes() {
+        return sentNotes;
     }
 
-    public void setUserTrack(Set<String> userTrack) {
-        this.userTrack = userTrack;
+    public void setSentNotes(Set<Note> sentNotes) {
+        this.sentNotes = sentNotes;
     }
 
-    public Set<Note> getNotes() {
-        return notes;
+    public Set<Note> getReceivedNotes() {
+        return receivedNotes;
     }
 
-    public void setNotes(Set<Note> notes) {
-        this.notes = notes;
+    public void setReceivedNotes(Set<Note> receivedNotes) {
+        this.receivedNotes = receivedNotes;
     }
 
     public Set<Todo> getTodos() {
@@ -138,17 +167,4 @@ public class User {
     public void setTodos(Set<Todo> todos) {
         this.todos = todos;
     }
-
-    public boolean getLoggedIn() { return loggedIn; }
-
-    public void setLoggedIn(boolean loggedIn) { this.loggedIn = loggedIn; }
-
-    public int getReceivedNote(){ return receivedNote; }
-
-    public void setReceivedNote(int receivedNote) { this.receivedNote++;}
-
-    public Account getUser_account() { return user_account; }
-
-    public void setUser_account(Account user_account) { this.user_account = user_account; }
-
 }

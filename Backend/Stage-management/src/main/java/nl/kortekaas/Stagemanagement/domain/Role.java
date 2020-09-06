@@ -3,11 +3,9 @@ package nl.kortekaas.Stagemanagement.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "USER_ROLE")
+@Table
 public class Role {
 
     @Id
@@ -20,27 +18,19 @@ public class Role {
             strategy = "native"
     )
     @Column(columnDefinition = "serial")
-    private long roleId;
+    private long id;
 
     @Enumerated(EnumType.STRING)
     private ERole name;
 
-    @ManyToMany
-    @JoinTable(name = "ROLE_ACCOUNT",
-    joinColumns = @JoinColumn(name = "ROLE_ID"),
-    inverseJoinColumns = @JoinColumn(name = "ACCOUNT_ID"))
-    private Set<Account> accounts = new HashSet<>();
-
     public Role() {}
 
-    public Role(ERole name) { this.name = name; }
-
-    public long getRoleId() {
-        return roleId;
+    public long getId() {
+        return id;
     }
 
-    public void setRoleId(long roleId) {
-        this.roleId = roleId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public ERole getName() {
@@ -49,13 +39,5 @@ public class Role {
 
     public void setName(ERole name) {
         this.name = name;
-    }
-
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
     }
 }

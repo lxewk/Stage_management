@@ -21,29 +21,11 @@ public class Risk {
     @Column(columnDefinition = "serial")
     private long riskId;
 
-    private String itemName;
-    private String trackName;
 
-    @ManyToMany
-    @JoinTable(name = "TRACK_RISK",
-    joinColumns = @JoinColumn(name = "RISK_ID"),
-    inverseJoinColumns = @JoinColumn(name = "TRACK_ID"))
-    private Set<Track> tracks = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(name = "ITEM_RISK",
-            joinColumns = @JoinColumn(name = "RISK_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ITEM_ID"))
-    private Set<Item> items = new HashSet<>();
-
+    @ManyToOne
+    private Track track;
 
     public Risk() {}
-
-    public Risk(String itemName) {
-        this.itemName = itemName;
-        this.trackName = trackName;
-    }
-
 
     public long getRiskId() {
         return riskId;
@@ -53,35 +35,11 @@ public class Risk {
         this.riskId = riskId;
     }
 
-    public String getItemName() {
-        return itemName;
+    public Track getTrack() {
+        return track;
     }
 
-    public void setItemName(String riskItemName) {
-        this.itemName = riskItemName;
-    }
-
-    public String getTrackName() {
-        return trackName;
-    }
-
-    public void setTrackName(String trackName) {
-        this.trackName = trackName;
-    }
-
-    public Set<Track> getTracks() {
-        return tracks;
-    }
-
-    public void setTracks(Set<Track> tracks) {
-        this.tracks = tracks;
-    }
-
-    public Set<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<Item> items) {
-        this.items = items;
+    public void setTrack(Track track) {
+        this.track = track;
     }
 }
