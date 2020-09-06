@@ -1,15 +1,13 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Account;
 import nl.kortekaas.Stagemanagement.domain.ERole;
 import nl.kortekaas.Stagemanagement.domain.Role;
+import nl.kortekaas.Stagemanagement.domain.User;
 import nl.kortekaas.Stagemanagement.payload.request.AccountRequest;
 import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
-import nl.kortekaas.Stagemanagement.persistence.AccountRepository;
 import nl.kortekaas.Stagemanagement.persistence.RoleRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -26,12 +24,8 @@ public class AccountService implements IAccountService {
 
     private static final String ROLE_NOT_FOUND_ERROR = "Error: Role is not found.";
 
-    private AccountRepository accountRepository;
     private RoleRepository roleRepository;
     private UserRepository userRepository;
-
-    @Autowired
-    public void setAccountRepository(AccountRepository accountRepository) { this.accountRepository = accountRepository; }
 
     @Autowired
     public void setRoleRepository(RoleRepository roleRepository) { this.roleRepository = roleRepository; }
@@ -40,16 +34,19 @@ public class AccountService implements IAccountService {
     public void setUserRepository(UserRepository userRepository) { this.userRepository = userRepository; }
 
     @PreAuthorize("hasRole('DEPUTY') or hasRole('STAGEMANAGER')")
-    public List<Account> getAccounts() {
-        List<Account> accountList = accountRepository.findAll();
+    public List<User> getAccounts() {
+        List<User> accountList = userRepository.findAll();
         return accountList;
     }
 
     @PreAuthorize("hasRole('DEPUTY') or hasRole('STAGEMANAGER')")
     public ResponseEntity<MessageResponse> addRoleToAccount(@Valid AccountRequest accountRequest) {
 
-        Account account = new Account(accountRequest.getUsername(),
-                accountRequest.getRoleName());
+        // NICK: Hier heb ik ROL uit de constructor gehaald. Dat doe je namelijk al aan het eind
+        // van deze methode. Er gebeurt nog niets met wachtwoord. maar ik zou sowieso Account en User samenvoegen.
+        User user = new User();
+        user.setUsername(accountRequest.getUsername());
+
 
         Set<String> strRoles = accountRequest.getRoleName();
         Set<Role> roles = new HashSet<>();
@@ -99,8 +96,8 @@ public class AccountService implements IAccountService {
             }
         });
 
-        account.setRoles(roles);
-        accountRepository.save(account);
+        user.setRoles(roles);
+        userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("Account is created"));
 

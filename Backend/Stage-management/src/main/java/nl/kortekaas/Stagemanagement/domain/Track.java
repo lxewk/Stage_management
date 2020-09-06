@@ -1,6 +1,5 @@
 package nl.kortekaas.Stagemanagement.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -30,14 +29,10 @@ public class Track {
     @ManyToMany(mappedBy = "tracks")
     private Set<User> users = new HashSet<>();
 
-    @ManyToMany(mappedBy = "tracks")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "track")
     private Set<Risk> risks = new HashSet<>();
 
     public Track() {}
-
-    public Track(ETask task) {
-        this.task = task;
-    }
 
     public long getTrackId() {
         return trackId;
@@ -61,5 +56,21 @@ public class Track {
 
     public void setTrackName(String trackName) {
         this.trackName = trackName;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public Set<Risk> getRisks() {
+        return risks;
+    }
+
+    public void setRisks(Set<Risk> risks) {
+        this.risks = risks;
     }
 }
