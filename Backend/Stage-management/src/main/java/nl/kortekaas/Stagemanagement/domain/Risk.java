@@ -1,10 +1,7 @@
 package nl.kortekaas.Stagemanagement.domain;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Risk {
@@ -21,17 +18,19 @@ public class Risk {
     @Column(columnDefinition = "serial")
     private long riskId;
 
+    @ManyToOne
+    private Item item;
 
     @ManyToOne
     private Track track;
 
     public Risk() {}
 
-    public long getRiskId() {
+    public long getId() {
         return riskId;
     }
 
-    public void setRiskId(long riskId) {
+    public void setId(long riskId) {
         this.riskId = riskId;
     }
 
@@ -41,5 +40,13 @@ public class Risk {
 
     public void setTrack(Track track) {
         this.track = track;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

@@ -20,8 +20,6 @@ public class Note {
     @Column(columnDefinition = "serial")
     private long noteId;
 
-
-    //nl.kortekaas.Stagemanagement.domain.Todo, at table: note, for columns:
     @ManyToOne
     private User sender;
 
@@ -31,28 +29,14 @@ public class Note {
     @ManyToOne
     private Item item;
 
-    private char priority;
-
-
-
-
     public Note(){}
 
 
-
-    // Dit doe je in de controller
-    public void sendNote(User receiverUser, User activeUser) {
-        System.out.println(receiverUser + " You've got a note");
-        int toSend = receiverUser.getReceivedNote();
-        receiverUser.setReceivedNote(toSend);
-    }
-
-
-    public long getNoteId() {
+    public long getId() {
         return noteId;
     }
 
-    public void setNoteId(long noteId) {
+    public void setId(long noteId) {
         this.noteId = noteId;
     }
 
@@ -80,11 +64,4 @@ public class Note {
         this.item = item;
     }
 
-    public char getPriority() {
-        return priority;
-    }
-
-    public void setPriority(char priority) {
-        this.priority = priority;
-    }
 }

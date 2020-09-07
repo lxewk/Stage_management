@@ -26,7 +26,6 @@ public class User {
     private long userId;
 
     private String username;
-    private String name;
     private String password;
     private boolean loggedIn;
     private int receivedNote;
@@ -62,21 +61,21 @@ public class User {
             name = "USER_TODO",
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "TODO_ID"))
-    private Set<Todo> todos = new HashSet<>();
+    private List<Todo> todo_s;
 
 
     public User() {}
 
-    public User(String name, Set<String> userTrack) {
-        this.name = name;
+    public User(String username) {
+        this.username = username;
         //this.userTrack = userTrack;
     }
 
-    public long getUserId() {
+    public long getId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setId(long userId) {
         this.userId = userId;
     }
 
@@ -88,13 +87,6 @@ public class User {
         this.username = username;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getPassword() {
         return password;
@@ -160,11 +152,11 @@ public class User {
         this.receivedNotes = receivedNotes;
     }
 
-    public Set<Todo> getTodos() {
-        return todos;
+    public List<Todo> getTodo_s() {
+        return todo_s;
     }
 
-    public void setTodos(Set<Todo> todos) {
-        this.todos = todos;
+    public void setTodo_s(List<Todo> todo_s) {
+        this.todo_s = todo_s;
     }
 }

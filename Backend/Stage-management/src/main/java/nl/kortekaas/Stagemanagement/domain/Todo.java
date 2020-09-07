@@ -3,8 +3,8 @@ package nl.kortekaas.Stagemanagement.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+
 
 
 @Entity
@@ -22,19 +22,12 @@ public class Todo {
     @Column(columnDefinition = "serial")
     private long todoId;
 
-
-    /*
-    Dit kwam een paar keer voor:
-    appedBy reference an unknown target entity property: nl.kortekaas.Stagemanagement.domain.Note.todos in
-    nl.kortekaas.Stagemanagement.domain.Todo.notes
-     */
-
     private String doneBy;
     private char priority;
     private boolean check;
 
-    @ManyToMany(mappedBy = "todos") // TODO
-    private Set<User> users = new HashSet<>();
+    @ManyToMany(mappedBy = "todo_s")
+    private List<User> users;
 
     @ManyToOne
     private Item item;
@@ -42,11 +35,11 @@ public class Todo {
     public Todo() {}
 
 
-    public long getTodoId() {
+    public long getId() {
         return todoId;
     }
 
-    public void setTodoId(long todoId) {
+    public void setId(long todoId) {
         this.todoId = todoId;
     }
 
@@ -74,11 +67,11 @@ public class Todo {
         this.check = check;
     }
 
-    public Set<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 

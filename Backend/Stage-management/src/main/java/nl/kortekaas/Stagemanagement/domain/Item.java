@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 public class Item {
@@ -35,31 +37,44 @@ public class Item {
     private User creator;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
-    private Set<Todo> todos;
+    private List<Todo> todos = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
-    private Set<Note> notes;
+    private List<Note> notes = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
+    private List<Risk> risk;
 
 
     public Item(){}
 
-
-    // NICK: In controller & Service klasse
-    public void addPhoto(){
-        System.out.println("here should be a picture");
+    public Item(EDepartment department, EPreset preset) {
+        this.department = department;
+        this.preset = preset;
     }
 
-    // NICK: In controller & Service klasse
-    public void addVideo(){
-        System.out.println("here should be a video");
+    public long getId() {
+        return itemId;
     }
 
-    public User getCreator() {
-        return creator;
+    public void setId(long itemId) {
+        this.itemId = itemId;
     }
 
-    public void setCreator(User managerRole) {
-        this.creator = managerRole;
+    public EDepartment getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(EDepartment department) {
+        this.department = department;
+    }
+
+    public EPreset getPreset() {
+        return preset;
+    }
+
+    public void setPreset(EPreset preset) {
+        this.preset = preset;
     }
 
     public String getItemName() {
@@ -70,19 +85,35 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public EDepartment getDepartment() {
-        return department;
+    public User getCreator() {
+        return creator;
     }
 
-    public void setDepartment(EDepartment section) {
-        this.department = section;
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
-    public EPreset getPreset() {
-        return preset;
+    public List<Todo> getTodos() {
+        return todos;
     }
 
-    public void setPreset(EPreset preset) {
-        this.preset = preset;
+    public void setTodos(List<Todo> todos) {
+        this.todos = todos;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
+
+    public List<Risk> getRisk() {
+        return risk;
+    }
+
+    public void setRisk(List<Risk> risk) {
+        this.risk = risk;
     }
 }

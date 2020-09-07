@@ -1,10 +1,9 @@
 package nl.kortekaas.Stagemanagement.controller;
 
-import nl.kortekaas.Stagemanagement.service.ItemService;
+import nl.kortekaas.Stagemanagement.domain.Item;
+import nl.kortekaas.Stagemanagement.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -12,7 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class ItemController {
 
     @Autowired
-    ItemService itemService;
+    private IItemService itemService;
 
+    @GetMapping(value = "/{id}")
+    public Item getItemById(@PathVariable Long id) {
+        return itemService.getItemById(id);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public String deleteItem(@PathVariable Long id) {
+        return itemService.deleteItem(id);
+    }
+
+    @PostMapping(value = "/{userid}")
+    public Item addItemToUserById(@PathVariable long userid,
+                                @RequestBody Item newItem) {
+        return itemService.saveItem(newItem);
+    }
 
 }
