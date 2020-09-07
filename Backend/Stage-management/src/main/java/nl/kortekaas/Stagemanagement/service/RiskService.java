@@ -78,7 +78,6 @@ public class RiskService implements IRiskService {
 
     @Override
     public Risk addRiskToItem(Long id, Risk newRisk) {
-        ItemRepository itemRepository = null;
 
         Optional<Item> item =
                 itemRepository.findById(id);

@@ -36,13 +36,13 @@ public class Item {
     @JsonIgnoreProperties("items")
     private User creator;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "todoItem")
     private List<Todo> todos = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "noteItem")
     private List<Note> notes = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "riskItem")
     private List<Risk> risk;
 
 

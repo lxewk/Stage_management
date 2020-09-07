@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IItemService {
 
-    List<Item> getItems();
+//    List<Item> getItems();
     Item getItemById(Long id);
     Item saveItem(Item newItem);
     String deleteItem(Long id);

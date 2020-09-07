@@ -1,8 +1,6 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.ERole;
-import nl.kortekaas.Stagemanagement.domain.Role;
-import nl.kortekaas.Stagemanagement.domain.User;
+import nl.kortekaas.Stagemanagement.domain.*;
 import nl.kortekaas.Stagemanagement.payload.request.UserRequest;
 import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
 import nl.kortekaas.Stagemanagement.persistence.*;
@@ -20,6 +18,7 @@ import java.util.List;
 public class UserService implements IUserService {
 
     private static final String ROLE_NOT_FOUND_ERROR = "Error: Role is not found.";
+    private static final String TASK_NOT_FOUND_ERROR = "Error: Task is not found.";
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -116,66 +115,110 @@ public class UserService implements IUserService {
 
     }
 
-//    @PreAuthorize("hasRole('STAGEMANAGER')")
-//    public ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest) {
-//
-//        User userTrack = new User(userRequest.getUsername(),
-//                userRequest.getTrackName());
-//
-//        Set<String> strRoles = accountRequest.getRoleName();
-//        Set<Role> roles = new HashSet<>();
-//
-//        strRoles.forEach(role -> {
-//            switch (role) {
-//                case "stagemanager":
-//                    Role stagemanagerRole = roleRepository.findByName(ERole.STAGEMANAGER)
-//                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
-//                    roles.add(stagemanagerRole);
-//
-//                    break;
-//                case "deputy":
-//                    Role deputyRole = roleRepository.findByName(ERole.DEPUTY)
-//                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
-//                    roles.add(deputyRole);
-//
-//                    break;
-//                case "assistant":
-//                    Role assistantRole = roleRepository.findByName(ERole.ASSISTANT)
-//                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
-//                    roles.add(assistantRole);
-//
-//                    break;
-//                case "crew":
-//                    Role crewRole = roleRepository.findByName(ERole.CREW)
-//                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
-//                    roles.add(crewRole);
-//
-//                    break;
-//                case "props":
-//                    Role propsRole = roleRepository.findByName(ERole.PROPS)
-//                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
-//                    roles.add(propsRole);
-//
-//                    break;
-//                case "creative":
-//                    Role creativeRole = roleRepository.findByName(ERole.CREATIVE)
-//                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
-//                    roles.add(creativeRole);
-//
-//                    break;
-//                case "production":
-//                    Role productionRole = roleRepository.findByName(ERole.PRODUCTION)
-//                            .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
-//                    roles.add(productionRole);
-//            }
-//        });
-//
-//        userTrack.getTracks();
-//        userRepository.save(userTrack);
-//
-//        return ResponseEntity.ok(new MessageResponse("Add track to crew"));
-//
-//    }
+    @PreAuthorize("hasRole('STAGEMANAGER')")
+    @Override
+    public ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest) {
+
+        User user = new User();
+        user.setUsername(userRequest.getUsername());
+
+        List<String> strTracks = userRequest.getTrackName();
+        List<Track> tracks = null;
+
+        strTracks.forEach(task -> {
+            switch (task) {
+                case "asm_sl":
+                    Track asm_slTrack = trackRepository.findByTask(ETask.ASM_SL)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(asm_slTrack);
+
+                    break;
+                case "asm_sr":
+                    Track asm_srTrack = trackRepository.findByTask(ETask.ASM_SR)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(asm_srTrack);
+
+                    break;
+                case "sl_1":
+                    Track sl_1Track = trackRepository.findByTask(ETask.SL_1)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(sl_1Track);
+
+                    break;
+                case "sl_2":
+                    Track sl_2Track = trackRepository.findByTask(ETask.SL_2)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(sl_2Track);
+
+                    break;
+                case "sl_3":
+                    Track sl_3Track = trackRepository.findByTask(ETask.SL_3)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(sl_3Track);
+
+                    break;
+                case "sr_1":
+                    Track sr_1Track = trackRepository.findByTask(ETask.SR_1)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(sr_1Track);
+
+                    break;
+                case "sr_2":
+                    Track sr_2Track = trackRepository.findByTask(ETask.SR_2)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(sr_2Track);
+
+                    break;
+                case "sr_3":
+                    Track sr_3Track = trackRepository.findByTask(ETask.SR_3)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(sr_3Track);
+
+                    break;
+                case "swing":
+                    Track swingTrack = trackRepository.findByTask(ETask.SWING)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(swingTrack);
+
+                    break;
+                case "auto_operator":
+                    Track auto_operatorTrack = trackRepository.findByTask(ETask.AUTO_OPERATOR)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(auto_operatorTrack);
+
+                    break;
+                case "auto_trouble":
+                    Track auto_troubleTrack = trackRepository.findByTask(ETask.AUTO_TROUBLE)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(auto_troubleTrack);
+
+                    break;
+                case "lx_trouble":
+                    Track lx_troubleTrack = trackRepository.findByTask(ETask.LX_TROUBLE)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(lx_troubleTrack);
+
+                    break;
+                case "snd_trouble":
+                    Track snd_troubleTrack = trackRepository.findByTask(ETask.SND_TROUBLE)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(snd_troubleTrack);
+
+                    break;
+                case "video_trouble":
+                    Track video_troubleTrack = trackRepository.findByTask(ETask.VIDEO_TROUBLE)
+                            .orElseThrow(() -> new RuntimeException(TASK_NOT_FOUND_ERROR));
+                    tracks.add(video_troubleTrack);
+
+            }
+        });
+
+        user.setTracks(tracks);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(new MessageResponse("The track is added to crew"));
+
+    }
 
 
     //    public String generateRandomSpecialCharacters(int length) {

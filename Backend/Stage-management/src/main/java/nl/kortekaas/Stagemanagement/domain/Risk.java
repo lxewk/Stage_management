@@ -19,7 +19,7 @@ public class Risk {
     private long riskId;
 
     @ManyToOne
-    private Item item;
+    private Item riskItem;
 
     @ManyToOne
     private Track track;
@@ -43,10 +43,10 @@ public class Risk {
     }
 
     public Item getItem() {
-        return item;
+        return riskItem;
     }
 
     public void setItem(Item item) {
-        this.item = item;
+        this.riskItem = item;
     }
 }
