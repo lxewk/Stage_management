@@ -1,7 +1,7 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Note;
-import nl.kortekaas.Stagemanagement.domain.User;
+import nl.kortekaas.Stagemanagement.model.Note;
+import nl.kortekaas.Stagemanagement.model.User;
 import nl.kortekaas.Stagemanagement.persistence.NoteRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class NoteService implements INoteService {
         Optional<Note> note = noteRepository.findById(id);
         if (note.isPresent()) {
             noteRepository.deleteById(id);
-            return "Note with id " + note.get().getId() + " is deleted.";
+            return "Note with id " + note.get().getNoteId() + " is deleted.";
         }
         throw new RuntimeException(NOTE_NOT_FOUND_ERROR);
     }

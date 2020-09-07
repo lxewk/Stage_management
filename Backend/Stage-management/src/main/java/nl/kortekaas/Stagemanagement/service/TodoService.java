@@ -1,8 +1,7 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Item;
-import nl.kortekaas.Stagemanagement.domain.Todo;
-import nl.kortekaas.Stagemanagement.domain.User;
+
+import nl.kortekaas.Stagemanagement.model.Todo;
 import nl.kortekaas.Stagemanagement.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -53,7 +52,7 @@ public class TodoService implements ITodoService {
         Optional<Todo> todo = todoRepository.findById(id);
         if (todo.isPresent()) {
             todoRepository.deleteById(id);
-            return "TODO with id " + todo.get().getId() + " is deleted.";
+            return "TODO with id " + todo.get().getTodoId() + " is deleted.";
         }
         throw new RuntimeException(TODO_NOT_FOUND_ERROR);
     }

@@ -1,16 +1,11 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Item;
-import nl.kortekaas.Stagemanagement.domain.User;
+import nl.kortekaas.Stagemanagement.model.Item;
+import nl.kortekaas.Stagemanagement.model.User;
 import nl.kortekaas.Stagemanagement.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,8 +37,16 @@ public class ItemService implements IItemService {
 
     @Override
     public Item getItemById(Long id) {
-        return itemRepository.findById(id).orElseThrow(
-                () -> new RuntimeException(ITEM_NOT_FOUND_ERROR));
+
+        Optional<Item> _item = itemRepository.findById(id);
+
+        if(_item.isPresent()) {
+            Item item = _item.get();
+            item.getNotes(); //NICK OM van Lazy Eager te maken
+            return item;
+        }
+        throw new RuntimeException(ITEM_NOT_FOUND_ERROR);
+
     }
 
     @Override
@@ -56,7 +59,7 @@ public class ItemService implements IItemService {
         Optional<Item> item = itemRepository.findById(id);
         if (item.isPresent()) {
             itemRepository.deleteById(id);
-            return "Item with id " + item.get().getId() + " is deleted.";
+            return "Item with id " + item.get().getItemId() + " is deleted.";
         }
         throw new RuntimeException(ITEM_NOT_FOUND_ERROR);
     }

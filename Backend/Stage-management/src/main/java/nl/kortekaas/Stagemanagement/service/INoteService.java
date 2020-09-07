@@ -1,7 +1,7 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Item;
-import nl.kortekaas.Stagemanagement.domain.Note;
+
+import nl.kortekaas.Stagemanagement.model.Note;
 
 import java.util.List;
 

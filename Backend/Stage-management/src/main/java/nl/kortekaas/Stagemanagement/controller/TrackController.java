@@ -1,6 +1,6 @@
 package nl.kortekaas.Stagemanagement.controller;
 
-import nl.kortekaas.Stagemanagement.domain.Track;
+import nl.kortekaas.Stagemanagement.model.Track;
 import nl.kortekaas.Stagemanagement.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

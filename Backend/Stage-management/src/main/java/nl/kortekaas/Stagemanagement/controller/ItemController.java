@@ -1,6 +1,6 @@
 package nl.kortekaas.Stagemanagement.controller;
 
-import nl.kortekaas.Stagemanagement.domain.Item;
+import nl.kortekaas.Stagemanagement.model.Item;
 import nl.kortekaas.Stagemanagement.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +25,7 @@ public class ItemController {
 
     @PostMapping(value = "/{userid}")
     public Item addItemToUserById(@PathVariable long userid,
-                                @RequestBody Item newItem) {
+                                  @RequestBody Item newItem) {
         return itemService.saveItem(newItem);
     }
 

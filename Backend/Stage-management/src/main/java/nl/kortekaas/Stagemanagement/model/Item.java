@@ -1,16 +1,24 @@
-package nl.kortekaas.Stagemanagement.domain;
+package nl.kortekaas.Stagemanagement.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import nl.kortekaas.Stagemanagement.model.enums.EDepartment;
+import nl.kortekaas.Stagemanagement.model.enums.EPreset;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 public class Item {
-
     @Id
     @GeneratedValue(
             strategy= GenerationType.AUTO,
@@ -23,7 +31,6 @@ public class Item {
     @Column(columnDefinition = "serial")
     private long itemId;
 
-    //Nick: Misschien makkelijker om hier een String van te maken.
     @Enumerated(EnumType.STRING)
     private EDepartment department;
 
@@ -32,32 +39,23 @@ public class Item {
 
     private String itemName;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("items")
+    @ManyToOne
     private User creator;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "todoItem")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "todoItem")
     private List<Todo> todos = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "noteItem")
-    private List<Note> notes = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "riskItem")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "riskItem")
     private List<Risk> risk;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+    private List<Note> notes = new ArrayList<>();
 
-    public Item(){}
-
-    public Item(EDepartment department, EPreset preset) {
-        this.department = department;
-        this.preset = preset;
-    }
-
-    public long getId() {
+    public long getItemId() {
         return itemId;
     }
 
-    public void setId(long itemId) {
+    public void setItemId(long itemId) {
         this.itemId = itemId;
     }
 
@@ -101,19 +99,19 @@ public class Item {
         this.todos = todos;
     }
 
-    public List<Note> getNotes() {
-        return notes;
-    }
-
-    public void setNotes(List<Note> notes) {
-        this.notes = notes;
-    }
-
     public List<Risk> getRisk() {
         return risk;
     }
 
     public void setRisk(List<Risk> risk) {
         this.risk = risk;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
     }
 }

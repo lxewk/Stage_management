@@ -1,7 +1,7 @@
 package nl.kortekaas.Stagemanagement.controller;
 
-import nl.kortekaas.Stagemanagement.domain.Item;
-import nl.kortekaas.Stagemanagement.domain.Risk;
+
+import nl.kortekaas.Stagemanagement.model.Risk;
 import nl.kortekaas.Stagemanagement.service.IItemService;
 import nl.kortekaas.Stagemanagement.service.RiskService;
 import org.springframework.beans.factory.annotation.Autowired;
