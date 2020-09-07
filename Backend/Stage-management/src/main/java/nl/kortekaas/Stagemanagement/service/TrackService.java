@@ -1,13 +1,10 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Item;
-import nl.kortekaas.Stagemanagement.domain.Track;
-import nl.kortekaas.Stagemanagement.domain.User;
+import nl.kortekaas.Stagemanagement.model.Track;
 import nl.kortekaas.Stagemanagement.persistence.RiskRepository;
 import nl.kortekaas.Stagemanagement.persistence.TrackRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +52,7 @@ public class TrackService implements ITrackService {
         Optional<Track> track = trackRepository.findById(id);
         if (track.isPresent()) {
             trackRepository.deleteById(id);
-            return "Track with id " + track.get().getId() + " is deleted.";
+            return "Track with id " + track.get().getTrackId() + " is deleted.";
         }
         throw new RuntimeException(TRACK_NOT_FOUND_ERROR);
     }

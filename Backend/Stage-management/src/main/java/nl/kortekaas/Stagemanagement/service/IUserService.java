@@ -1,6 +1,6 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.User;
+import nl.kortekaas.Stagemanagement.model.User;
 import nl.kortekaas.Stagemanagement.payload.request.UserRequest;
 import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
 import org.springframework.http.ResponseEntity;

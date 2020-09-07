@@ -1,8 +1,7 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Item;
 
-import java.util.List;
+import nl.kortekaas.Stagemanagement.model.Item;
 
 public interface IItemService {
 

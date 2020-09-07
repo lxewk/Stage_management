@@ -1,6 +1,6 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Todo;
+import nl.kortekaas.Stagemanagement.model.Todo;
 
 import java.util.List;
 

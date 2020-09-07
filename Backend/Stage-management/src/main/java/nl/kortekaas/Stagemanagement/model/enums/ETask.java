@@ -1,7 +1,6 @@
-package nl.kortekaas.Stagemanagement.domain;
+package nl.kortekaas.Stagemanagement.model.enums;
 
 public enum ETask {
-
     ASM_SL,
     ASM_SR,
     SL_1,

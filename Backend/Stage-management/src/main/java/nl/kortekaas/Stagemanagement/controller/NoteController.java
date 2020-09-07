@@ -1,7 +1,6 @@
 package nl.kortekaas.Stagemanagement.controller;
 
-import nl.kortekaas.Stagemanagement.domain.Item;
-import nl.kortekaas.Stagemanagement.domain.Note;
+import nl.kortekaas.Stagemanagement.model.Note;
 import nl.kortekaas.Stagemanagement.service.INoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
