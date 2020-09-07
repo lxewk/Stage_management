@@ -30,7 +30,7 @@ public class Todo {
     private List<User> users;
 
     @ManyToOne
-    private Item item;
+    private Item todoItem;
 
     public Todo() {}
 
@@ -76,10 +76,10 @@ public class Todo {
     }
 
     public Item getItem() {
-        return item;
+        return todoItem;
     }
 
     public void setItem(Item item) {
-        this.item = item;
+        this.todoItem = item;
     }
 }

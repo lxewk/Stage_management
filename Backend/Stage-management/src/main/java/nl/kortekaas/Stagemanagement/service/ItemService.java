@@ -1,7 +1,6 @@
 package nl.kortekaas.Stagemanagement.service;
 
 import nl.kortekaas.Stagemanagement.domain.Item;
-import nl.kortekaas.Stagemanagement.domain.Risk;
 import nl.kortekaas.Stagemanagement.domain.User;
 import nl.kortekaas.Stagemanagement.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +33,12 @@ public class ItemService implements IItemService {
     public void setItemRepository(ItemRepository itemRepository) { this.itemRepository = itemRepository; }
 
 
-    @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY') or hasRole('ASSISTANT') or hasRole('PROPS')")
-    @Override
-    public List<Item> getItems() {
-        List<Item> itemList = itemRepository.findAll();
-        return itemList;
-    }
+//    @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY') or hasRole('ASSISTANT') or hasRole('PROPS')")
+//    @Override
+//    public List<Item> getItems() {
+//        List<Item> itemList = itemRepository.findAll();
+//        return itemList;
+//    }
 
     @Override
     public Item getItemById(Long id) {
@@ -64,7 +63,6 @@ public class ItemService implements IItemService {
 
     @Override
     public Item addItemToUser(Long id, Item newItem) {
-        UserRepository userRepository = null;
 
         Optional<User> user =
                 userRepository.findById(id);

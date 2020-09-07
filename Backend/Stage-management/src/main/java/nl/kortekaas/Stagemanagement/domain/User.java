@@ -4,8 +4,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.List;
 
 
@@ -51,8 +49,8 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "sender")
     private List<Note> sentNotes;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
-    private List<Note> receivedNotes;
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
+//    private List<Note> receivedNotes;
 
     @ManyToMany
     @JoinTable(
@@ -154,11 +152,11 @@ public class User {
         this.tracks = tracks;
     }
 
-    public List<Note> getReceivedNotes() {
-        return receivedNotes;
-    }
-
-    public void setReceivedNotes(List<Note> receivedNotes) {
-        this.receivedNotes = receivedNotes;
-    }
+//    public List<Note> getReceivedNotes() {
+//        return receivedNotes;
+//    }
+//
+//    public void setReceivedNotes(List<Note> receivedNotes) {
+//        this.receivedNotes = receivedNotes;
+//    }
 }

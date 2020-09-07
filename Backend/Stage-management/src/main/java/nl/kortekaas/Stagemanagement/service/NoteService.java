@@ -1,12 +1,8 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Item;
 import nl.kortekaas.Stagemanagement.domain.Note;
-import nl.kortekaas.Stagemanagement.domain.Todo;
 import nl.kortekaas.Stagemanagement.domain.User;
-import nl.kortekaas.Stagemanagement.persistence.ItemRepository;
 import nl.kortekaas.Stagemanagement.persistence.NoteRepository;
-import nl.kortekaas.Stagemanagement.persistence.TodoRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -59,7 +55,6 @@ public class NoteService implements INoteService {
 
     @Override
     public Note addNoteToUser(Long id, Note newNote) {
-        UserRepository userRepository = null;
 
         Optional<User> user =
                 userRepository.findById(id);

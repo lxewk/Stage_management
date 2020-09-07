@@ -13,5 +13,7 @@ public interface IUserService {
 
     List<User> getUsers();
     ResponseEntity<MessageResponse> addRoleToUser(@Valid UserRequest userRequest);
+    ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest);
+
 
 }

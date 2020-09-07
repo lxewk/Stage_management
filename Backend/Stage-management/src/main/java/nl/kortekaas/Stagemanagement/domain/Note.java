@@ -27,7 +27,7 @@ public class Note {
     private User receiver;
 
     @ManyToOne
-    private Item item;
+    private Item noteItem;
 
     public Note(){}
 
@@ -57,11 +57,11 @@ public class Note {
     }
 
     public Item getItem() {
-        return item;
+        return noteItem;
     }
 
     public void setItem(Item item) {
-        this.item = item;
+        this.noteItem = item;
     }
 
 }
