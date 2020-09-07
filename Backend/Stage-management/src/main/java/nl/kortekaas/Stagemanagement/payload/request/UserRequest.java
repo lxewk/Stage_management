@@ -1,7 +1,8 @@
 package nl.kortekaas.Stagemanagement.payload.request;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Set;
+import java.util.List;
+
 
 public class UserRequest {
 
@@ -9,7 +10,10 @@ public class UserRequest {
     private String username;
 
     @NotBlank
-    private Set<String> trackName;
+    private List<String> roles;
+
+    @NotBlank
+    private List<String> tracks;
 
     public String getUsername() {
         return username;
@@ -19,11 +23,19 @@ public class UserRequest {
         this.username = username;
     }
 
-    public Set<String> getTrackName() {
-        return trackName;
+    public List<String> getTrackName() {
+        return tracks;
     }
 
-    public void setTrackName(Set<String> trackName) {
-        this.trackName = trackName;
+    public void setTrackName(List<String> trackName) {
+        this.tracks = tracks;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }

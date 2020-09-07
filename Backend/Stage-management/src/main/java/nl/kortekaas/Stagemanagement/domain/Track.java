@@ -4,7 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 public class Track {
@@ -34,6 +34,8 @@ public class Track {
 
     public Track() {}
 
+    public Track(ETask task) { this.task = task; }
+
     public long getId() {
         return trackId;
     }
@@ -58,6 +60,19 @@ public class Track {
         this.trackName = trackName;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
 
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
+    public List<Risk> getRisk() {
+        return risk;
+    }
+
+    public void setRisk(List<Risk> risk) {
+        this.risk = risk;
+    }
 }

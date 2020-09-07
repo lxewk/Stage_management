@@ -31,30 +31,28 @@ public class User {
     private int receivedNote;
 
     @ManyToMany
-    @JoinTable (name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    @JoinTable (name = "USER_ROLE",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+    private List<Role> roles;
 
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "creator",
     cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
 
-
     @ManyToMany
     @JoinTable(
             name = "USER_TRACK",
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "TRACK_ID"))
-    private Set<Track> tracks = new HashSet<>();
-
+    private List<Track> tracks;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "sender")
-    private Set<Note> sentNotes = new HashSet<>();
+    private List<Note> sentNotes;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
-    private Set<Note> receivedNotes = new HashSet<>();
+    private List<Note> receivedNotes;
 
     @ManyToMany
     @JoinTable(
@@ -68,7 +66,11 @@ public class User {
 
     public User(String username) {
         this.username = username;
-        //this.userTrack = userTrack;
+    }
+
+    public User(String username, List<Track> tracks) {
+        this.username = username;
+        this.tracks = tracks;
     }
 
     public long getId() {
@@ -104,20 +106,20 @@ public class User {
         this.loggedIn = loggedIn;
     }
 
+    public List<Note> getSentNotes() {
+        return sentNotes;
+    }
+
+    public void setSentNotes(List<Note> sentNotes) {
+        this.sentNotes = sentNotes;
+    }
+
     public int getReceivedNote() {
         return receivedNote;
     }
 
     public void setReceivedNote(int receivedNote) {
         this.receivedNote = receivedNote;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 
     public List<Item> getItems() {
@@ -128,35 +130,35 @@ public class User {
         this.items = items;
     }
 
-    public Set<Track> getTracks() {
-        return tracks;
-    }
-
-    public void setTracks(Set<Track> tracks) {
-        this.tracks = tracks;
-    }
-
-    public Set<Note> getSentNotes() {
-        return sentNotes;
-    }
-
-    public void setSentNotes(Set<Note> sentNotes) {
-        this.sentNotes = sentNotes;
-    }
-
-    public Set<Note> getReceivedNotes() {
-        return receivedNotes;
-    }
-
-    public void setReceivedNotes(Set<Note> receivedNotes) {
-        this.receivedNotes = receivedNotes;
-    }
-
     public List<Todo> getTodo_s() {
         return todo_s;
     }
 
     public void setTodo_s(List<Todo> todo_s) {
         this.todo_s = todo_s;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Track> getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(List<Track> tracks) {
+        this.tracks = tracks;
+    }
+
+    public List<Note> getReceivedNotes() {
+        return receivedNotes;
+    }
+
+    public void setReceivedNotes(List<Note> receivedNotes) {
+        this.receivedNotes = receivedNotes;
     }
 }

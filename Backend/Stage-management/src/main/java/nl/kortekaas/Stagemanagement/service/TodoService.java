@@ -58,18 +58,4 @@ public class TodoService implements ITodoService {
         throw new RuntimeException(TODO_NOT_FOUND_ERROR);
     }
 
-//    @Override
-//    public Todo addTodoToUser(Long id, Todo newTodo) {
-//        UserRepository userRepository = null;
-//        Optional<User> _user =
-//                userRepository.findById(id);
-//
-//
-//
-//        if(_user.isPresent()) {
-//            newTodo.setUsers(user.get());
-//            return todoRepository.save(newTodo);
-//        }
-//        return null;
-//    }
 }
