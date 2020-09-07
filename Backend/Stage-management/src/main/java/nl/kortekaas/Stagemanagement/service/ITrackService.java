@@ -1,6 +1,6 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Track;
+import nl.kortekaas.Stagemanagement.model.Track;
 
 import java.util.List;
 

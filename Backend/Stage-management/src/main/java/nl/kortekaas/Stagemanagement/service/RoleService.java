@@ -1,6 +1,6 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Role;
+import nl.kortekaas.Stagemanagement.model.Role;
 import nl.kortekaas.Stagemanagement.persistence.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

@@ -1,14 +1,22 @@
-package nl.kortekaas.Stagemanagement.domain;
+package nl.kortekaas.Stagemanagement.model;
 
+import nl.kortekaas.Stagemanagement.model.enums.ETask;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import java.util.List;
-
 
 @Entity
 public class Track {
-
     @Id
     @GeneratedValue(
             strategy= GenerationType.AUTO,
@@ -20,36 +28,24 @@ public class Track {
     )
     @Column(columnDefinition = "serial")
     private long trackId;
+    private String trackName;
 
     @Enumerated(EnumType.STRING)
     private ETask task;
 
-    private String trackName;
-
     @ManyToMany(mappedBy = "tracks")
     private List<User> users;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "track")
+
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Risk> risk;
 
-    public Track() {}
-
-    public Track(ETask task) { this.task = task; }
-
-    public long getId() {
+    public long getTrackId() {
         return trackId;
     }
 
-    public void setId(long trackId) {
+    public void setTrackId(long trackId) {
         this.trackId = trackId;
-    }
-
-    public ETask getTask() {
-        return task;
-    }
-
-    public void setTask(ETask task) {
-        this.task = task;
     }
 
     public String getTrackName() {
@@ -66,6 +62,14 @@ public class Track {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public ETask getTask() {
+        return task;
+    }
+
+    public void setTask(ETask task) {
+        this.task = task;
     }
 
     public List<Risk> getRisk() {
