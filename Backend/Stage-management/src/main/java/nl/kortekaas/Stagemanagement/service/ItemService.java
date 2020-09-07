@@ -2,16 +2,22 @@ package nl.kortekaas.Stagemanagement.service;
 
 import nl.kortekaas.Stagemanagement.domain.Item;
 import nl.kortekaas.Stagemanagement.domain.Risk;
+import nl.kortekaas.Stagemanagement.domain.User;
 import nl.kortekaas.Stagemanagement.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ItemService implements IItemService {
+
+    private static final String ITEM_NOT_FOUND_ERROR = "Error: Item is not found.";
 
     private ItemRepository itemRepository;
     private RiskRepository riskRepository;
@@ -29,8 +35,51 @@ public class ItemService implements IItemService {
 
 
     @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY') or hasRole('ASSISTANT') or hasRole('PROPS')")
-    public List<Item> getItem() {
+    @Override
+    public List<Item> getItems() {
         List<Item> itemList = itemRepository.findAll();
         return itemList;
+    }
+
+    @Override
+    public Item getItemById(Long id) {
+        return itemRepository.findById(id).orElseThrow(
+                () -> new RuntimeException(ITEM_NOT_FOUND_ERROR));
+    }
+
+    @Override
+    public Item saveItem(Item newItem) {
+        return itemRepository.save(newItem);
+    }
+
+    @Override
+    public String deleteItem(Long id) {
+        Optional<Item> item = itemRepository.findById(id);
+        if (item.isPresent()) {
+            itemRepository.deleteById(id);
+            return "Item with id " + item.get().getId() + " is deleted.";
+        }
+        throw new RuntimeException(ITEM_NOT_FOUND_ERROR);
+    }
+
+    @Override
+    public Item addItemToUser(Long id, Item newItem) {
+        UserRepository userRepository = null;
+
+        Optional<User> user =
+                userRepository.findById(id);
+        if(user.isPresent()) {
+            newItem.setCreator(user.get());
+            return itemRepository.save(newItem);
+        }
+        return null;
+    }
+
+    public void addPhoto(){
+        System.out.println("here should be a picture");
+    }
+
+    public void addVideo(){
+        System.out.println("here should be a video");
     }
 }

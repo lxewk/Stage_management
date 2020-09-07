@@ -6,5 +6,11 @@ import java.util.List;
 
 public interface IItemService {
 
-    List<Item> getItem();
+    List<Item> getItems();
+    Item getItemById(Long id);
+    Item saveItem(Item newItem);
+    String deleteItem(Long id);
+    Item addItemToUser(Long id, Item newItem);
+    void addPhoto();
+    void addVideo();
 }

@@ -3,7 +3,7 @@ package nl.kortekaas.Stagemanagement.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,18 +27,18 @@ public class Track {
     private String trackName;
 
     @ManyToMany(mappedBy = "tracks")
-    private Set<User> users = new HashSet<>();
+    private List<User> users;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "track")
-    private Set<Risk> risks = new HashSet<>();
+    private List<Risk> risk;
 
     public Track() {}
 
-    public long getTrackId() {
+    public long getId() {
         return trackId;
     }
 
-    public void setTrackId(long trackId) {
+    public void setId(long trackId) {
         this.trackId = trackId;
     }
 
@@ -58,19 +58,6 @@ public class Track {
         this.trackName = trackName;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
 
-    public Set<Risk> getRisks() {
-        return risks;
-    }
-
-    public void setRisks(Set<Risk> risks) {
-        this.risks = risks;
-    }
 }
