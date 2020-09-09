@@ -23,8 +23,8 @@ public class ItemController {
         return itemService.deleteItem(id);
     }
 
-    @PostMapping(value = "/{userid}")
-    public Item addItemToUserById(@PathVariable long userid,
+    @PostMapping(value = "/{username}")
+    public Item addItemToUserByUsername(@PathVariable String username,
                                   @RequestBody Item newItem) {
         return itemService.saveItem(newItem);
     }

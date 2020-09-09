@@ -66,10 +66,10 @@ public class ItemService implements IItemService {
     }
 
     @Override
-    public Item addItemToUser(Long id, Item newItem) {
+    public Item addItemToUserByUsername(String username, Item newItem) {
 
         Optional<User> user =
-                userRepository.findById(id);
+                userRepository.findByUsername(username);
         if(user.isPresent()) {
             newItem.setCreator(user.get());
             return itemRepository.save(newItem);

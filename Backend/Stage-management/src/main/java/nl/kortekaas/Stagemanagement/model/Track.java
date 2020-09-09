@@ -28,7 +28,6 @@ public class Track {
     )
     @Column(columnDefinition = "serial")
     private long trackId;
-    private String trackName;
 
     @Enumerated(EnumType.STRING)
     private ETask task;
@@ -46,14 +45,6 @@ public class Track {
 
     public void setTrackId(long trackId) {
         this.trackId = trackId;
-    }
-
-    public String getTrackName() {
-        return trackName;
-    }
-
-    public void setTrackName(String trackName) {
-        this.trackName = trackName;
     }
 
     public List<User> getUsers() {
