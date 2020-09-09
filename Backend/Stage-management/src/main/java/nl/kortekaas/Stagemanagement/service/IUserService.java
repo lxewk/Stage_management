@@ -14,6 +14,7 @@ public interface IUserService {
 
     List<User> getUsers();
     User getUserById(Long id);
+    User saveUser(User newUser);
     ResponseEntity<MessageResponse> addRoleToUser(@Valid LoginRequest loginRequest);
     ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest);
     void registerUser(User user);
