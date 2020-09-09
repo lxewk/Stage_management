@@ -1,9 +1,22 @@
 package nl.kortekaas.Stagemanagement.service;
 
-import nl.kortekaas.Stagemanagement.domain.Account;
-import nl.kortekaas.Stagemanagement.domain.User;
+import nl.kortekaas.Stagemanagement.model.User;
+import nl.kortekaas.Stagemanagement.payload.request.LoginRequest;
+import nl.kortekaas.Stagemanagement.payload.request.UserRequest;
+import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
+import org.springframework.http.ResponseEntity;
+
+
+import javax.validation.Valid;
+import java.util.List;
 
 public interface IUserService {
 
-    User addUserToAccount(Long id, Account tempAccount);
+    List<User> getUsers();
+    User getUserById(Long id);
+    ResponseEntity<MessageResponse> addRoleToUser(@Valid LoginRequest loginRequest);
+    ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest);
+    void registerUser(User user);
+
+
 }

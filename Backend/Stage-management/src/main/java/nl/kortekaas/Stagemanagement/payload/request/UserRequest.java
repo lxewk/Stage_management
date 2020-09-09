@@ -1,15 +1,22 @@
 package nl.kortekaas.Stagemanagement.payload.request;
 
-import nl.kortekaas.Stagemanagement.model.Role;
-
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
-public class LoginRequest {
 
+public class UserRequest {
+
+    @NotBlank
     private String username;
+
+    @NotBlank
     private String password;
+
+    @NotBlank
     private List<String> roles;
 
+    @NotBlank
+    private List<String> tracks;
 
     public String getUsername() {
         return username;
@@ -27,6 +34,14 @@ public class LoginRequest {
         this.password = password;
     }
 
+    public List<String> getTrackName() {
+        return tracks;
+    }
+
+    public void setTrackName(List<String> trackName) {
+        this.tracks = tracks;
+    }
+
     public List<String> getRoles() {
         return roles;
     }
@@ -35,4 +50,3 @@ public class LoginRequest {
         this.roles = roles;
     }
 }
-

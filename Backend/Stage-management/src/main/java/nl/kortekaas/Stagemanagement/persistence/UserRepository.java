@@ -1,6 +1,6 @@
 package nl.kortekaas.Stagemanagement.persistence;
 
-import nl.kortekaas.Stagemanagement.domain.User;
+import nl.kortekaas.Stagemanagement.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

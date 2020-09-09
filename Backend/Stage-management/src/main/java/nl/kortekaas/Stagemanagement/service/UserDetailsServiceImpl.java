@@ -1,7 +1,7 @@
 package nl.kortekaas.Stagemanagement.service;
 
 
-import nl.kortekaas.Stagemanagement.domain.User;
+import nl.kortekaas.Stagemanagement.model.User;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username)  {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found: " + username));
-        return UserDetailsImpl.build(user.getUser_account());
+        return UserDetailsImpl.build(user);
     }
 }
 

@@ -1,8 +1,7 @@
 package nl.kortekaas.Stagemanagement.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import nl.kortekaas.Stagemanagement.domain.User;
-import nl.kortekaas.Stagemanagement.domain.Account;
+import nl.kortekaas.Stagemanagement.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,15 +30,15 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserDetailsImpl build(Account account) {
-        List<GrantedAuthority> authorities = account.getRoles().stream()
+    public static UserDetailsImpl build(User user) {
+        List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
 
         return new UserDetailsImpl(
-                account.getAccountId(),
-                account.getNameNewUser(),
-                account.getNewPassword(),
+                user.getUserId(),
+                user.getUsername(),
+                user.getPassword(),
                 authorities);
     }
 

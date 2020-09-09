@@ -1,4 +1,4 @@
-package nl.kortekaas.Stagemanagement.domain;
+package nl.kortekaas.Stagemanagement.model.enums;
 
 public enum EPreset {
 

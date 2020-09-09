@@ -1,6 +1,10 @@
 package nl.kortekaas.Stagemanagement.service;
 
+import nl.kortekaas.Stagemanagement.model.Role;
+import nl.kortekaas.Stagemanagement.model.User;
+import nl.kortekaas.Stagemanagement.model.enums.ERole;
 import nl.kortekaas.Stagemanagement.payload.request.LoginRequest;
+import nl.kortekaas.Stagemanagement.payload.request.UserRequest;
 import nl.kortekaas.Stagemanagement.payload.response.JwtResponse;
 import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
 import nl.kortekaas.Stagemanagement.persistence.RoleRepository;
