@@ -68,6 +68,23 @@ public class UserService implements IUserService {
                 () -> new RuntimeException(USER_NOT_FOUND_ERROR));
     }
 
+    public User saveUser(User newUser) { return userRepository.save(newUser); }
+
+    public void registerUser(User user) {
+        if (Boolean.TRUE.equals(userRepository.existsByUsername(user.getUsername()))) {
+
+            throw new RuntimeException("This username is already taken: " + user.getUsername());
+        }
+
+        if (user.getPassword() == null) {
+            throw new RuntimeException("No password");
+        } else {
+            user.setPassword(encoder.encode(user.getPassword()));
+        }
+
+        userRepository.save(user);
+    }
+
     @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY')")
     @Override
     public ResponseEntity<MessageResponse> addRoleToUser(@Valid LoginRequest loginRequest) {
@@ -234,73 +251,4 @@ public class UserService implements IUserService {
         return ResponseEntity.ok(new MessageResponse("The track is added to crew"));
 
     }
-
-    /**
-     *
-     * Deze methode verwerkt de gebruiker die wil registreren. De username en e-mail worden gecheckt. Eventuele rollen
-     * worden toegevoegd en de gebruiker wordt opgeslagen in de database.
-     *
-     * @param user de gebruiker met unencrypted password
-     * @return een HTTP response met daarin een succesbericht.
-     */
-    public void registerUser(User user) {
-        if (Boolean.TRUE.equals(userRepository.existsByUsername(user.getUsername()))) {
-
-            throw new RuntimeException("Deze gebruikersnaam bestaat al: " + user.getUsername());
-        }
-
-        user.setPassword(encoder.encode(user.getPassword()));
-
-        userRepository.save(user);
-    }
-
-
-    //    public String generateRandomSpecialCharacters(int length) {
-//        RandomStringGenerator pwdGenerator = new RandomStringGenerator.Builder().withinRange(33, 45)
-//                .build();
-//        return pwdGenerator.generate(length);
-//    }
-//
-//
-//    public String generateRandomNumbers(int length) {
-//        RandomStringGenerator nmbGenerator = new RandomStringGenerator().Builder().withinRange(48, 57)
-//                .build();
-//        return nmbGenerator.generate(length);
-//    }
-//
-//
-//    public String generateRandomAlphabet(int length, boolean lowCase) {
-//
-//        String upperCaseLetters = RandomStringUtils.random(2, 65, 90, true, true);
-//        String lowerCaseLetters = RandomStringUtils.random(2, 97, 122, true, true);
-//
-//        RandomStringGenerator alpGenerator = new RandomStringGenerator().Builder().withinRange(65, 122)
-//                .build();
-//        // TODO
-//
-//        return alpGenerator.generate(length);
-//    }
-//
-//
-//    public String generateRandomCharacters(int length) {
-//        RandomStringGenerator charGenerator = new RandomStringGenerator().Builder().withinRange(33,45)
-//                .build();
-//        return charGenerator.generate(length);
-//    }
-//
-//    public String generateCommonTextPassword() {
-//        String pwString = generateRandomSpecialCharacters(2).concat(generateRandomNumbers(2))
-//                .concat(generateRandomAlphabet(2, true))
-//                .concat(generateRandomAlphabet(2, false))
-//                .concat(generateRandomCharacters(2));
-//        List<Character> pwChars = pwString.chars()
-//                .mapToObj(data -> (char) data)
-//                .collect(Collectors.toList());
-//        Collections.shuffle(pwChars);
-//        String password = pwChars.stream()
-//                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
-//                .toString();
-//        return password;
-//    }
-
 }
