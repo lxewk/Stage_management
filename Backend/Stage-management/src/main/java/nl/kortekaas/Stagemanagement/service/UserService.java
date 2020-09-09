@@ -18,8 +18,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Validated
@@ -36,6 +38,11 @@ public class UserService implements IUserService {
     private NoteRepository noteRepository;
     private TrackRepository trackRepository;
     private PasswordEncoder encoder;
+
+    @Autowired
+    public void setEncoder(PasswordEncoder passwordEncoder) {
+        this.encoder = passwordEncoder;
+    }
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) { this.userRepository = userRepository; }
@@ -66,6 +73,28 @@ public class UserService implements IUserService {
     public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow(
                 () -> new RuntimeException(USER_NOT_FOUND_ERROR));
+    }
+
+    public void registerUser(User user, ERole roleName) {
+        if (Boolean.TRUE.equals(userRepository.existsByUsername(user.getUsername()))) {
+
+            throw new RuntimeException("This username is already taken: " + user.getUsername());
+        }
+
+        if (user.getPassword() == null) {
+            throw new RuntimeException("No password");
+        } else {
+            user.setPassword(encoder.encode(user.getPassword()));
+        }
+
+
+        Role role = roleRepository.findByName(roleName)
+                .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        user.setRoles(roles);
+
+        userRepository.save(user);
     }
 
     @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY')")
@@ -123,7 +152,8 @@ public class UserService implements IUserService {
             }
         });
 
-        user.setRoles(roles);
+        //TODO
+        //user.setRoles(roles);
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("Account is created"));
@@ -234,73 +264,4 @@ public class UserService implements IUserService {
         return ResponseEntity.ok(new MessageResponse("The track is added to crew"));
 
     }
-
-    /**
-     *
-     * Deze methode verwerkt de gebruiker die wil registreren. De username en e-mail worden gecheckt. Eventuele rollen
-     * worden toegevoegd en de gebruiker wordt opgeslagen in de database.
-     *
-     * @param user de gebruiker met unencrypted password
-     * @return een HTTP response met daarin een succesbericht.
-     */
-    public void registerUser(User user) {
-        if (Boolean.TRUE.equals(userRepository.existsByUsername(user.getUsername()))) {
-
-            throw new RuntimeException("Deze gebruikersnaam bestaat al: " + user.getUsername());
-        }
-
-        user.setPassword(encoder.encode(user.getPassword()));
-
-        userRepository.save(user);
-    }
-
-
-    //    public String generateRandomSpecialCharacters(int length) {
-//        RandomStringGenerator pwdGenerator = new RandomStringGenerator.Builder().withinRange(33, 45)
-//                .build();
-//        return pwdGenerator.generate(length);
-//    }
-//
-//
-//    public String generateRandomNumbers(int length) {
-//        RandomStringGenerator nmbGenerator = new RandomStringGenerator().Builder().withinRange(48, 57)
-//                .build();
-//        return nmbGenerator.generate(length);
-//    }
-//
-//
-//    public String generateRandomAlphabet(int length, boolean lowCase) {
-//
-//        String upperCaseLetters = RandomStringUtils.random(2, 65, 90, true, true);
-//        String lowerCaseLetters = RandomStringUtils.random(2, 97, 122, true, true);
-//
-//        RandomStringGenerator alpGenerator = new RandomStringGenerator().Builder().withinRange(65, 122)
-//                .build();
-//        // TODO
-//
-//        return alpGenerator.generate(length);
-//    }
-//
-//
-//    public String generateRandomCharacters(int length) {
-//        RandomStringGenerator charGenerator = new RandomStringGenerator().Builder().withinRange(33,45)
-//                .build();
-//        return charGenerator.generate(length);
-//    }
-//
-//    public String generateCommonTextPassword() {
-//        String pwString = generateRandomSpecialCharacters(2).concat(generateRandomNumbers(2))
-//                .concat(generateRandomAlphabet(2, true))
-//                .concat(generateRandomAlphabet(2, false))
-//                .concat(generateRandomCharacters(2));
-//        List<Character> pwChars = pwString.chars()
-//                .mapToObj(data -> (char) data)
-//                .collect(Collectors.toList());
-//        Collections.shuffle(pwChars);
-//        String password = pwChars.stream()
-//                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
-//                .toString();
-//        return password;
-//    }
-
 }
