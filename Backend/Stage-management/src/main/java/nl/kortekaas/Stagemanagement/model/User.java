@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "APP_USER")
@@ -26,12 +27,14 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "assignee")
     private List<Todo> todos;
 
-    @ManyToMany
+    @ManyToMany(cascade = {
+            CascadeType.MERGE
+    })
     @JoinTable(
             name = "USER_ROLE",
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-    private List<Role> roles;
+    private Set<Role> roles;
 
     @ManyToMany
     @JoinTable(
@@ -72,11 +75,11 @@ public class User {
         this.todos = todos;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 

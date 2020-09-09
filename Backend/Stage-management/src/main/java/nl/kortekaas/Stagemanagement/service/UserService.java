@@ -18,8 +18,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Validated
@@ -36,6 +38,11 @@ public class UserService implements IUserService {
     private NoteRepository noteRepository;
     private TrackRepository trackRepository;
     private PasswordEncoder encoder;
+
+    @Autowired
+    public void setEncoder(PasswordEncoder passwordEncoder) {
+        this.encoder = passwordEncoder;
+    }
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) { this.userRepository = userRepository; }
@@ -68,9 +75,7 @@ public class UserService implements IUserService {
                 () -> new RuntimeException(USER_NOT_FOUND_ERROR));
     }
 
-    public User saveUser(User newUser) { return userRepository.save(newUser); }
-
-    public void registerUser(User user) {
+    public void registerUser(User user, ERole roleName) {
         if (Boolean.TRUE.equals(userRepository.existsByUsername(user.getUsername()))) {
 
             throw new RuntimeException("This username is already taken: " + user.getUsername());
@@ -81,6 +86,13 @@ public class UserService implements IUserService {
         } else {
             user.setPassword(encoder.encode(user.getPassword()));
         }
+
+
+        Role role = roleRepository.findByName(roleName)
+                .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        user.setRoles(roles);
 
         userRepository.save(user);
     }
@@ -140,7 +152,8 @@ public class UserService implements IUserService {
             }
         });
 
-        user.setRoles(roles);
+        //TODO
+        //user.setRoles(roles);
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("Account is created"));

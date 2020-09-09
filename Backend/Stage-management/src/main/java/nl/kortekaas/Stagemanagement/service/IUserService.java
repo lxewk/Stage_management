@@ -1,6 +1,7 @@
 package nl.kortekaas.Stagemanagement.service;
 
 import nl.kortekaas.Stagemanagement.model.User;
+import nl.kortekaas.Stagemanagement.model.enums.ERole;
 import nl.kortekaas.Stagemanagement.payload.request.LoginRequest;
 import nl.kortekaas.Stagemanagement.payload.request.UserRequest;
 import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
@@ -14,10 +15,7 @@ public interface IUserService {
 
     List<User> getUsers();
     User getUserById(Long id);
-    User saveUser(User newUser);
     ResponseEntity<MessageResponse> addRoleToUser(@Valid LoginRequest loginRequest);
     ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest);
-    void registerUser(User user);
-
-
+    void registerUser(User user, ERole role);
 }
