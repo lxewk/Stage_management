@@ -97,6 +97,7 @@ public class UserService implements IUserService {
         userRepository.save(user);
     }
 
+
     @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY')")
     @Override
     public ResponseEntity<MessageResponse> addRoleToUser(@Valid LoginRequest loginRequest) {

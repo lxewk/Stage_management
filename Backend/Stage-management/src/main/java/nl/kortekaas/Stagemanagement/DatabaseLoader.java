@@ -27,65 +27,40 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        /*
-        STAGEMANAGER,
-                DEPUTY,
-                ASSISTANT,
-                CREW,
-                PROPS,
-                CREATIVE,
-                PRODUCTION
-                */
-
 
         User stagemanager = new User();
-        stagemanager.setUsername("Nick Stuivenberg");
+        stagemanager.setUsername("nStuivenberg");
         stagemanager.setPassword("smBoogieWoogie");
         userService.registerUser(stagemanager, ERole.STAGEMANAGER);
 
-        /*
         User deputy = new User();
-        deputy.setUsername("Lisette Tates");
+        deputy.setUsername("lTates");
         deputy.setPassword("dsmBoogieWoogie");
-        role.setName(ERole.DEPUTY);
-        deputy.setRoles(roles);
-        userService.registerUser(deputy);
+        userService.registerUser(deputy, ERole.DEPUTY);
 
         User assistant = new User();
-        assistant.setUsername("Jos Vervelde ");
+        assistant.setUsername("jVervelde");
         assistant.setPassword("asmBoogieWoogie");
-        role.setName(ERole.ASSISTANT);
-        assistant.setRoles(roles);
-        userService.registerUser(assistant);
+        userService.registerUser(assistant, ERole.ASSISTANT);
 
         User crew = new User();
-        crew.setUsername("Elles Kortekaas");
+        crew.setUsername("eKortekaas");
         crew.setPassword("crewBoogieWoogie");
-        role.setName(ERole.CREW);
-        crew.setRoles(roles);
-        userService.registerUser(crew);
+        userService.registerUser(crew, ERole.CREW);
 
         User props = new User();
-        props.setUsername("Peter v/d Helm");
+        props.setUsername("pvdHelm");
         props.setPassword("propsBoogieWoogie");
-        role.setName(ERole.PROPS);
-        props.setRoles(roles);
-        userService.registerUser(props);
+        userService.registerUser(props, ERole.PROPS);
 
         User creative = new User();
-        creative.setUsername("Carla");
-        creative.setPassword("creativeBoogieWoogie");
-        role.setName(ERole.CREATIVE);
-        creative.setRoles(roles);
-        userService.registerUser(creative);
+        creative.setUsername("cToren");
+        creative.setPassword("creaBoogieWoogie");
+        userService.registerUser(creative, ERole.CREATIVE);
 
         User production = new User();
-        production.setUsername("Anneloes Welter");
+        production.setUsername("aWelter");
         production.setPassword("prodBoogieWoogie");
-        role.setName(ERole.PRODUCTION);
-        production.setRoles(roles);
-        userService.registerUser(production);
-        */
-
+        userService.registerUser(production, ERole.PRODUCTION);
     }
 }

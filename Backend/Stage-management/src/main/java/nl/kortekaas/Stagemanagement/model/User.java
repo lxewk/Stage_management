@@ -3,6 +3,7 @@ package nl.kortekaas.Stagemanagement.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class User {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial")
+    @Column(name = "id", updatable = false, nullable = false)
     private long userId;
 
     private String username;
@@ -27,14 +28,12 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "assignee")
     private List<Todo> todos;
 
-    @ManyToMany(cascade = {
-            CascadeType.MERGE
-    })
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "USER_ROLE",
-            joinColumns = @JoinColumn(name = "USER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-    private Set<Role> roles;
+            joinColumns = @JoinColumn(name = "USER_ID", nullable = false, updatable = false),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID", nullable = false, updatable = false))
+    public Set<Role> roles = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
