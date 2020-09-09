@@ -13,6 +13,7 @@ import nl.kortekaas.Stagemanagement.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -34,6 +35,7 @@ public class UserService implements IUserService {
     private ItemRepository itemRepository;
     private NoteRepository noteRepository;
     private TrackRepository trackRepository;
+    private PasswordEncoder encoder;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) { this.userRepository = userRepository; }
@@ -231,6 +233,25 @@ public class UserService implements IUserService {
 
         return ResponseEntity.ok(new MessageResponse("The track is added to crew"));
 
+    }
+
+    /**
+     *
+     * Deze methode verwerkt de gebruiker die wil registreren. De username en e-mail worden gecheckt. Eventuele rollen
+     * worden toegevoegd en de gebruiker wordt opgeslagen in de database.
+     *
+     * @param user de gebruiker met unencrypted password
+     * @return een HTTP response met daarin een succesbericht.
+     */
+    public void registerUser(User user) {
+        if (Boolean.TRUE.equals(userRepository.existsByUsername(user.getUsername()))) {
+
+            throw new RuntimeException("Deze gebruikersnaam bestaat al: " + user.getUsername());
+        }
+
+        user.setPassword(encoder.encode(user.getPassword()));
+
+        userRepository.save(user);
     }
 
 
