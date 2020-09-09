@@ -1,9 +1,15 @@
 package nl.kortekaas.Stagemanagement.payload.request;
 
+import nl.kortekaas.Stagemanagement.model.Role;
+
+import java.util.List;
+
 public class LoginRequest {
 
     private String username;
     private String password;
+    private List<String> roles;
+
 
     public String getUsername() {
         return username;
@@ -19,6 +25,14 @@ public class LoginRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }
 

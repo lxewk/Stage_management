@@ -10,6 +10,9 @@ public class UserRequest {
     private String username;
 
     @NotBlank
+    private String password;
+
+    @NotBlank
     private List<String> roles;
 
     @NotBlank
@@ -21,6 +24,14 @@ public class UserRequest {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<String> getTrackName() {

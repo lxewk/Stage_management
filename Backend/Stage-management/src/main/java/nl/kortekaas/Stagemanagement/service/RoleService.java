@@ -17,8 +17,7 @@ public class RoleService implements IRoleService {
 
     @PreAuthorize("hasRole('DEPUTY') or hasRole('STAGEMANAGER')")
     public List<Role> getRoles() {
-        List<Role> roleList = roleRepository.findAll();
-        return roleList;
+        return roleRepository.findAll();
     }
 
     @Override

@@ -1,10 +1,12 @@
 package nl.kortekaas.Stagemanagement.service;
 
+import nl.kortekaas.Stagemanagement.model.Item;
 import nl.kortekaas.Stagemanagement.model.Role;
 import nl.kortekaas.Stagemanagement.model.Track;
 import nl.kortekaas.Stagemanagement.model.User;
 import nl.kortekaas.Stagemanagement.model.enums.ERole;
 import nl.kortekaas.Stagemanagement.model.enums.ETask;
+import nl.kortekaas.Stagemanagement.payload.request.LoginRequest;
 import nl.kortekaas.Stagemanagement.payload.request.UserRequest;
 import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
 import nl.kortekaas.Stagemanagement.persistence.*;
@@ -16,11 +18,13 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Validated
 public class UserService implements IUserService {
 
+    private static final String USER_NOT_FOUND_ERROR = "Error: User is not found.";
     private static final String ROLE_NOT_FOUND_ERROR = "Error: Role is not found.";
     private static final String TASK_NOT_FOUND_ERROR = "Error: Task is not found.";
 
@@ -56,14 +60,20 @@ public class UserService implements IUserService {
         return userRepository.findAll();
     }
 
-    @PreAuthorize("hasRole('DEPUTY') or hasRole('STAGEMANAGER')")
     @Override
-    public ResponseEntity<MessageResponse> addRoleToUser(@Valid UserRequest userRequest) {
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElseThrow(
+                () -> new RuntimeException(USER_NOT_FOUND_ERROR));
+    }
+
+    @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY')")
+    @Override
+    public ResponseEntity<MessageResponse> addRoleToUser(@Valid LoginRequest loginRequest) {
 
         User user = new User();
-        user.setUsername(userRequest.getUsername());
+        user.setUsername(loginRequest.getUsername());
 
-        List<String> strRoles = userRequest.getRoles();
+        List<String> strRoles = loginRequest.getRoles();
         List<Role> roles = null;
 
         strRoles.forEach(role -> {

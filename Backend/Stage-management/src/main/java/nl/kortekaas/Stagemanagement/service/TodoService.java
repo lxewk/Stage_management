@@ -32,8 +32,7 @@ public class TodoService implements ITodoService {
     @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY') or hasRole('ASSISTANT') or hasRole('PROPS') or hasRole('CREW')")
     @Override
     public List<Todo> getTodos() {
-        List<Todo> todoList = todoRepository.findAll();
-        return todoList;
+        return todoRepository.findAll();
     }
 
     @Override

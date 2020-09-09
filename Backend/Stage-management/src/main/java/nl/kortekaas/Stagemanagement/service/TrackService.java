@@ -32,8 +32,7 @@ public class TrackService implements ITrackService {
     @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('ASSISTANT') or hasRole('CREW')")
     @Override
     public List<Track> getTracks() {
-        List<Track> trackList = trackRepository.findAll();
-        return trackList;
+        return trackRepository.findAll();
     }
 
     @Override

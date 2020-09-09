@@ -1,6 +1,7 @@
 package nl.kortekaas.Stagemanagement.service;
 
 import nl.kortekaas.Stagemanagement.model.User;
+import nl.kortekaas.Stagemanagement.payload.request.LoginRequest;
 import nl.kortekaas.Stagemanagement.payload.request.UserRequest;
 import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,8 @@ import java.util.List;
 public interface IUserService {
 
     List<User> getUsers();
-    ResponseEntity<MessageResponse> addRoleToUser(@Valid UserRequest userRequest);
+    User getUserById(Long id);
+    ResponseEntity<MessageResponse> addRoleToUser(@Valid LoginRequest loginRequest);
     ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest);
 
 
