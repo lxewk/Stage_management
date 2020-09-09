@@ -4,7 +4,7 @@ import nl.kortekaas.Stagemanagement.model.enums.ERole;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
@@ -26,11 +26,13 @@ public class Role {
     private ERole name;
 
     @ManyToMany(mappedBy = "roles")
-    private List<User> users;
+    private Set<User> users;
 
     public Role() {}
 
-    public Role(ERole name) { this.name = name; }
+    public Role(ERole harry) {
+        this.name = harry;
+    }
 
     public long getId() {
         return id;
@@ -48,11 +50,11 @@ public class Role {
         this.name = name;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public Set<User> getUsers() {
+       return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 }
