@@ -29,10 +29,4 @@ public class NoteController {
         return noteService.saveNote(newNote);
     }
 
-
-//    public void sendNote(User receiverUser, User activeUser) {
-//        System.out.println(receiverUser + " You've got a note");
-//        int toSend = receiverUser.getReceivedNote();
-//        receiverUser.setReceivedNote(toSend);
-//    }
 }

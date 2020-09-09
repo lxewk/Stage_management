@@ -2,17 +2,7 @@ package nl.kortekaas.Stagemanagement.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -33,11 +23,12 @@ public class User {
     private String username;
     private String password;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "todoItem")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "assignee")
     private List<Todo> todos;
 
     @ManyToMany
-    @JoinTable(name = "USER_ROLE",
+    @JoinTable(
+            name = "USER_ROLE",
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     private List<Role> roles;

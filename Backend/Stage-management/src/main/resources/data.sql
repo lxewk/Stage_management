@@ -15,3 +15,11 @@ INSERT INTO role(name) VALUES('CREW');
 INSERT INTO role(name) VALUES('PROPS');
 INSERT INTO role(name) VALUES('CREATIVE');
 INSERT INTO role(name) VALUES('PRODUCTION');
+
+INSERT INTO app_user(username, password, roles) VALUES('Lisette Tates','dsmBoogieWoogie','DEPUTY');
+INSERT INTO app_user(username, password, roles) VALUES('Nick Stuivenberg','smBoogieWoogie','STAGEMANAGER');
+INSERT INTO app_user(username, password) VALUES('Jos Vervelde','asmBoogieWoogie');
+INSERT INTO app_user(username, password) VALUES('Elles Kortekaas','crewBoogieWoogie');
+INSERT INTO app_user(username, password) VALUES('Peter v/d Helm','propsBoogieWoogie');
+INSERT INTO app_user(username, password) VALUES('Carla','creativeBoogieWoogie');
+INSERT INTO app_user(username, password) VALUES('Anneloes Welter','productionBoogieWoogie');

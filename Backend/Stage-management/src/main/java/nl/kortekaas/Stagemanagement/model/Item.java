@@ -48,7 +48,7 @@ public class Item {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "riskItem")
     private List<Risk> risk;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
     private List<Note> notes = new ArrayList<>();
 
     public long getItemId() {

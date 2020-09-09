@@ -3,14 +3,8 @@ package nl.kortekaas.Stagemanagement.model;
 import nl.kortekaas.Stagemanagement.model.enums.ERole;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -31,6 +25,9 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private ERole name;
 
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users;
+
     public Role() {}
 
     public long getId() {
@@ -47,5 +44,13 @@ public class Role {
 
     public void setName(ERole name) {
         this.name = name;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

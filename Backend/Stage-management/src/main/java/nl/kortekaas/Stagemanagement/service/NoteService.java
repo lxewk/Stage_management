@@ -28,8 +28,7 @@ public class NoteService implements INoteService {
     @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY') or hasRole('ASSISTANT')")
     @Override
     public List<Note> getNotes() {
-        List<Note> noteList = noteRepository.findAll();
-        return noteList;
+        return noteRepository.findAll();
     }
 
     @Override
