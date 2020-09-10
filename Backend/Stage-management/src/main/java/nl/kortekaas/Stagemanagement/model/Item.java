@@ -4,16 +4,7 @@ import nl.kortekaas.Stagemanagement.model.enums.EDepartment;
 import nl.kortekaas.Stagemanagement.model.enums.EPreset;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +30,7 @@ public class Item {
 
     private String itemName;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User creator;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "todoItem")
@@ -50,6 +41,12 @@ public class Item {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
     private List<Note> notes = new ArrayList<>();
+
+    public Item() {}
+
+    public Item(String itemName) {
+        this.itemName = itemName;
+    }
 
     public long getItemId() {
         return itemId;

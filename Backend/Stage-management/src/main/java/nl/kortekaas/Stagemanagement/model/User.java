@@ -3,6 +3,7 @@ package nl.kortekaas.Stagemanagement.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class User {
             name = "native",
             strategy = "native"
     )
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(columnDefinition = "serial")
     private long userId;
 
     private String username;

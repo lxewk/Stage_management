@@ -13,14 +13,14 @@ public class ItemController {
     @Autowired
     private IItemService itemService;
 
-    @GetMapping(value = "/{id}")
-    public Item getItemById(@PathVariable Long id) {
-        return itemService.getItemById(id);
+    @GetMapping(value = "/{itemName}")
+    public Item getItemByName(@PathVariable String itemName) {
+        return itemService.getItemByName(itemName);
     }
 
-    @DeleteMapping(value = "/{id}")
-    public String deleteItem(@PathVariable Long id) {
-        return itemService.deleteItem(id);
+    @DeleteMapping(value = "/{itemName}")
+    public String deleteItem(@PathVariable String itemName) {
+        return itemService.deleteItem(itemName);
     }
 
     @PostMapping(value = "/{username}")

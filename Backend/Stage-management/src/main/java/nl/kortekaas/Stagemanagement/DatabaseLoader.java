@@ -3,6 +3,8 @@ package nl.kortekaas.Stagemanagement;
 import nl.kortekaas.Stagemanagement.model.Item;
 import nl.kortekaas.Stagemanagement.model.Role;
 import nl.kortekaas.Stagemanagement.model.User;
+import nl.kortekaas.Stagemanagement.model.enums.EDepartment;
+import nl.kortekaas.Stagemanagement.model.enums.EPreset;
 import nl.kortekaas.Stagemanagement.model.enums.ERole;
 import nl.kortekaas.Stagemanagement.persistence.ItemRepository;
 import nl.kortekaas.Stagemanagement.service.AuthorizationService;
@@ -33,7 +35,6 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-
 
         User stagemanager = new User();
         stagemanager.setUsername("nStuivenberg");
@@ -70,10 +71,11 @@ public class DatabaseLoader implements CommandLineRunner {
         production.setPassword("prodBoogieWoogie");
         userService.registerUser(production, ERole.PRODUCTION);
 
-        Item stalkerDesk = new Item();
-        stalkerDesk.setItemName("Stalker desk");
-        itemService.addItemToUserByUsername("pvdHelm", stalkerDesk);
-        itemService.saveItem(stalkerDesk);
+//        Item stalkerDesk = new Item();
+//        stalkerDesk.setItemName("Stalker desk");
+//        stalkerDesk.setDepartment(EDepartment.DECOR);
+//        stalkerDesk.setPreset(EPreset.UPSTAGE_RIGHT);
+//        itemService.saveItem(stalkerDesk);
 
     }
 }

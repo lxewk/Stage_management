@@ -37,9 +37,9 @@ public class ItemService implements IItemService {
     }
 
     @Override
-    public Item getItemById(Long id) {
+    public Item getItemByName(String itemName) {
 
-        Optional<Item> _item = itemRepository.findById(id);
+        Optional<Item> _item = itemRepository.findByItemName(itemName);
 
         if(_item.isPresent()) {
             Item item = _item.get();
@@ -56,11 +56,12 @@ public class ItemService implements IItemService {
     }
 
     @Override
-    public String deleteItem(Long id) {
-        Optional<Item> item = itemRepository.findById(id);
-        if (item.isPresent()) {
-            itemRepository.deleteById(id);
-            return "Item with id " + item.get().getItemId() + " is deleted.";
+    public String deleteItem(String itemName) {
+        Optional<Item> _item = itemRepository.findByItemName(itemName);
+        if (_item.isPresent()) {
+            Item item = _item.get();
+            itemRepository.delete(item);
+            return "Item " + itemName + " is deleted.";
         }
         throw new RuntimeException(ITEM_NOT_FOUND_ERROR);
     }

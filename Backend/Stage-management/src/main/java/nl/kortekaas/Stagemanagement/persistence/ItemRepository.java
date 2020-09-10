@@ -11,4 +11,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     Optional<Item> findByDepartment(EDepartment department);
     Optional<Item> findByPreset(EPreset preset);
+    Optional<Item> findByItemName(String itemName);
 }

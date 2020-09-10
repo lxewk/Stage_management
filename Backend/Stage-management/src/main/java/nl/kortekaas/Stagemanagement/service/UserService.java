@@ -69,11 +69,6 @@ public class UserService implements IUserService {
         return userRepository.findAll();
     }
 
-    @Override
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElseThrow(
-                () -> new RuntimeException(USER_NOT_FOUND_ERROR));
-    }
 
     public void registerUser(User user, ERole roleName) {
         if (Boolean.TRUE.equals(userRepository.existsByUsername(user.getUsername()))) {

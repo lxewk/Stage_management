@@ -10,11 +10,11 @@ import java.util.List;
 public interface IItemService {
 
     List<Item> getItems();
-    Item getItemById(Long id);
+    Item getItemByName(String itemName);
     Item saveItem(Item newItem);
-    String deleteItem(Long id);
+    String deleteItem(String itemName);
     Item addItemToUserByUsername(String username, Item newItem);
-//    Item addItemToUser(Long id, Item newItem);
+
     void addPhoto();
     void addVideo();
 }
