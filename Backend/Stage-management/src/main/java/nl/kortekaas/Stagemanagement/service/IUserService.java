@@ -13,6 +13,7 @@ import java.util.List;
 
 public interface IUserService {
 
+    String mainMenu();
     List<User> getAllUsers();
     ResponseEntity<MessageResponse> addRoleToUser(@Valid LoginRequest loginRequest);
     ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest);

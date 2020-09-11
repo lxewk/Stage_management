@@ -60,6 +60,9 @@ public class UserService implements IUserService {
     public void setTrackRepository(TrackRepository trackRepository) { this.trackRepository = trackRepository; }
 
 
+    public String mainMenu() {
+        return "success";
+    }
 
     @Override
     public List<User> getAllUsers() {

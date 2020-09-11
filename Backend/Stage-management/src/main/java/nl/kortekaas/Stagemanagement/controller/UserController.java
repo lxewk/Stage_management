@@ -12,11 +12,16 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/dashboard")
 public class UserController {
 
     @Autowired
     UserService userService;
+
+    @GetMapping("/all")
+    public String mainMenu() {
+        return userService.mainMenu();
+    }
 
     @GetMapping
     public List<User> getAllUsers() {
