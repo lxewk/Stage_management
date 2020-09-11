@@ -1,5 +1,6 @@
 package nl.kortekaas.Stagemanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nl.kortekaas.Stagemanagement.model.enums.EDepartment;
 import nl.kortekaas.Stagemanagement.model.enums.EPreset;
 import org.hibernate.annotations.GenericGenerator;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Entity
 public class Item {
+
     @Id
     @GeneratedValue(
             strategy= GenerationType.AUTO,
@@ -47,6 +49,8 @@ public class Item {
     public Item(String itemName) {
         this.itemName = itemName;
     }
+
+    public Item(EDepartment department) { this.department = department; }
 
     public long getItemId() {
         return itemId;

@@ -1,5 +1,6 @@
 package nl.kortekaas.Stagemanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "APP_USER")
+@Table(name = "USERS")
 public class User {
     @Id
     @GeneratedValue(
@@ -32,8 +33,8 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "USER_ROLE",
-            joinColumns = @JoinColumn(name = "USER_ID", nullable = false, updatable = false),
-            inverseJoinColumns = @JoinColumn(name = "ROLE_ID", nullable = false, updatable = false))
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     public Set<Role> roles = new HashSet<>();
 
     @ManyToMany

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IItemService {
 
-    List<Item> getItems();
+    List<Item> getAllItems();
     Item getItemByName(String itemName);
     Item saveItem(Item newItem);
     String deleteItem(String itemName);

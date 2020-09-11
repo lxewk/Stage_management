@@ -18,10 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Validated
@@ -63,10 +60,13 @@ public class UserService implements IUserService {
     public void setTrackRepository(TrackRepository trackRepository) { this.trackRepository = trackRepository; }
 
 
-    @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY')")
+
     @Override
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        userRepository.findAll()
+                .forEach(users::add);
+        return users;
     }
 
 

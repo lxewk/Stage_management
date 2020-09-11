@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +33,11 @@ public class ItemService implements IItemService {
 
     @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY') or hasRole('ASSISTANT') or hasRole('PROPS')")
     @Override
-    public List<Item> getItems() {
-        return itemRepository.findAll();
+    public List<Item> getAllItems() {
+        List<Item> items = new ArrayList<>();
+        itemRepository.findAll()
+                .forEach(items::add);
+        return items;
     }
 
     @Override

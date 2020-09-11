@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface IUserService {
 
-    List<User> getUsers();
+    List<User> getAllUsers();
     ResponseEntity<MessageResponse> addRoleToUser(@Valid LoginRequest loginRequest);
     ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest);
     void registerUser(User user, ERole role);
