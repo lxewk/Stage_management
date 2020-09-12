@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:8080/api/test/';
+const API_URL = 'http://localhost:8080/api/test';
 
 class UserService {
   getDashboardContent() {
@@ -9,31 +9,31 @@ class UserService {
   }
 
   getCrewBoard() {
-    return axios.get(API_URL + 'crew', { headers: authHeader() });
+    return axios.get(API_URL + '/crew', { headers: authHeader() });
   }
 
   getStagemanagerBoard() {
-    return axios.get(API_URL + 'stagemanager', { headers: authHeader() });
+    return axios.get(API_URL + '/stagemanager', { headers: authHeader() });
   }
 
   getDeputyBoard() {
-    return axios.get(API_URL + 'deputy', { headers: authHeader() });
+    return axios.get(API_URL + '/deputy', { headers: authHeader() });
   }
 
   getAssistantBoard() {
-    return axios.get(API_URL + 'assistant', { headers: authHeader() });
+    return axios.get(API_URL + '/assistant', { headers: authHeader() });
   }
 
   getPropsBoard() {
-    return axios.get(API_URL + 'props', { headers: authHeader() });
+    return axios.get(API_URL + '/props', { headers: authHeader() });
   }
 
   getCreativeBoard() {
-    return axios.get(API_URL + 'creative', { headers: authHeader() });
+    return axios.get(API_URL + '/creative', { headers: authHeader() });
   }
 
   getProductionBoard() {
-    return axios.get(API_URL + 'production', { headers: authHeader() });
+    return axios.get(API_URL + '/production', { headers: authHeader() });
   }
   
 
