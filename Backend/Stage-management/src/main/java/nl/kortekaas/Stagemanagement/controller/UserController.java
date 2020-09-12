@@ -19,8 +19,8 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/all")
-    public String mainMenu() {
-        return userService.mainMenu();
+    public String dashboard() {
+        return userService.dashboard();
     }
 
     @GetMapping

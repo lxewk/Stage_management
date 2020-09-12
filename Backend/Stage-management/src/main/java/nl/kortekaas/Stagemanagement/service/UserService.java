@@ -60,7 +60,7 @@ public class UserService implements IUserService {
     public void setTrackRepository(TrackRepository trackRepository) { this.trackRepository = trackRepository; }
 
 
-    public String mainMenu() {
+    public String dashboard() {
         return "success";
     }
 
