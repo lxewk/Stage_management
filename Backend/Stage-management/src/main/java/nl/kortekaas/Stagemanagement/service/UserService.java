@@ -98,13 +98,13 @@ public class UserService implements IUserService {
 
     @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY')")
     @Override
-    public ResponseEntity<MessageResponse> addRoleToUser(@Valid LoginRequest loginRequest) {
+    public ResponseEntity<MessageResponse> addRoleToUser(@Valid UserRequest userRequest) {
 
         User user = new User();
-        user.setUsername(loginRequest.getUsername());
+        user.setUsername(userRequest.getUsername());
 
-        List<String> strRoles = loginRequest.getRoles();
-        List<Role> roles = null;
+        Set<String> strRoles = userRequest.getRoles();
+        Set<Role> roles = new HashSet<>();
 
         strRoles.forEach(role -> {
             switch (role) {
@@ -151,8 +151,7 @@ public class UserService implements IUserService {
             }
         });
 
-        //TODO
-        //user.setRoles(roles);
+        user.setRoles(roles);
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("Account is created"));

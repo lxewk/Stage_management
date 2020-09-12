@@ -15,7 +15,7 @@ public interface IUserService {
 
     String dashboard();
     List<User> getAllUsers();
-    ResponseEntity<MessageResponse> addRoleToUser(@Valid LoginRequest loginRequest);
+    ResponseEntity<MessageResponse> addRoleToUser(@Valid UserRequest userRequest);
     ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest);
     void registerUser(User user, ERole role);
 }
