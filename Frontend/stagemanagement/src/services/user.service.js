@@ -5,7 +5,7 @@ const API_URL = 'http://localhost:8080/api/test/';
 
 class UserService {
   getDashboardContent() {
-    return axios.get(API_URL + 'all');
+    return axios.get('http://localhost:8080/api/dashboard/all', { headers: authHeader() });
   }
 
   getCrewBoard() {
@@ -19,6 +19,24 @@ class UserService {
   getDeputyBoard() {
     return axios.get(API_URL + 'deputy', { headers: authHeader() });
   }
+
+  getAssistantBoard() {
+    return axios.get(API_URL + 'assistant', { headers: authHeader() });
+  }
+
+  getPropsBoard() {
+    return axios.get(API_URL + 'props', { headers: authHeader() });
+  }
+
+  getCreativeBoard() {
+    return axios.get(API_URL + 'creative', { headers: authHeader() });
+  }
+
+  getProductionBoard() {
+    return axios.get(API_URL + 'production', { headers: authHeader() });
+  }
+  
+
 }
 
 export default new UserService();

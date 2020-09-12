@@ -47,18 +47,18 @@ class App extends Component {
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand">
-            Stage management
+            Stage Management
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link to={"/api/dashboard/all"} className="nav-link">
+              <Link to={"/dashboard"} className="nav-link">
                 Dashboard
               </Link>
             </li>
 
             {showStagemanagerBoard && (
               <li className="nav-item">
-                <Link to={"/api/test/stagemanager"} className="nav-link">
+                <Link to={"/stagemanager"} className="nav-link">
                   Stagemanager Board
                 </Link>
               </li>
@@ -66,7 +66,7 @@ class App extends Component {
 
             {showDeputyBoard && (
               <li className="nav-item">
-                <Link to={"/api/test/deputy"} className="nav-link">
+                <Link to={"/deputy"} className="nav-link">
                   Deputy Board
                 </Link>
               </li>
@@ -74,7 +74,7 @@ class App extends Component {
 
             {currentUser && (
               <li className="nav-item">
-                <Link to={"/api/dashboard/all"} className="nav-link">
+                <Link to={"/dashboard"} className="nav-link">
                   You
                 </Link>
               </li>
@@ -107,12 +107,12 @@ class App extends Component {
 
         <div className="container mt-3">
           <Switch>
-            <Route exact path={["/", "/dashboard"]} component={Dashboard} />
+            <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/account" component={Account} />
-            <Route path="/user" component={BoardCrew} />
-            <Route path="/mod" component={BoardStagemanager} />
-            <Route path="/admin" component={BoardDeputy} />
+            <Route path="/crew" component={BoardCrew} />
+            <Route path="/stagemanager" component={BoardStagemanager} />
+            <Route path="/deputy" component={BoardDeputy} />
           </Switch>
         </div>
       </div>

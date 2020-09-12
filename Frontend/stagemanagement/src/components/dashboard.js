@@ -7,7 +7,7 @@ export default class Dashboard extends Component {
     super(props);
 
     this.state = {
-      content: "MAIN"
+      content: ""
     };
   }
 
@@ -33,7 +33,9 @@ export default class Dashboard extends Component {
     return (
       <div className="container">
         <header className="jumbotron">
-          <h3>{this.state.content}</h3>
+            <h3>
+                <strong>{this.state.content}</strong> Dashboard
+            </h3>
         </header>
       </div>
     );

@@ -35,7 +35,9 @@ export default class BoardDeputy extends Component {
     return (
       <div className="container">
         <header className="jumbotron">
-          <h3>{this.state.content}</h3>
+            <h3>
+              Storyboard <strong>{this.state.content}</strong>
+            </h3>
         </header>
       </div>
     );
