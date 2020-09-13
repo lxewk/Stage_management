@@ -26,16 +26,17 @@ const Crew = (props) => {
     }, []);
 
     return(
-        <div className="container">
-            <header className="jumbotron">
+        <div>
+            <header>
                 {error !== null && <p>Something went wrong: {error}</p>}
                 {loading === true && <p>Loading...</p>}
 
                 {crewDetails !== null &&
                     <h3>Crewboard {crewDetails.result}</h3>
-                }
-            
+                }         
             </header>
-      </div>  
+        </div>  
     )
 }
+
+export default Crew;

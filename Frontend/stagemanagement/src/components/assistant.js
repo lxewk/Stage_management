@@ -1,43 +1,42 @@
-import React, { Component } from "react";
+import React, {
+    useState,
+    useEffect,
+} from 'react';
+import axios from 'axios';
+import userService from '../services/user.service';
 
-import UserService from "../services/user.service";
+const Assistant = (props) => {
+    const [assistantDetails, setAssistantDetails] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, toggleLoading] = useState(false);
 
-export default class BoardAssistant extends Component {
-  constructor(props) {
-    super(props);
+    useEffect(() => {
+        const fetchData = async () => {
+            toggleLoading(true);
+            try{
+                const result = await axios.get(userService.getAssistantBoard);
+                setAssistantDetails(result.data);
+                toggleLoading(false);
+            } catch(error){
+                setError(error);
+                toggleLoading(false);
+            }
+        }
+        fetchData();
+    }, []);
 
-    this.state = {
-      content: ""
-    };
-  }
+    return(
+        <div>
+            <header>
+                {error !== null && <p>Something went wrong: {error}</p>}
+                {loading === true && <p>Loading...</p>}
 
-  componentDidMount() {
-    UserService.getAssistantBoard().then(
-      response => {
-        this.setState({
-          content: response.data
-        });
-      },
-      error => {
-        this.setState({
-          content:
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString()
-        });
-      }
-    );
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <header className="jumbotron">
-          <h3>Text:{this.state.content}</h3>
-        </header>
-      </div>
-    );
-  }
+                {assistantDetails !== null &&
+                    <h3>Assistantboard {assistantDetails.result}</h3>
+                }         
+            </header>
+        </div>  
+    )
 }
+
+export default Assistant;

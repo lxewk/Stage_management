@@ -1,43 +1,44 @@
-import React, { Component } from "react";
+import React, {
+    useState,
+    useEffect,
+} from 'react';
+import axios from 'axios';
+import userService from '../services/user.service';
 
-import UserService from "../services/user.service";
+const Stagemanager = (props) => {
+    const [stagemanagerDetails, setStagemanagerDetails] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, toggleLoading] = useState(false);
 
-export default class BoardStagemanager extends Component {
-  constructor(props) {
-    super(props);
+    useEffect(() => {
+        const fetchData = async () => {
+            toggleLoading(true);
+            try{
+                const result = await axios.get(userService.getStagemanagerBoard);
+                setStagemanagerDetails(result.data);
+                toggleLoading(false);
+            } catch(error){
+                setError(error);
+                toggleLoading(false);
+            }
+        }
+        fetchData();
+    }, []);
 
-    this.state = {
-      content: ""
-    };
-  }
+    return(
+        <div>
+            <header>
+                {error !== null && <p>Something went wrong: {error}</p>}
+                {loading === true && <p>Loading...</p>}
 
-  componentDidMount() {
-    UserService.getStagemanagerBoard().then(
-      response => {
-        this.setState({
-          content: response.data
-        });
-      },
-      error => {
-        this.setState({
-          content:
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString()
-        });
-      }
-    );
-  }
+                {stagemanagerDetails !== null &&
+                    <h3>Stagemanager Board {stagemanagerDetails.result}</h3>
+                }
+            
+            </header>
+        </div>
+    )
 
-  render() {
-    return (
-      <div className="container">
-        <header className="jumbotron">
-          <h3>Text:{this.state.content}</h3>
-        </header>
-      </div>
-    );
-  }
 }
+
+export default Stagemanager;

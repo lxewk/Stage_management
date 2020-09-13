@@ -14,6 +14,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-validation": "^3.0.7",
+    "styled-components": "^5.2.0",
     "validator": "^13.1.1"
   },
   "scripts": {
@@ -25,7 +26,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "http://localhost:8080",
+  
   "browserslist": {
     "production": [
       ">0.2%",

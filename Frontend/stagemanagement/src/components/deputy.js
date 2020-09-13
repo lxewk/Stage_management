@@ -1,45 +1,43 @@
-import React, { Component } from "react";
+import React, {
+    useState,
+    useEffect,
+} from 'react';
+import axios from 'axios';
+import userService from '../services/user.service';
+import BoardDeputy from './deputyOld';
 
-import UserService from "../services/user.service";
+const Deputy = (props) => {
+    const [deputyDetails, setDeputyDetails] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, toggleLoading] = useState(false);
 
-export default class BoardDeputy extends Component {
-  constructor(props) {
-    super(props);
+    useEffect(() => {
+        const fetchData = async () => {
+            toggleLoading(true);
+            try{
+                const result = await axios.get(userService.getDeputyBoard);
+                setDeputyDetails(result.data);
+                toggleLoading(false);
+            } catch(error){
+                setError(error);
+                toggleLoading(false);
+            }
+        }
+        fetchData();
+    }, []);
 
-    this.state = {
-      content: ""
-    };
-  }
+    return(
+        <div>
+            <header>
+                {error !== null && <p>Something went wrong: {error}</p>}
+                {loading === true && <p>Loading...</p>}
 
-  componentDidMount() {
-    UserService.getDeputyBoard().then(
-      response => {
-        this.setState({
-          content: response.data
-        });
-      },
-      error => {
-        this.setState({
-          content:
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString()
-        });
-      }
-    );
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <header className="jumbotron">
-            <h3>
-              Storyboard <strong>{this.state.content}</strong>
-            </h3>
-        </header>
-      </div>
-    );
-  }
+                {deputyDetails !== null &&
+                    <h3>Deputy Board {deputyDetails.result}</h3>
+                }         
+            </header>
+        </div>  
+    )
 }
+
+export default Deputy;

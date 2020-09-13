@@ -5,20 +5,44 @@ import {
     Route,
 } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import "bootstrap/dist/css/bootstrap.min.css";
+import { LoginProvider } from './context/LoginProvider';
 import './App.css';
+
 
 
 function App() {
     return (
-        <Router>
-            <Navigation />
+        <LoginProvider>
+            <Router>
+                <Navigation />
                 <Switch>
+                    <Route path="/dashboard">
+                        <Dashboard />
+                    </Route>
+                    <Route path="/stagemanager">
+                        <Stagemanager />
+                    </Route>
+                    <Route path="/deputy">
+                        <Deputy />
+                    </Route>
+                    <Route path="/assistant">
+                        <Assistant />
+                    </Route>
                     <Route path="/crew">
                         <Crew />
                     </Route>
+                    <Route path="/props">
+                        <Props />
+                    </Route>
+                    <Route path="/creative">
+                        <Creative />
+                    </Route>
+                    <Route path="/production">
+                        <Production />
+                    </Route>
                 </Switch>
-        </Router>
+            </Router>
+        </LoginProvider>
     )
 }
 
