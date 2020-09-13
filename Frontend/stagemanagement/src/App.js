@@ -4,6 +4,16 @@ import {
     Switch,
     Route,
 } from 'react-router-dom';
+import {
+    Dashboard,
+    Stagemanager,
+    Deputy,
+    Assistant,
+    Crew,
+    Props,
+    Creative,
+    Production
+} from './components';
 import Navigation from './components/Navigation';
 import { LoginProvider } from './context/LoginProvider';
 import './App.css';
@@ -11,38 +21,53 @@ import './App.css';
 
 
 function App() {
-    return (
-        <LoginProvider>
+    return (      
             <Router>
                 <Navigation />
                 <Switch>
                     <Route path="/dashboard">
-                        <Dashboard />
+                        <LoginProvider>
+                            <Dashboard />
+                        </LoginProvider>   
                     </Route>
                     <Route path="/stagemanager">
-                        <Stagemanager />
+                        <LoginProvider>
+                            <Stagemanager />
+                        </LoginProvider>
                     </Route>
                     <Route path="/deputy">
-                        <Deputy />
+                        <LoginProvider>
+                            <Deputy />
+                        </LoginProvider>
                     </Route>
                     <Route path="/assistant">
-                        <Assistant />
+                        <LoginProvider>
+                            <Assistant />
+                        </LoginProvider>
                     </Route>
                     <Route path="/crew">
-                        <Crew />
+                        <LoginProvider>
+                            <Crew />
+                        </LoginProvider>
                     </Route>
                     <Route path="/props">
-                        <Props />
+                        <LoginProvider>
+                            <Props />
+                        </LoginProvider>
                     </Route>
                     <Route path="/creative">
-                        <Creative />
+                        <LoginProvider>
+                            <Creative />
+                        </LoginProvider>
                     </Route>
                     <Route path="/production">
-                        <Production />
+                        <LoginProvider>
+                            <Production />
+                        </LoginProvider>
                     </Route>
                 </Switch>
             </Router>
-        </LoginProvider>
+        
     )
 }
 
