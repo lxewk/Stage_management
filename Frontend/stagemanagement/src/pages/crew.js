@@ -6,7 +6,7 @@ import React, {
 import axios from 'axios';
 import userService from '../services/user.service';
 
-const Crew = (props) => {
+const Crew = () => {
     const [crewDetails, setCrewDetails] = useState(null);
     const [error, setError] = useState(null);
     const [loading, toggleLoading] = useState(false);

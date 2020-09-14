@@ -17,63 +17,44 @@ import {
 import Navigation from './components/Navigation';
 import { LoginProvider } from './context/LoginProvider';
 import './App.css';
-import AuthService from './services/auth.service';
+
 
 
 
 function App() {
 
-    const logOut = () => {
-        AuthService.logout;
-    }
-
-    return (      
+    return (
+        <LoginProvider>     
             <Router>
                 <Navigation />
                 <Switch>
                     <Route path="/dashboard">
-                        <LoginProvider>
-                            <Dashboard />
-                        </LoginProvider>   
+                            <Dashboard />  
                     </Route>
                     <Route path="/stagemanager">
-                        <LoginProvider>
                             <Stagemanager />
-                        </LoginProvider>
                     </Route>
                     <Route path="/deputy">
-                        <LoginProvider>
                             <Deputy />
-                        </LoginProvider>
                     </Route>
                     <Route path="/assistant">
-                        <LoginProvider>
                             <Assistant />
-                        </LoginProvider>
                     </Route>
-                    <Route path="/crew">
-                        <LoginProvider>
+                    <Route path="/crew">   
                             <Crew />
-                        </LoginProvider>
                     </Route>
-                    <Route path="/props">
-                        <LoginProvider>
+                    <Route path="/props">                        
                             <Props />
-                        </LoginProvider>
                     </Route>
-                    <Route path="/creative">
-                        <LoginProvider>
+                    <Route path="/creative">                        
                             <Creative />
-                        </LoginProvider>
                     </Route>
-                    <Route path="/production">
-                        <LoginProvider>
+                    <Route path="/production">                        
                             <Production />
-                        </LoginProvider>
                     </Route>
                 </Switch>
             </Router>
-        
+        </LoginProvider> 
     )
 }
 

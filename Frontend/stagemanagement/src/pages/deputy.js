@@ -5,9 +5,9 @@ import React, {
 import { LogContext } from '../context/LoginProvider';
 import axios from 'axios';
 import userService from '../services/user.service';
-import BoardDeputy from './deputyOld';
 
-const Deputy = (props) => {
+
+const Deputy = () => {
     const [deputyDetails, setDeputyDetails] = useState(null);
     const [error, setError] = useState(null);
     const [loading, toggleLoading] = useState(false);

@@ -6,7 +6,7 @@ import { LogContext } from '../context/LoginProvider';
 import axios from 'axios';
 import userService from '../services/user.service';
 
-const Creative = (props) => {
+const Creative = () => {
     const [creativeDetails, setCreativeDetails] = useState(null);
     const [error, setError] = useState(null);
     const [loading, toggleLoading] = useState(false);

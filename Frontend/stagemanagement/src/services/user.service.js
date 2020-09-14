@@ -5,40 +5,40 @@ import authHeader from './auth-header';
 
 const API_URL = 'http://localhost:8080/api/test';
 
-const UserService = () => {
+class UserService {
 
   
-    const getDashboardContent = () => {
+    getDashboardContent() {
       return axios.get('http://localhost:8080/api/dashboard/all', { headers: authHeader() });
     }
 
-    const getCrewBoard = () => {
+    getCrewBoard() {
       return axios.get(API_URL + '/crew', { headers: authHeader() });
     }
 
-    const getStagemanagerBoard = () => {
+    getStagemanagerBoard() {
       return axios.get(API_URL + '/stagemanager', { headers: authHeader() });
     }
 
-    const getDeputyBoard = () => {
+    getDeputyBoard() {
       return axios.get(API_URL + '/deputy', { headers: authHeader() });
     }
 
-    const getAssistantBoard = () => {
+    getAssistantBoard() {
       return axios.get(API_URL + '/assistant', { headers: authHeader() });
     }
 
-    const getPropsBoard =() => {
+    getPropsBoard() {
       return axios.get(API_URL + '/props', { headers: authHeader() });
     }
 
-    const getCreativeBoard = () => {
+    getCreativeBoard() {
       return axios.get(API_URL + '/creative', { headers: authHeader() });
     }
 
-    const getProductionBoard = () => {
+    getProductionBoard() {
       return axios.get(API_URL + '/production', { headers: authHeader() });
     }  
 }
 
-export default UserService;
+export default new UserService;

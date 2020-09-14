@@ -6,7 +6,7 @@ import { LogContext } from '../context/LoginProvider';
 import axios from 'axios';
 import userService from '../services/user.service';
 
-const Assistant = (props) => {
+const Assistant = () => {
     const [assistantDetails, setAssistantDetails] = useState(null);
     const [error, setError] = useState(null);
     const [loading, toggleLoading] = useState(false);

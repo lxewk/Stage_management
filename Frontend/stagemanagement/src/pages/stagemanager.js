@@ -6,7 +6,7 @@ import { LogContext } from '../context/LoginProvider';
 import axios from 'axios';
 import userService from '../services/user.service';
 
-const Stagemanager = (props) => {
+const Stagemanager = () => {
     const [stagemanagerDetails, setStagemanagerDetails] = useState(null);
     const [error, setError] = useState(null);
     const [loading, toggleLoading] = useState(false);
