@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface IUserService {
 
-    String dashboard();
+    String home();
     List<User> getAllUsers();
     ResponseEntity<MessageResponse> addRoleToUser(@Valid UserRequest userRequest);
     ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest);

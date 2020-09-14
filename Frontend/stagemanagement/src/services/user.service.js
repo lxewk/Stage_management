@@ -8,9 +8,13 @@ const API_URL = 'http://localhost:8080/api/test';
 class UserService {
 
   
-    getDashboardContent() {
-      return axios.get('http://localhost:8080/api/dashboard/all', { headers: authHeader() });
+    getHomeContent() {
+      return axios.get('http://localhost:8080/api/home', { headers: authHeader() });
     }
+
+    getDashboard() {
+      return axios.get(API_URL + '/dashboard', { headers: authHeader() });
+    } 
 
     getCrewBoard() {
       return axios.get(API_URL + '/crew', { headers: authHeader() });

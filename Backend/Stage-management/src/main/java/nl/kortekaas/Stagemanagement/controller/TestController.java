@@ -37,4 +37,7 @@ public class TestController {
 
     @GetMapping("/production")
     public String productionAccess() { return testService.generateProductionContent();  }
+
+    @GetMapping("/dashboard")
+    public String dashboardAccess() { return testService.generateDashboardContent();  }
 }

@@ -26,4 +26,6 @@ public class TestService {
 
     @PreAuthorize("hasRole('PRODUCTION')")
     public String generateProductionContent() { return "Production Board."; }
+
+    public String generateDashboardContent() { return " Dashboard."; }
 }

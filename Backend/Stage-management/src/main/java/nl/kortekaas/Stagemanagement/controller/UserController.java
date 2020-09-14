@@ -12,15 +12,15 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/dashboard")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @GetMapping("/all")
-    public String dashboard() {
-        return userService.dashboard();
+    @GetMapping("/home")
+    public String home() {
+        return userService.home();
     }
 
     @GetMapping

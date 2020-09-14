@@ -12,9 +12,11 @@ import {
     Crew,
     Props,
     Creative,
-    Production
+    Production,
+    Home
 } from './pages';
 import Navigation from './components/Navigation';
+import Login from './pages'
 import { LoginProvider } from './context/LoginProvider';
 import './App.css';
 
@@ -22,12 +24,14 @@ import './App.css';
 
 
 function App() {
-
     return (
         <LoginProvider>     
             <Router>
                 <Navigation />
                 <Switch>
+                    <Route path="/home/all">
+                            <Home />  
+                    </Route>
                     <Route path="/dashboard">
                             <Dashboard />  
                     </Route>

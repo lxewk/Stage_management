@@ -6,6 +6,7 @@ import Crew from './crew';
 import Props from './props';
 import Creative from './creative';
 import Production from './production';
+import Home from './home';
 
 
 export {
@@ -17,6 +18,7 @@ export {
     Props,
     Creative,
     Production,
+    Home,
 };
 
 export default null;
