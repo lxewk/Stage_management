@@ -13,14 +13,20 @@ import {
     Props,
     Creative,
     Production
-} from './components';
+} from './pages';
 import Navigation from './components/Navigation';
 import { LoginProvider } from './context/LoginProvider';
 import './App.css';
+import AuthService from './services/auth.service';
 
 
 
 function App() {
+
+    const logOut = () => {
+        AuthService.logout;
+    }
+
     return (      
             <Router>
                 <Navigation />

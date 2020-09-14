@@ -1,30 +1,35 @@
 import axios from "axios";
+import { useContext, useEffect } from "react";
+import { LoginContext } from '../context/LoginProvider';
 
 const API_URL = "http://localhost:8080/api/auth/";
 
-class AuthService {
-  login(username, password) {
-    return axios
-      .post(API_URL + "signin", {
-        username,
-        password
-      })
-      .then(response => {
+const AuthService = () => {
+    const { currentUser } = useContext(LoginContext);
+    const { currentPassword } = useContext(LoginContext);
+
+    async () => {
+        login({currentUser}, {currentPassword});
+        const response = await axios
+          .post(API_URL + "signin", 
+            {currentUser},
+            {currentPassword}
+          );
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
-
         return response.data;
-      });
-  }
+    }
 
-  logout() {
-    localStorage.removeItem("user");
-  }
-
-  getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));;
-  }
+    const logout = () => {
+        localStorage.removeItem("user");
+    }
+    
+    const getCurrentUser = () => {
+        return JSON.parse(localStorage.getItem('user'));
+    }
+    
+          
 }
 
-export default new AuthService();
+export default AuthService;
