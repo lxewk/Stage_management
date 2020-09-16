@@ -47,14 +47,12 @@ export const Login = () => {
                 }
                 throw res;
             })
-
             .then(resJson => {
                 dispatch({
                     type: "LOGIN",
                     payload: resJson
                 })
             })
-
             .catch(error => {
                 setData({
                     ...data,

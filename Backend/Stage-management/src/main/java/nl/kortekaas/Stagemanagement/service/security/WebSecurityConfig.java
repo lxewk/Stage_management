@@ -1,6 +1,5 @@
 package nl.kortekaas.Stagemanagement.service.security;
 
-
 import nl.kortekaas.Stagemanagement.service.security.jwt.AuthEntryPointJwt;
 import nl.kortekaas.Stagemanagement.service.security.jwt.AuthTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +69,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+
 }
 

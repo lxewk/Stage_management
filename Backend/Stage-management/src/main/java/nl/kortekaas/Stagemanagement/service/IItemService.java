@@ -13,7 +13,6 @@ public interface IItemService {
     Item getItemByName(String itemName);
     Item saveItem(Item newItem);
     String deleteItem(String itemName);
-    Item addItemToUserByUsername(String username, Item newItem);
 
     void addPhoto();
     void addVideo();

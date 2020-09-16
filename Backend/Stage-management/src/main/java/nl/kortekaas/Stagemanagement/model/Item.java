@@ -32,9 +32,6 @@ public class Item {
 
     private String itemName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User creator;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "todoItem")
     private List<Todo> todos = new ArrayList<>();
 
@@ -82,14 +79,6 @@ public class Item {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
-    }
-
-    public User getCreator() {
-        return creator;
-    }
-
-    public void setCreator(User creator) {
-        this.creator = creator;
     }
 
     public List<Todo> getTodos() {

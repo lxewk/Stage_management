@@ -70,17 +70,6 @@ public class ItemService implements IItemService {
         throw new RuntimeException(ITEM_NOT_FOUND_ERROR);
     }
 
-    @Override
-    public Item addItemToUserByUsername(String username, Item newItem) {
-
-        Optional<User> user =
-                userRepository.findByUsername(username);
-        if(user.isPresent()) {
-            newItem.setCreator(user.get());
-            return itemRepository.save(newItem);
-        }
-        return null;
-    }
 
     public void addPhoto(){
         System.out.println("here should be a picture");
