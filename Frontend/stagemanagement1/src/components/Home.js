@@ -63,7 +63,7 @@ export const Home = () => {
             });
           })
           .catch(error => {
-            // console.log(error);
+            console.log(error);
             dispatch({
               type: "FETCH_SHOWS_FAILURE"
             });
