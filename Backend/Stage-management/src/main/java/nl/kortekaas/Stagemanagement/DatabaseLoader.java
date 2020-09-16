@@ -38,37 +38,37 @@ public class DatabaseLoader implements CommandLineRunner {
 
         User stagemanager = new User();
         stagemanager.setUsername("nStuivenberg");
-        stagemanager.setPassword("smBoogieWoogie");
+        stagemanager.setPassword("smbw");
         userService.registerUser(stagemanager, ERole.STAGEMANAGER);
 
         User deputy = new User();
         deputy.setUsername("lTates");
-        deputy.setPassword("dsmBoogieWoogie");
+        deputy.setPassword("dsmbw");
         userService.registerUser(deputy, ERole.DEPUTY);
 
         User assistant = new User();
         assistant.setUsername("jVervelde");
-        assistant.setPassword("asmBoogieWoogie");
+        assistant.setPassword("asmbw");
         userService.registerUser(assistant, ERole.ASSISTANT);
 
         User crew = new User();
         crew.setUsername("eKortekaas");
-        crew.setPassword("crewBoogieWoogie");
+        crew.setPassword("crewbw");
         userService.registerUser(crew, ERole.CREW);
 
         User props = new User();
         props.setUsername("pvdHelm");
-        props.setPassword("propsBoogieWoogie");
+        props.setPassword("propsbw");
         userService.registerUser(props, ERole.PROPS);
 
         User creative = new User();
         creative.setUsername("cToren");
-        creative.setPassword("creaBoogieWoogie");
+        creative.setPassword("creabw");
         userService.registerUser(creative, ERole.CREATIVE);
 
         User production = new User();
         production.setUsername("aWelter");
-        production.setPassword("prodBoogieWoogie");
+        production.setPassword("prodbw");
         userService.registerUser(production, ERole.PRODUCTION);
 
 //        Item stalkerDesk = new Item();

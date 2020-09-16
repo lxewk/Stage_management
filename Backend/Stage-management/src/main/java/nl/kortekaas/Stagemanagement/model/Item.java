@@ -1,6 +1,6 @@
 package nl.kortekaas.Stagemanagement.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import nl.kortekaas.Stagemanagement.model.enums.EDepartment;
 import nl.kortekaas.Stagemanagement.model.enums.EPreset;
 import org.hibernate.annotations.GenericGenerator;
