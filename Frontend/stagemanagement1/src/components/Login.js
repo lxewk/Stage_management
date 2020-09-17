@@ -1,6 +1,9 @@
 import React, { useState, useContext } from "react";
-import logo from "../logo.svg";
 import { AuthContext } from "../App";
+
+import { LoginContainer, LoginCard, LoginCardContainer, LoginCardContainerHead, LoginFormContainer } from "../styles/elements";
+import { LoginButton } from './button/LoginButton';
+
 
 
 export const Login = () => {
@@ -63,11 +66,11 @@ export const Login = () => {
     };
 
     return (
-        <div className="login-container">
-            <div className="card">
-                <div className="container">
-                    <form onSubmit={handleFormSubmit}>
-                        <h1>Login</h1>
+        <LoginContainer>
+            <LoginCard>
+                <LoginCardContainer>
+                    <LoginFormContainer onSubmit={handleFormSubmit}>
+                        <LoginCardContainerHead>Login</LoginCardContainerHead>
                         
                         <label htmlFor="fName">
                         Username
@@ -77,7 +80,7 @@ export const Login = () => {
                             onChange={handleInputChange}
                             name="fName"
                             id="fName"
-                            placeholder="i.e. dVries"
+                            placeholder="pvdHelm"
                         />
                         </label>
                         
@@ -94,16 +97,16 @@ export const Login = () => {
 
                         {data.errorMessage && (
                             <span className="form-error">{data.errorMessage}</span>
-                )}
+                        )}
                         
-                        <button disabled={data.isSubmitting}>
+                        <LoginButton disabled={data.isSubmitting}>
                             {data.isSubmitting ? ("Loading...") : ("Login")}                                                                                        
-                        </button>
+                        </LoginButton>
                     
-                    </form>
-                </div>
-            </div>
-        </div>
+                    </LoginFormContainer>
+                </LoginCardContainer>
+            </LoginCard>
+        </LoginContainer>
     );
 };
 

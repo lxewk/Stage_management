@@ -2,6 +2,8 @@ import React, { useEffect, useReducer, useContext} from "react";
 import { AuthContext } from "../App";
 import Show from "./Show";
 
+import { HomeContainer, HomeLoader, HomeError } from "../styles/elements";
+
 const initialState = {
     shows: [],
     isFetching: false,
@@ -72,11 +74,11 @@ export const Home = () => {
 
     return (
         <>
-            <div className="home">
+            <HomeContainer>
               {state.isFetching ? (
-                <span className="loader">LOADING...</span>
+                <HomeLoader className="loader">LOADING...</HomeLoader>
                 ) : state.hasError ? (
-                <span className="error">AN ERROR HAS OCCURED</span>
+                <HomeError className="error">AN ERROR HAS OCCURED</HomeError>
                 ) : (
                 <>
                   {state.shows.length > 0 &&
@@ -84,8 +86,8 @@ export const Home = () => {
                       <Show key={oneShow.id.toString()} oneShow={oneShow} />
                     ))}
                 </>
-      )}                    
-            </div>
+              )}                    
+            </HomeContainer>
         </>
     );   
 };

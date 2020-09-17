@@ -1,13 +1,17 @@
 import React from "react";
 
-export const Header = () => {
+import { HeaderContainer, HeaderLogo, LogoSpan, LogoItalic } from "../styles/elements";
+import { HeaderButton } from './button/HeaderButton';
 
+export const Header = () => {
+  
   return (
-    <nav id="navigation">
-      <h1 href="#" className="logo">
-        STAGE Management
-      </h1>
-    </nav>
+    <HeaderContainer>
+      <HeaderLogo >
+        <LogoItalic>STAGE</LogoItalic> <LogoSpan><i>M</i>anagement</LogoSpan> 
+      </HeaderLogo>
+      <HeaderButton />
+    </HeaderContainer>
   );
 };
 
