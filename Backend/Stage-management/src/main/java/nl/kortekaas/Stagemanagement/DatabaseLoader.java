@@ -1,9 +1,11 @@
 package nl.kortekaas.Stagemanagement;
 
+import nl.kortekaas.Stagemanagement.model.Show;
 import nl.kortekaas.Stagemanagement.model.User;
 import nl.kortekaas.Stagemanagement.model.enums.ERole;
 import nl.kortekaas.Stagemanagement.service.AuthorizationService;
 import nl.kortekaas.Stagemanagement.service.ItemService;
+import nl.kortekaas.Stagemanagement.service.ShowService;
 import nl.kortekaas.Stagemanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,15 +20,15 @@ public class DatabaseLoader implements CommandLineRunner {
 
     private final AuthorizationService authorizationService;
     private final UserService userService;
-    private ItemService itemService;
+    private ShowService showService;
 
 
 
     @Autowired
-    public DatabaseLoader(AuthorizationService authorizationService, UserService userService, ItemService itemService) {
+    public DatabaseLoader(AuthorizationService authorizationService, UserService userService, ShowService showService ) {
         this.authorizationService = authorizationService;
         this.userService = userService;
-        this.itemService = itemService;
+        this.showService = showService;
     }
 
     @Override
@@ -67,6 +69,17 @@ public class DatabaseLoader implements CommandLineRunner {
         production.setPassword("prodbw");
         userService.registerUser(production, ERole.PRODUCTION);
 
+        Show showProduction1 = new Show();
+        showProduction1.setName("The Bodyguard");
+        showProduction1.setPosterArt("./assets/TheBodyGuard.svg");
+        showProduction1.setStagemanager("Nanko Flutte");
+        showService.saveShow(showProduction1);
+
+        Show showProduction2 = new Show();
+        showProduction2.setName("Jersey Boys");
+        showProduction2.setPosterArt("./assets/JerseyBoys.svg");
+        showProduction2.setStagemanager("Jan Suiker");
+        showService.saveShow(showProduction2);
 
     }
 }
