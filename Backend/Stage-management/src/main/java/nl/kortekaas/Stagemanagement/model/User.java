@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
+@JsonIgnoreProperties(value = "roles")
 public class User {
+
     @Id
     @GeneratedValue(
             strategy= GenerationType.AUTO,
@@ -21,36 +21,52 @@ public class User {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial")
-    private long userId;
+    @Column(columnDefinition = "serial", name = "USER_ID")
+    private long id;
 
     private String username;
     private String password;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "assignee")
-    private List<Todo> todos;
+    private Set<Role> roles;
+    private Set<Todo> todos;
+    private Set<Track> tracks = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public Set<Todo> getTodos() {
+        return todos;
+    }
+
+    @ManyToMany
     @JoinTable(
             name = "USER_ROLE",
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-    public Set<Role> roles = new HashSet<>();
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "USER_TRACK",
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "TRACK_ID"))
-    private List<Track> tracks;
-
-    public long getUserId() {
-        return userId;
+    public Set<Track> getTracks() {
+        return tracks;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+
+    public User() {}
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
+
+
+    public long getId() { return id; }
+
+    public void setId(long id) { this.id = id; }
 
     public String getUsername() {
         return username;
@@ -68,27 +84,10 @@ public class User {
         this.password = password;
     }
 
-    public List<Todo> getTodos() {
-        return todos;
-    }
+    public void setRoles(Set<Role> roles) { this.roles = roles; }
 
-    public void setTodos(List<Todo> todos) {
-        this.todos = todos;
-    }
+    public void setTodos(Set<Todo> todos) { this.todos = todos; }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
+    public void setTracks(Set<Track> tracks) { this.tracks = tracks; }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public List<Track> getTracks() {
-        return tracks;
-    }
-
-    public void setTracks(List<Track> tracks) {
-        this.tracks = tracks;
-    }
 }

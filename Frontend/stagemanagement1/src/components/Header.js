@@ -1,6 +1,6 @@
 import React from "react";
 
-import { HeaderContainer, HeaderLogo, LogoSpan, LogoItalic } from "../styles/elements";
+import { HeaderContainer, HeaderLogo, LogoSpan, LogoItalic } from "./styles/elements";
 import { HeaderButton } from './button/HeaderButton';
 
 export const Header = () => {

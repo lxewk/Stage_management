@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../App";
 
-import { LoginContainer, LoginCard, LoginCardContainer, LoginCardContainerHead, LoginFormContainer } from "../styles/elements";
+import { LoginContainer, LoginCard, LoginCardContainer, LoginCardContainerHead, LoginFormContainer } from "./styles/elements";
 import { LoginButton } from './button/LoginButton';
 
 

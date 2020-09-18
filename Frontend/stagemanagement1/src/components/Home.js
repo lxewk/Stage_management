@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useContext} from "react";
 import { AuthContext } from "../App";
 import Show from "./Show";
 
-import { HomeContainer, HomeLoader, HomeError } from "../styles/elements";
+import { HomeContainer, HomeLoader, HomeError } from "./styles/elements";
 
 const initialState = {
     shows: [],

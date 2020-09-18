@@ -47,7 +47,7 @@ public class NoteService implements INoteService {
         Optional<Note> note = noteRepository.findById(id);
         if (note.isPresent()) {
             noteRepository.deleteById(id);
-            return "Note with id " + note.get().getNoteId() + " is deleted.";
+            return "Note with id " + note.get().getId() + " is deleted.";
         }
         throw new RuntimeException(NOTE_NOT_FOUND_ERROR);
     }
@@ -58,7 +58,7 @@ public class NoteService implements INoteService {
         Optional<User> user =
                 userRepository.findById(id);
         if(user.isPresent()) {
-            newNote.setReceiver(user.get());
+            newNote.setUser(user.get());
             return noteRepository.save(newNote);
         }
         return null;

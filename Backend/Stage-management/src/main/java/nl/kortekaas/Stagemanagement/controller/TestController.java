@@ -17,27 +17,25 @@ public class TestController {
     @Autowired
     public TestController(TestService testService) { this.testService = testService; }
 
-    @GetMapping("/stagemanager")
-    public String stagemanagerAccess() { return testService.generateStagemanagerContent(); }
+//    @GetMapping("/stagemanager")
+//    public String stagemanagerAccess() { return testService.generateStagemanagerContent(); }
+//
+//    @GetMapping("/deputy")
+//    public String deputyAccess() { return testService.generateDeputyContent(); }
+//
+//    @GetMapping("/assistant")
+//    public String assistantAccess() { return testService.generateAssContent(); }
+//
+//    @GetMapping("/crew")
+//    public String crewAccess() { return testService.generateCrewContent();  }
+//
+//    @GetMapping("/props")
+//    public String propsAccess() { return testService.generatePropsContent();  }
+//
+//    @GetMapping("/creative")
+//    public String creativeAccess() { return testService.generateCreativeContent();  }
+//
+//    @GetMapping("/production")
+//    public String productionAccess() { return testService.generateProductionContent();  }
 
-    @GetMapping("/deputy")
-    public String deputyAccess() { return testService.generateDeputyContent(); }
-
-    @GetMapping("/assistant")
-    public String assistantAccess() { return testService.generateAssContent(); }
-
-    @GetMapping("/crew")
-    public String crewAccess() { return testService.generateCrewContent();  }
-
-    @GetMapping("/props")
-    public String propsAccess() { return testService.generatePropsContent();  }
-
-    @GetMapping("/creative")
-    public String creativeAccess() { return testService.generateCreativeContent();  }
-
-    @GetMapping("/production")
-    public String productionAccess() { return testService.generateProductionContent();  }
-
-    @GetMapping("/dashboard")
-    public String dashboardAccess() { return testService.generateDashboardContent();  }
 }

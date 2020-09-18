@@ -2,15 +2,11 @@ package nl.kortekaas.Stagemanagement.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Todo {
+
     @Id
     @GeneratedValue(
             strategy= GenerationType.AUTO,
@@ -20,24 +16,38 @@ public class Todo {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial")
-    private long todoId;
+    @Column(columnDefinition = "serial", name = "TODO_ID")
+    private long id;
+
     private boolean isFinished;
     private char priority;
 
-    @ManyToOne
-    private User assignee;
+    private User user;
+    private Item item;
+
 
     @ManyToOne
-    private Item todoItem;
-
-    public long getTodoId() {
-        return todoId;
+    @JoinColumn(name = "USER_ID")
+    public User getUser() {
+        return user;
     }
 
-    public void setTodoId(long todoId) {
-        this.todoId = todoId;
+    @ManyToOne
+    @JoinColumn(name = "ITEM_ID")
+    public Item getItem() {
+        return item;
     }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) { this.id = id; }
+
+    public void setUser(User user) { this.user = user; }
+
+    public void setItem(Item item) { this.item = item; }
 
     public boolean isFinished() {
         return isFinished;
@@ -55,19 +65,4 @@ public class Todo {
         this.priority = priority;
     }
 
-    public User getAssignee() {
-        return assignee;
-    }
-
-    public void setAssignee(User assignee) {
-        this.assignee = assignee;
-    }
-
-    public Item getTodoItem() {
-        return todoItem;
-    }
-
-    public void setTodoItem(Item todoItem) {
-        this.todoItem = todoItem;
-    }
 }

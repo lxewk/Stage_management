@@ -58,15 +58,31 @@ public class UserService implements IUserService {
     public void setTrackRepository(TrackRepository trackRepository) { this.trackRepository = trackRepository; }
 
 
-    public String home() {
-        return "success";
-    }
+    @PreAuthorize("hasRole('STAGEMANAGER')")
+    public String generateStagemanagerContent() { return "Stagemanager Content."; }
 
+    @PreAuthorize("hasRole('DEPUTY')")
+    public String generateDeputyContent() { return "Deputy Content."; }
+
+    @PreAuthorize("hasRole('ASSISTANT')")
+    public String generateAssContent() { return "Assistant Board."; }
+
+    @PreAuthorize("hasRole('CREW')")
+    public String generateCrewContent() { return "Crew Board."; }
+
+    @PreAuthorize("hasRole('PROPS')")
+    public String generatePropsContent() { return "Props Board."; }
+
+    @PreAuthorize("hasRole('CREATIVE')")
+    public String generateCreativeContent() { return "Creative Board."; }
+
+    @PreAuthorize("hasRole('PRODUCTION')")
+    public String generateProductionContent() { return "Production Board."; }
+
+    @PreAuthorize("hasRole('DEPUTY') or hasRole('STAGEMANAGER')")
     @Override
     public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        userRepository.findAll()
-                .forEach(users::add);
+        List<User> users = userRepository.findAll();
         return users;
     }
 
@@ -163,8 +179,8 @@ public class UserService implements IUserService {
         User user = new User();
         user.setUsername(userRequest.getUsername());
 
-        List<String> strTracks = userRequest.getTrackName();
-        List<Track> tracks = null;
+        Set<String> strTracks = userRequest.getTracks();
+        Set<Track> tracks = new HashSet<>();
 
         strTracks.forEach(task -> {
             switch (task) {
@@ -260,4 +276,5 @@ public class UserService implements IUserService {
         return ResponseEntity.ok(new MessageResponse("The track is added to crew"));
 
     }
+
 }

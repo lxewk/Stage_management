@@ -3,20 +3,13 @@ package nl.kortekaas.Stagemanagement.model;
 import nl.kortekaas.Stagemanagement.model.enums.ETask;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import java.util.List;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Track {
+
     @Id
     @GeneratedValue(
             strategy= GenerationType.AUTO,
@@ -26,34 +19,36 @@ public class Track {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial")
-    private long trackId;
+    @Column(columnDefinition = "serial", name = "TRACK_ID")
+    private long id;
 
     @Enumerated(EnumType.STRING)
     private ETask task;
 
+    private Set<Risk> risks;
+    private Set<User> users = new HashSet<>();
+
+
     @ManyToMany(mappedBy = "tracks")
-    private List<User> users;
-
-
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Risk> risk;
-
-    public long getTrackId() {
-        return trackId;
-    }
-
-    public void setTrackId(long trackId) {
-        this.trackId = trackId;
-    }
-
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    @OneToMany(mappedBy = "track", cascade = CascadeType.ALL)
+    public Set<Risk> getRisks() {
+        return risks;
     }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) { this.id = id; }
+
+    public void setRisks(Set<Risk> risks) { this.risks = risks; }
+
+    public void setUsers(Set<User> users) { this.users = users; }
 
     public ETask getTask() {
         return task;
@@ -63,11 +58,4 @@ public class Track {
         this.task = task;
     }
 
-    public List<Risk> getRisk() {
-        return risk;
-    }
-
-    public void setRisk(List<Risk> risk) {
-        this.risk = risk;
-    }
 }

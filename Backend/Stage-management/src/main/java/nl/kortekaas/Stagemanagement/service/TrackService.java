@@ -51,7 +51,7 @@ public class TrackService implements ITrackService {
         Optional<Track> track = trackRepository.findById(id);
         if (track.isPresent()) {
             trackRepository.deleteById(id);
-            return "Track with id " + track.get().getTrackId() + " is deleted.";
+            return "Track with id " + track.get().getId() + " is deleted.";
         }
         throw new RuntimeException(TRACK_NOT_FOUND_ERROR);
     }

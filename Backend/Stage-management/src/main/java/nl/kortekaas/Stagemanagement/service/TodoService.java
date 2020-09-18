@@ -51,7 +51,7 @@ public class TodoService implements ITodoService {
         Optional<Todo> todo = todoRepository.findById(id);
         if (todo.isPresent()) {
             todoRepository.deleteById(id);
-            return "TODO with id " + todo.get().getTodoId() + " is deleted.";
+            return "TODO with id " + todo.get().getId() + " is deleted.";
         }
         throw new RuntimeException(TODO_NOT_FOUND_ERROR);
     }

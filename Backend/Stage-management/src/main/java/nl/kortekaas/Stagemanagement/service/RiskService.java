@@ -47,7 +47,7 @@ public class RiskService implements IRiskService {
         Optional<Risk> risk = riskRepository.findById(id);
         if (risk.isPresent()) {
             riskRepository.deleteById(id);
-            return "Risk with id " + risk.get().getRiskId() + " is deleted.";
+            return "Risk with id " + risk.get().getId() + " is deleted.";
         }
         throw new RuntimeException(RISK_NOT_FOUND_ERROR);
     }
@@ -58,7 +58,7 @@ public class RiskService implements IRiskService {
         Optional<Item> item =
                 itemRepository.findById(id);
         if(item.isPresent()) {
-            newRisk.setRiskItem(item.get());
+            newRisk.setItem(item.get());
             return riskRepository.save(newRisk);
         }
         return null;

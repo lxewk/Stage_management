@@ -16,12 +16,13 @@ public class Show {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial")
-    private Long id;
+    @Column(columnDefinition = "serial", name = "SHOW_ID")
+    private long id;
 
     private String name;
     private String posterArt;
     private String stagemanager;
+
 
     public Show() {}
 
@@ -31,7 +32,7 @@ public class Show {
         this.stagemanager = stagemanager;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

@@ -12,7 +12,13 @@ import java.util.List;
 
 public interface IUserService {
 
-    String home();
+    String generateStagemanagerContent();
+    String generateDeputyContent();
+    String generateAssContent();
+    String generateCrewContent();
+    String generatePropsContent();
+    String generateCreativeContent();
+    String generateProductionContent();
     List<User> getAllUsers();
     ResponseEntity<MessageResponse> addRoleToUser(@Valid UserRequest userRequest);
     ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest);

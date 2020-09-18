@@ -1,13 +1,11 @@
 package nl.kortekaas.Stagemanagement.model;
 
-
 import nl.kortekaas.Stagemanagement.model.enums.EDepartment;
 import nl.kortekaas.Stagemanagement.model.enums.EPreset;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Item {
@@ -21,8 +19,14 @@ public class Item {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial")
-    private long itemId;
+    @Column(columnDefinition = "serial", name = "ITEM_ID")
+    private long id;
+
+    private String itemName;
+
+    private Set<Risk> risks;
+    private Set<Todo> todos;
+    private Set<Note> notes;
 
     @Enumerated(EnumType.STRING)
     private EDepartment department;
@@ -30,32 +34,35 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private EPreset preset;
 
-    private String itemName;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "todoItem")
-    private List<Todo> todos = new ArrayList<>();
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    public Set<Todo> getTodos() {
+        return todos;
+    }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "riskItem")
-    private List<Risk> risk;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    public Set<Risk> getRisks() {
+        return risks;
+    }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
-    private List<Note> notes = new ArrayList<>();
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    public Set<Note> getNotes() {
+        return notes;
+    }
+
 
     public Item() {}
+
+
+    public long getId() { return id; }
+
+    public void setId(long id) { this.id = id; }
 
     public Item(String itemName) {
         this.itemName = itemName;
     }
 
     public Item(EDepartment department) { this.department = department; }
-
-    public long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(long itemId) {
-        this.itemId = itemId;
-    }
 
     public EDepartment getDepartment() {
         return department;
@@ -81,27 +88,10 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public List<Todo> getTodos() {
-        return todos;
-    }
+    public void setRisks(Set<Risk> risks) { this.risks = risks; }
 
-    public void setTodos(List<Todo> todos) {
-        this.todos = todos;
-    }
+    public void setTodos(Set<Todo> todos) { this.todos = todos; }
 
-    public List<Risk> getRisk() {
-        return risk;
-    }
+    public void setNotes(Set<Note> notes) { this.notes = notes; }
 
-    public void setRisk(List<Risk> risk) {
-        this.risk = risk;
-    }
-
-    public List<Note> getNotes() {
-        return notes;
-    }
-
-    public void setNotes(List<Note> notes) {
-        this.notes = notes;
-    }
 }

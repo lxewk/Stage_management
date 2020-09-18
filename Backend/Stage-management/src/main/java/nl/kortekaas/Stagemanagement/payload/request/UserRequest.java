@@ -17,7 +17,8 @@ public class UserRequest {
     private Set<String> roles;
 
     @NotBlank
-    private List<String> tracks;
+    private Set<String> tracks;
+
 
     public String getUsername() {
         return username;
@@ -35,11 +36,11 @@ public class UserRequest {
         this.password = password;
     }
 
-    public List<String> getTrackName() {
+    public Set<String> getTracks() {
         return tracks;
     }
 
-    public void setTrackName(List<String> trackName) {
+    public void setTracks(Set<String> tracks) {
         this.tracks = tracks;
     }
 

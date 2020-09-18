@@ -1,5 +1,5 @@
 import React from "react";  
-import { HomeDivShow, HomeContentDivShow } from "../styles/elements";    
+import { HomeDivShow, HomeContentDivShow } from "./styles/elements";    
 
 // Presentational Component : it does not handle any custom logic but rather renders the props passed into it
 export const Show = ({oneShow}) => {

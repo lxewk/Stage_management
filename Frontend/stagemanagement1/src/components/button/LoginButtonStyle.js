@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { colors } from "../../styles/global.js";
+import { colors } from "./styles/global.js";
 
 export const LoginBtn = styled.button`
   height: 40px;
