@@ -21,6 +21,6 @@ public interface IUserService {
     String generateProductionContent();
     List<User> getAllUsers();
     ResponseEntity<MessageResponse> addRoleToUser(@Valid UserRequest userRequest);
-    ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest);
+//    ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest);
     void registerUser(User user, ERole role);
 }

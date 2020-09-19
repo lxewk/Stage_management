@@ -3,6 +3,7 @@ package nl.kortekaas.Stagemanagement.service;
 import nl.kortekaas.Stagemanagement.model.Show;
 import nl.kortekaas.Stagemanagement.persistence.ShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 
@@ -19,6 +20,7 @@ public class ShowService implements IShowService {
     @Autowired
     public void setShowRepository(ShowRepository showRepository) { this.showRepository = showRepository; }
 
+    @Secured({"STAGEMANAGER", "DEPUTY"})
     @Override
     public List<Show> getShows() {
         List<Show> showList = showRepository.findAll();

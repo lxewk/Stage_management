@@ -1,6 +1,6 @@
 package nl.kortekaas.Stagemanagement.model.enums;
 
-public enum ETask {
+public enum ETrack {
     ASM_SL,
     ASM_SR,
     SL_1,

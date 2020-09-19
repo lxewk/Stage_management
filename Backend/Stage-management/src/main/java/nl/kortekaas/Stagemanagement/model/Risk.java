@@ -20,21 +20,9 @@ public class Risk {
     private long id;
 
     private String possibleRisks;
-    private Item item;
-    private Track track;
 
 
-    @ManyToOne
-    @JoinColumn(name = "ITEM_ID")
-    public Item getItem() {
-        return item;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "TRACK_ID")
-    public Track getTrack() {
-        return track;
-    }
+    public Risk() {}
 
 
     public long getId() { return id; }
@@ -45,8 +33,6 @@ public class Risk {
 
     public void setPossibleRisks(String possibleRisks) { this.possibleRisks = possibleRisks; }
 
-    public void setItem(Item item) { this.item = item; }
 
-    public void setTrack(Track track) { this.track = track; }
 
 }

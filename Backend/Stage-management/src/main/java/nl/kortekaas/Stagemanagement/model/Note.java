@@ -20,20 +20,16 @@ public class Note {
     private long id;
 
     private String text;
-    private User user;
-    private Item item;
+    private String sender;
+    private String receiver;
 
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    public User getUser() {
-        return user;
-    }
+    public Note() {}
 
-    @ManyToOne
-    @JoinColumn(name = "ITEM_ID")
-    public Item getItem() {
-        return item;
+    public Note(String text, String sender, String receiver) {
+        this.text = text;
+        this.sender = sender;
+        this.receiver = receiver;
     }
 
 
@@ -43,17 +39,27 @@ public class Note {
 
     public void setId(long id) { this.id = id; }
 
-    public void setUser(User user) { this.user = user; }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
     public String getText() {
         return text;
     }
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
     }
 }

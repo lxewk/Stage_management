@@ -1,15 +1,12 @@
 package nl.kortekaas.Stagemanagement.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
-@JsonIgnoreProperties(value = "roles")
 public class User {
 
     @Id
@@ -26,34 +23,18 @@ public class User {
 
     private String username;
     private String password;
+    private int todo;
+    private int note;
+    private String track;
 
-    private Set<Role> roles;
-    private Set<Todo> todos;
-    private Set<Track> tracks = new HashSet<>();
 
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    public Set<Todo> getTodos() {
-        return todos;
-    }
 
     @ManyToMany
     @JoinTable(
             name = "USER_ROLE",
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "USER_TRACK",
-            joinColumns = @JoinColumn(name = "USER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "TRACK_ID"))
-    public Set<Track> getTracks() {
-        return tracks;
-    }
+    private Set<Role> roles = new HashSet<>();
 
 
     public User() {}
@@ -61,6 +42,9 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.todo = 0;
+        this.note = 0;
+        this.track = "";
     }
 
 
@@ -84,10 +68,22 @@ public class User {
         this.password = password;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
     public void setRoles(Set<Role> roles) { this.roles = roles; }
 
-    public void setTodos(Set<Todo> todos) { this.todos = todos; }
+    public int getTodo() { return todo; }
 
-    public void setTracks(Set<Track> tracks) { this.tracks = tracks; }
+    public void setTodo(int todo) { this.todo = todo; }
+
+    public int getNote() { return note; }
+
+    public void setNote(int note) { this.note = note; }
+
+    public String getTrack() { return track; }
+
+    public void setTrack(String track) { this.track = track; }
 
 }

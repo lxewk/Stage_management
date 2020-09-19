@@ -1,7 +1,6 @@
 package nl.kortekaas.Stagemanagement.service;
 
 import nl.kortekaas.Stagemanagement.model.Item;
-import nl.kortekaas.Stagemanagement.model.User;
 import nl.kortekaas.Stagemanagement.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -47,7 +46,6 @@ public class ItemService implements IItemService {
 
         if(_item.isPresent()) {
             Item item = _item.get();
-            item.getNotes().size();
             return item;
         }
         throw new RuntimeException(ITEM_NOT_FOUND_ERROR);

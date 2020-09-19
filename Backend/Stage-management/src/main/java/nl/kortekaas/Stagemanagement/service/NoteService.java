@@ -1,7 +1,6 @@
 package nl.kortekaas.Stagemanagement.service;
 
 import nl.kortekaas.Stagemanagement.model.Note;
-import nl.kortekaas.Stagemanagement.model.User;
 import nl.kortekaas.Stagemanagement.persistence.NoteRepository;
 import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class NoteService implements INoteService {
@@ -24,6 +24,7 @@ public class NoteService implements INoteService {
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) { this.userRepository = userRepository; }
+
 
     @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY') or hasRole('ASSISTANT')")
     @Override
@@ -52,15 +53,4 @@ public class NoteService implements INoteService {
         throw new RuntimeException(NOTE_NOT_FOUND_ERROR);
     }
 
-    @Override
-    public Note addNoteToUser(Long id, Note newNote) {
-
-        Optional<User> user =
-                userRepository.findById(id);
-        if(user.isPresent()) {
-            newNote.setUser(user.get());
-            return noteRepository.save(newNote);
-        }
-        return null;
-    }
 }

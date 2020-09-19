@@ -9,5 +9,4 @@ public interface IRiskService {
     Risk getRiskById(Long id);
     Risk saveRisk(Risk newRisk);
     String deleteRisk(Long id);
-    Risk addRiskToItem(Long id, Risk newRisk);
 }

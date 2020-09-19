@@ -1,13 +1,12 @@
 package nl.kortekaas.Stagemanagement.model;
 
-import nl.kortekaas.Stagemanagement.model.enums.ETask;
+import nl.kortekaas.Stagemanagement.model.enums.ETrack;
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Entity
+@Table(name = "TRACKS")
 public class Track {
 
     @Id
@@ -22,21 +21,17 @@ public class Track {
     @Column(columnDefinition = "serial", name = "TRACK_ID")
     private long id;
 
+    private String crewName;
+
     @Enumerated(EnumType.STRING)
-    private ETask task;
-
-    private Set<Risk> risks;
-    private Set<User> users = new HashSet<>();
+    private ETrack position;
 
 
-    @ManyToMany(mappedBy = "tracks")
-    public Set<User> getUsers() {
-        return users;
-    }
+    public Track() {}
 
-    @OneToMany(mappedBy = "track", cascade = CascadeType.ALL)
-    public Set<Risk> getRisks() {
-        return risks;
+    public Track(String crewName, ETrack position) {
+        this.crewName = crewName;
+        this.position = position;
     }
 
 
@@ -44,18 +39,23 @@ public class Track {
         return id;
     }
 
-    public void setId(long id) { this.id = id; }
-
-    public void setRisks(Set<Risk> risks) { this.risks = risks; }
-
-    public void setUsers(Set<User> users) { this.users = users; }
-
-    public ETask getTask() {
-        return task;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setTask(ETask task) {
-        this.task = task;
+    public String getCrewName() {
+        return crewName;
     }
 
+    public void setCrewName(String crewName) {
+        this.crewName = crewName;
+    }
+
+    public ETrack getPosition() {
+        return position;
+    }
+
+    public void setPosition(ETrack name) {
+        this.position = name;
+    }
 }

@@ -21,21 +21,15 @@ public class Todo {
 
     private boolean isFinished;
     private char priority;
-
-    private User user;
-    private Item item;
+    private String executor;
 
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    public User getUser() {
-        return user;
-    }
+    public Todo() {}
 
-    @ManyToOne
-    @JoinColumn(name = "ITEM_ID")
-    public Item getItem() {
-        return item;
+    public Todo(char priority, String executor) {
+        this.priority = priority;
+        this.executor = executor;
+        this.isFinished = false;
     }
 
 
@@ -43,11 +37,9 @@ public class Todo {
         return id;
     }
 
-    public void setId(long id) { this.id = id; }
-
-    public void setUser(User user) { this.user = user; }
-
-    public void setItem(Item item) { this.item = item; }
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public boolean isFinished() {
         return isFinished;
@@ -65,4 +57,11 @@ public class Todo {
         this.priority = priority;
     }
 
+    public String getExecutor() {
+        return executor;
+    }
+
+    public void setExecutor(String executor) {
+        this.executor = executor;
+    }
 }

@@ -44,12 +44,6 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-
-    @PostMapping(value = "/track")
-    public ResponseEntity<MessageResponse> makeUserTrack(@RequestBody UserRequest userRequest) {
-        return userService.addTrackToUser(userRequest);
-    }
-
     @PostMapping(value = "/new")
     public void registerNewUser(@RequestBody User newUser, ERole newRole) {  userService.registerUser(newUser, newRole); }
 

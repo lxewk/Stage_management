@@ -32,6 +32,7 @@ public class Show {
         this.stagemanager = stagemanager;
     }
 
+
     public long getId() {
         return id;
     }

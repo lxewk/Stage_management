@@ -11,5 +11,4 @@ public interface INoteService {
     Note getNoteById(Long id);
     Note saveNote(Note newNote);
     String deleteNote(Long id);
-    Note addNoteToUser(Long id, Note newNote);
 }

@@ -35,7 +35,7 @@ public class DatabaseLoader implements CommandLineRunner {
     public void run(String... args) throws IOException {
 
         User stagemanager = new User();
-        stagemanager.setUsername("nStuivenberg");
+        stagemanager.setUsername("jSuiker");
         stagemanager.setPassword("smbw");
         userService.registerUser(stagemanager, ERole.STAGEMANAGER);
 
