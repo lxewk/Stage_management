@@ -146,6 +146,7 @@ label{
 
 
 /******  HOME PAGE  ******/
+
 /* .home {
   margin-top: 100px;
   margin-left: 2%;
@@ -177,14 +178,14 @@ label{
   margin-bottom: 2%;
 } */ 
 /* On mouse-over, add a deeper shadow */
-.home .card:hover {
+/* .home .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-.home .card>img{
+} */
+/* .home .card>img{
   width: 100%;
   height: 100%;
-}
-.home .content{
+} */
+/* .home .content{
   bottom: 0;
   z-index: 9;
   position: absolute;
@@ -196,16 +197,16 @@ label{
   height: 35%;
   padding-bottom: 5px;
   transition: 0.5s;
-}
-.home .content:hover{
+} */
+/* .home .content:hover{
   background-color: rgba(255, 255, 255, 1);
   height: 50%;
   cursor: pointer;
-}
-.content>h2{
+} */
+/* .content>h2{
   text-align: center;
   font-size: 2rem;
-}
+} */
 @media screen and (max-width: 780px){
 .home{
     justify-content: space-around;
