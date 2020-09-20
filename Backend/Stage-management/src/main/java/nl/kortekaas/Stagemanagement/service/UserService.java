@@ -40,29 +40,29 @@ public class UserService implements IUserService {
 
 
 
-    @Secured("STAGEMANAGER")
+    @Secured("ROLE_STAGEMANAGER")
     public String generateStagemanagerContent() { return "Stagemanager Content."; }
 
-    @Secured("DEPUTY")
+    @Secured("ROLE_DEPUTY")
     public String generateDeputyContent() { return "Deputy Content."; }
 
-    @PreAuthorize("hasRole('ASSISTANT')")
+    @PreAuthorize("hasRole('ROLE_ASSISTANT')")
     public String generateAssContent() { return "Assistant Board."; }
 
-    @PreAuthorize("hasRole('CREW')")
+    @PreAuthorize("hasRole('ROLE_CREW')")
     public String generateCrewContent() { return "Crew Board."; }
 
-    @PreAuthorize("hasRole('PROPS')")
+    @PreAuthorize("hasRole('ROLE_PROPS')")
     public String generatePropsContent() { return "Props Board."; }
 
-    @PreAuthorize("hasRole('CREATIVE')")
+    @PreAuthorize("hasRole('ROLE_CREATIVE')")
     public String generateCreativeContent() { return "Creative Board."; }
 
-    @PreAuthorize("hasRole('PRODUCTION')")
+    @PreAuthorize("hasRole('ROLE_PRODUCTION')")
     public String generateProductionContent() { return "Production Board."; }
 
 
-    @Secured({"STAGEMANAGER", "DEPUTY"})
+    @Secured({"ROLE_STAGEMANAGER", "ROLE_DEPUTY"})
     @Override
     public List<User> getAllUsers() {
         List<User> users = userRepository.findAll();
@@ -93,7 +93,7 @@ public class UserService implements IUserService {
     }
 
 
-    @PreAuthorize("hasRole('STAGEMANAGER') or hasRole('DEPUTY')")
+    @PreAuthorize("hasRole('ROLE_STAGEMANAGER') or hasRole('ROLE_DEPUTY')")
     @Override
     public ResponseEntity<MessageResponse> addRoleToUser(@Valid UserRequest userRequest) {
 
@@ -106,43 +106,43 @@ public class UserService implements IUserService {
         strRoles.forEach(role -> {
             switch (role) {
                 case "stagemanager":
-                    Role stagemanagerRole = roleRepository.findByName(ERole.STAGEMANAGER)
+                    Role stagemanagerRole = roleRepository.findByName(ERole.ROLE_STAGEMANAGER)
                             .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
                     roles.add(stagemanagerRole);
 
                     break;
                 case "deputy":
-                    Role deputyRole = roleRepository.findByName(ERole.DEPUTY)
+                    Role deputyRole = roleRepository.findByName(ERole.ROLE_DEPUTY)
                             .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
                     roles.add(deputyRole);
 
                     break;
                 case "assistant":
-                    Role assistantRole = roleRepository.findByName(ERole.ASSISTANT)
+                    Role assistantRole = roleRepository.findByName(ERole.ROLE_ASSISTANT)
                             .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
                     roles.add(assistantRole);
 
                     break;
                 case "crew":
-                    Role crewRole = roleRepository.findByName(ERole.CREW)
+                    Role crewRole = roleRepository.findByName(ERole.ROLE_CREW)
                             .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
                     roles.add(crewRole);
 
                     break;
                 case "props":
-                    Role propsRole = roleRepository.findByName(ERole.PROPS)
+                    Role propsRole = roleRepository.findByName(ERole.ROLE_PROPS)
                             .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
                     roles.add(propsRole);
 
                     break;
                 case "creative":
-                    Role creativeRole = roleRepository.findByName(ERole.CREATIVE)
+                    Role creativeRole = roleRepository.findByName(ERole.ROLE_CREATIVE)
                             .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
                     roles.add(creativeRole);
 
                     break;
                 case "production":
-                    Role productionRole = roleRepository.findByName(ERole.PRODUCTION)
+                    Role productionRole = roleRepository.findByName(ERole.ROLE_PRODUCTION)
                             .orElseThrow(() -> new RuntimeException(ROLE_NOT_FOUND_ERROR));
                     roles.add(productionRole);
             }
@@ -155,7 +155,7 @@ public class UserService implements IUserService {
 
     }
 
-//    @PreAuthorize("hasRole('STAGEMANAGER')")
+//    @PreAuthorize("hasRole('ROLE_STAGEMANAGER')")
 //    @Override
 //    public ResponseEntity<MessageResponse> addTrackToUser(@Valid UserRequest userRequest) {
 //

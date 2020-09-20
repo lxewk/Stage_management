@@ -24,8 +24,6 @@ import java.util.stream.Collectors;
 @Validated
 public class AuthorizationService {
 
-    private static final String ROLE_NOT_FOUND_ERROR = "Error: Role is not found.";
-
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder encoder;

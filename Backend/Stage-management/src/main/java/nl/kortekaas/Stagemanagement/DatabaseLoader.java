@@ -4,7 +4,6 @@ import nl.kortekaas.Stagemanagement.model.Show;
 import nl.kortekaas.Stagemanagement.model.User;
 import nl.kortekaas.Stagemanagement.model.enums.ERole;
 import nl.kortekaas.Stagemanagement.service.AuthorizationService;
-import nl.kortekaas.Stagemanagement.service.ItemService;
 import nl.kortekaas.Stagemanagement.service.ShowService;
 import nl.kortekaas.Stagemanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,37 +36,37 @@ public class DatabaseLoader implements CommandLineRunner {
         User stagemanager = new User();
         stagemanager.setUsername("jSuiker");
         stagemanager.setPassword("smbw");
-        userService.registerUser(stagemanager, ERole.STAGEMANAGER);
+        userService.registerUser(stagemanager, ERole.ROLE_STAGEMANAGER);
 
         User deputy = new User();
         deputy.setUsername("lTates");
         deputy.setPassword("dsmbw");
-        userService.registerUser(deputy, ERole.DEPUTY);
+        userService.registerUser(deputy, ERole.ROLE_DEPUTY);
 
         User assistant = new User();
         assistant.setUsername("jVervelde");
         assistant.setPassword("asmbw");
-        userService.registerUser(assistant, ERole.ASSISTANT);
+        userService.registerUser(assistant, ERole.ROLE_ASSISTANT);
 
         User crew = new User();
         crew.setUsername("eKortekaas");
         crew.setPassword("crewbw");
-        userService.registerUser(crew, ERole.CREW);
+        userService.registerUser(crew, ERole.ROLE_CREW);
 
         User props = new User();
         props.setUsername("pvdHelm");
         props.setPassword("propsbw");
-        userService.registerUser(props, ERole.PROPS);
+        userService.registerUser(props, ERole.ROLE_PROPS);
 
         User creative = new User();
         creative.setUsername("cToren");
         creative.setPassword("creabw");
-        userService.registerUser(creative, ERole.CREATIVE);
+        userService.registerUser(creative, ERole.ROLE_CREATIVE);
 
         User production = new User();
         production.setUsername("aWelter");
         production.setPassword("prodbw");
-        userService.registerUser(production, ERole.PRODUCTION);
+        userService.registerUser(production, ERole.ROLE_PRODUCTION);
 
         Show showProduction1 = new Show();
         showProduction1.setName("The Bodyguard");

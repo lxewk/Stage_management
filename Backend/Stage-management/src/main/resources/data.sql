@@ -9,10 +9,10 @@ toevoegen. Daarom is er ook geen Service & repo voor de user-rollen geprogrammee
 database te krijgen is via SQL statements in dit bestand.
  */
 
-INSERT INTO role(name) VALUES('STAGEMANAGER');
-INSERT INTO role(name) VALUES('DEPUTY');
-INSERT INTO role(name) VALUES('ASSISTANT');
-INSERT INTO role(name) VALUES('CREW');
-INSERT INTO role(name) VALUES('PROPS');
-INSERT INTO role(name) VALUES('CREATIVE');
-INSERT INTO role(name) VALUES('PRODUCTION');
+INSERT INTO role(name) VALUES('ROLE_STAGEMANAGER');
+INSERT INTO role(name) VALUES('ROLE_DEPUTY');
+INSERT INTO role(name) VALUES('ROLE_ASSISTANT');
+INSERT INTO role(name) VALUES('ROLE_CREW');
+INSERT INTO role(name) VALUES('ROLE_PROPS');
+INSERT INTO role(name) VALUES('ROLE_CREATIVE');
+INSERT INTO role(name) VALUES('ROLE_PRODUCTION');

@@ -20,7 +20,7 @@ public class ShowService implements IShowService {
     @Autowired
     public void setShowRepository(ShowRepository showRepository) { this.showRepository = showRepository; }
 
-    @Secured({"STAGEMANAGER", "DEPUTY"})
+    @Secured({"ROLE_STAGEMANAGER", "ROLE_DEPUTY"})
     @Override
     public List<Show> getShows() {
         List<Show> showList = showRepository.findAll();
