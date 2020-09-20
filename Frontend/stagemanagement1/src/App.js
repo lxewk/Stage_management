@@ -18,7 +18,6 @@ const reducer = (state, action) => {
       // console.log(action.payload);
       localStorage.setItem("user", action.payload.username);
       localStorage.setItem("token", action.payload.accessToken);
-      // localStorage.setItem("authorization", true);
       // console.log(localStorage);
       return {
         ...state,

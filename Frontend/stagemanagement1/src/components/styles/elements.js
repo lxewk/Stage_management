@@ -106,33 +106,41 @@ export const HomeError = styled.span`
 
 export const ContainerShowCard = styled.div`
   display: flex;
-  align-items: center;
-  background-color: ${colors.headerBlue};
+  align-items: flex-end;
+  background-color: ${colors.beam};
   background-image: url(${img});
   height: calc(100vh - 20px); 
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 50% 25%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   height: 400px;
   width: 40%;
   position: relative;
-  margin-bottom: 2%;
+  margin-bottom: 5%;
+  padding: 10px;
+
+  &:hover {
+    background-color: ${colors.gray};
+  }
+
+  &:h2 {
+    
+  }
 `;
 
-export const ContainerTextShowCard = styled.div`
-    bottom: 0;
-    z-index: 9;
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.7);
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    height: 35%;
-    padding-bottom: 5px;
-    transition: 0.5s;
+export const ShowCardText = styled.h2`
+  color: ${colors.red};
+  text-align: center;
+  font-size: 2rem;
 `;
+
+export const ShowCardManaged = styled.span`
+  color: ${colors.red};
+  text-align: center;
+`;
+
+
 /******  HOME PAGE  ******/
 
 // const Container = styled.div`

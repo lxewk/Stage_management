@@ -36,9 +36,9 @@ public class User {
 
     public User() {}
 
-    public User(String username, String password) {
+    public User(String username) {
         this.username = username;
-        this.password = password;
+        this.password = "";
         this.todo = 0;
         this.note = 0;
         this.track = "";

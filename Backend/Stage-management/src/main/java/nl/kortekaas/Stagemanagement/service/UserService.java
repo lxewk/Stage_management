@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import javax.jws.soap.SOAPBinding;
 import javax.validation.Valid;
 import java.util.*;
 
@@ -39,18 +40,17 @@ public class UserService implements IUserService {
     public void setRoleRepository(RoleRepository roleRepository) { this.roleRepository = roleRepository; }
 
 
-
     @Secured("ROLE_STAGEMANAGER")
-    public String generateStagemanagerContent() { return "Stagemanager Content."; }
+    public String generateStagemanagerContent() { return "Stagemanager Board"; }
 
     @Secured("ROLE_DEPUTY")
-    public String generateDeputyContent() { return "Deputy Content."; }
+    public String generateDeputyContent() { return "Deputy Board"; }
 
     @PreAuthorize("hasRole('ROLE_ASSISTANT')")
-    public String generateAssContent() { return "Assistant Board."; }
+    public String generateAssContent() { return "Assistant Board"; }
 
     @PreAuthorize("hasRole('ROLE_CREW')")
-    public String generateCrewContent() { return "Crew Board."; }
+    public String generateCrewContent() {return "Crew Board"; }
 
     @PreAuthorize("hasRole('ROLE_PROPS')")
     public String generatePropsContent() { return "Props Board."; }
