@@ -4,12 +4,14 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import Header from "./components/Header";
 
+
 export const AuthContext = createContext(); 
 
 const initialState = {
   isAuthenticated: false,
   user: null,
   token: null,
+  role: "",
 };
 
 const reducer = (state, action) => {
@@ -18,12 +20,14 @@ const reducer = (state, action) => {
       // console.log(action.payload);
       localStorage.setItem("user", action.payload.username);
       localStorage.setItem("token", action.payload.accessToken);
-      // console.log(localStorage);
+      localStorage.setItem("role", action.payload.roles);
+      console.log(localStorage);
       return {
         ...state,
         isAuthenticated: true,
         user: action.payload.username,
-        token: action.payload.accessToken
+        token: action.payload.accessToken,
+        role: action.payload.roles
       };
     case "LOGOUT":
       localStorage.clear();
@@ -50,7 +54,7 @@ return (
     }}
     >
       <Header />
-      <div className="App">{!state.isAuthenticated ? <Login /> : <Home />}</div>      
+      <div className="App">{!state.isAuthenticated ? <Login /> : <Home />}</div>     
     </AuthContext.Provider>
   );
 }

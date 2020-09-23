@@ -1,15 +1,15 @@
-import React, { useEffect, useReducer, useContext} from "react";
-import { AuthContext } from "../App";
-
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-
+import React, { useContext } from "react";
+import { AuthContext } from '../App'; 
 
 
 export const Dashboard = () => {
-    
+    const { state: authState } = useContext(AuthContext);
 
     return (
-        <h1>DASHBOARD</h1>
+        <div>
+            <h1>DASHBOARD</h1>
+            
+        </div>
     );   
 };
 

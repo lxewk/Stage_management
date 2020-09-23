@@ -1,8 +1,12 @@
-import React, { useEffect, useReducer, useContext} from "react";
-import { AuthContext } from "../App";
-import Show from "./Show";
+import React, { useEffect, useReducer, useContext} from 'react';
+import { AuthContext } from '../App';
+import { UserRoleProvider } from './contexts/UserRoleProvider';
 
-import { HomeContainer, HomeLoader, HomeError } from "./styles/elements";
+import Show from './Show';
+
+
+import { HomeContainer, HomeLoader, HomeError } from "./styled/elements";
+
 
 const initialState = {
     shows: [],
@@ -73,7 +77,8 @@ export const Home = () => {
     }, [authState.token]);
 
     return (
-        <>
+        <>  
+          <UserRoleProvider>
             <HomeContainer>
               {state.isFetching ? (
                 <HomeLoader className="loader">LOADING...</HomeLoader>
@@ -86,8 +91,10 @@ export const Home = () => {
                       <Show key={oneShow.id.toString()} oneShow={oneShow} />
                     ))}
                 </>
-              )}                    
+              )} 
+                               
             </HomeContainer>
+          </UserRoleProvider>
         </>
     );   
 };

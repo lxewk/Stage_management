@@ -1,8 +1,16 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../App";
 
-import { LoginContainer, LoginCard, LoginCardContainer, LoginCardContainerHead, LoginFormContainer } from "./styles/elements";
-import { LoginButton } from './button/LoginButton';
+import { LoginContainer,
+         LoginCard,
+         LoginCardContainer,
+         LoginCardHead, 
+         LoginFormContainer,
+         FormError,
+         LoginInput,
+         LoginLabel } from "./styled/elements";
+         
+import { LoginButton } from './styled/button/LoginButton';
 
 
 
@@ -70,11 +78,11 @@ export const Login = () => {
             <LoginCard>
                 <LoginCardContainer>
                     <LoginFormContainer onSubmit={handleFormSubmit}>
-                        <LoginCardContainerHead>Login</LoginCardContainerHead>
+                        <LoginCardHead>Login</LoginCardHead>
                         
-                        <label htmlFor="fName">
+                        <LoginLabel htmlFor="fName">
                         Username
-                        <input
+                        <LoginInput
                             type="text"
                             value={data.fName}
                             onChange={handleInputChange}
@@ -82,21 +90,21 @@ export const Login = () => {
                             id="fName"
                             placeholder="mvdPoort"
                         />
-                        </label>
+                        </LoginLabel>
                         
-                        <label htmlFor="password">
+                        <LoginLabel htmlFor="password">
                         Password
-                        <input
+                        <LoginInput
                             type="password"
                             value={data.password}
                             onChange={handleInputChange}
                             name="password"
                             id="password"
                         />
-                        </label>
+                        </LoginLabel>
 
                         {data.errorMessage && (
-                            <span className="form-error">{data.errorMessage}</span>
+                            <FormError className="form-error">{data.errorMessage}</FormError>
                         )}
                         
                         <LoginButton disabled={data.isSubmitting}>
