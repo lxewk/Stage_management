@@ -1,8 +1,19 @@
-import React, { createContext, useReducer }  from "react";
+import React, { createContext, useReducer, useEffect }  from "react";
 import "./App.css";
-import Login from "./components/Login";
-import Home from "./components/Home";
+
 import Header from "./components/Header";
+import {
+  Login,
+  Show,
+  Dashboard,
+} from './pages';
+
+import { 
+  BrowserRouter as Router,
+  Switch, 
+  Route,
+  Redirect } from "react-router-dom";
+
 
 
 export const AuthContext = createContext(); 
@@ -46,17 +57,47 @@ const reducer = (state, action) => {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-return (
-    <AuthContext.Provider
-      value={{
-        state,
-        dispatch
-    }}
-    >
-      <Header />
-      <div className="App">{!state.isAuthenticated ? <Login /> : <Home />}</div>     
-    </AuthContext.Provider>
-  );
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("username") || null)
+    const token = JSON.parse(localStorage.getItem("accessToken") || null)
+
+    if(user && token){
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          user,
+          token
+        }
+      })
+    }
+  }, [])
+
+  return (
+     
+      <AuthContext.Provider
+        value={{
+          state,
+          dispatch
+      }}
+      >
+        <Router>
+          <Header /> 
+          <Switch>
+            <Route exact path="/">
+              {state.isAuthenticated ? <Redirect to="/show" /> : <Login />}
+            </Route>
+            <Route exact path="/show">
+              <Show />
+            </Route>
+            <Route exact path="/dashboard">
+              <Dashboard />
+            </Route>
+            <Route path="*" component={() => "404 NOT FOUND"} />
+          </Switch>
+        </Router>
+      </AuthContext.Provider>   
+    );
 }
 
 export default App;
