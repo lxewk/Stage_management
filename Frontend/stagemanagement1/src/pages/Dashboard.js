@@ -11,19 +11,19 @@ export const Dashboard = () => {
             {!authState.isAuthenticated &&
                 (<p>not logged in</p>)}
             {authState.isAuthenticated && authState.role === "STAGEMANAGER" &&
-                (<p style={{padding: "100px"}}>your are logged in as stagemanager</p>)}
+                (<p style={{padding: "150px"}}>your are logged in as stagemanager</p>)}
             {authState.isAuthenticated && authState.role === "DEPUTY" &&
-                (<p style={{padding: "100px"}}>your are logged in as deputy</p>)}
+                (<p style={{padding: "150px"}}>your are logged in as deputy</p>)}
             {authState.isAuthenticated && authState.role === "ASSISTANT" &&
-                (<p style={{padding: "100px"}}>your are logged in as assistant</p>)}
+                (<p style={{padding: "150px"}}>your are logged in as assistant</p>)}
             {authState.isAuthenticated && authState.role === "CREW" &&
-                (<p style={{padding: "100px"}}>your are logged in as crew</p>)}
+                (<p style={{padding: "150px"}}>your are logged in as crew</p>)}
             {authState.isAuthenticated && authState.role === "PROPS" &&
-                (<p style={{padding: "100px"}}>your are logged in as props</p>)}
+                (<p style={{padding: "150px"}}>your are logged in as props</p>)}
             {authState.isAuthenticated && authState.role === "CREATIVE" &&
-                (<p style={{padding: "100px"}}>your are logged in as creative</p>)}
+                (<p style={{padding: "150px"}}>your are logged in as creative</p>)}
             {authState.isAuthenticated && authState.role === "PRODUCTION" &&
-                (<p style={{padding: "100px"}}>your are logged in as production</p>)}
+                (<p style={{padding: "150px"}}>your are logged in as production</p>)}
         </div>
     );   
 };

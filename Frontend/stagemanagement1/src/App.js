@@ -12,8 +12,8 @@ import {
   BrowserRouter as Router,
   Switch, 
   Route,
-  Redirect } from "react-router-dom";
-
+  Redirect 
+} from "react-router-dom";
 
 
 export const AuthContext = createContext(); 
@@ -88,7 +88,9 @@ function App() {
               {state.isAuthenticated ? <Redirect to="/show" /> : <Login />}
             </Route>
             <Route exact path="/show">
-              <Show />
+              <Show
+                url="http://localhost:8080/api/show/all"
+              />
             </Route>
             <Route exact path="/dashboard">
               <Dashboard />
