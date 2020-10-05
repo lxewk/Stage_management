@@ -1,11 +1,13 @@
 import React, { useContext } from "react"
-import { AuthContext } from '../App' 
+import { AuthContext } from '../contexts/AuthContex' 
 
 
 export const Dashboard = () => {
     const { state: authState } = useContext(AuthContext);
     const strRole = JSON.stringify(authState.role);
     console.log(strRole);
+
+    
 
     return (
         <div>
@@ -14,7 +16,7 @@ export const Dashboard = () => {
                 (<p>not logged in</p>)}
             {authState.isAuthenticated && strRole === '["ROLE_STAGEMANAGER"]' &&
                 (<p style={{padding: "150px"}}>your are logged in as stagemanager</p>)}
-            {authState.isAuthenticated && strRole === '["ROLE_DEPUTY"]' &&
+            {authState.isAuthenticated && strRole === '["ROLE_DEPUTY"]'&&
                 (<p style={{padding: "150px"}}>your are logged in as deputy</p>)}
             {authState.isAuthenticated && strRole === '["ROLE_ASSISTANT"]' &&
                 (<p style={{padding: "150px"}}>your are logged in as assistant</p>)}
