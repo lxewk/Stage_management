@@ -21,7 +21,6 @@ export const Show = (props) => {
     const [loading, toggleLoading] = useState(false)
  
     useEffect(() => {
-        console.log('useEffect hook ran', authState)
         const fetchData = async () => {
             toggleLoading(true);
             try {
@@ -58,8 +57,7 @@ export const Show = (props) => {
                                 return(
                                    <ContainerShowCard
                                         key={showDetail.name}
-                                        >
-                                            
+                                        > 
                                             <ShowButton onClick={() => {
                                                     if (authState.isAuthenticated) {
                                                         return <Dashboard />;

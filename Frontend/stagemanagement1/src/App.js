@@ -2,7 +2,7 @@ import React, {  useContext, useEffect }  from "react";
 import { AuthContext } from './contexts/AuthContex';
 import "./App.css";
 
-import Header from "./components/Header";
+import Header from "./components/navbar/Header";
 import {
   Login,
   Show,
@@ -43,7 +43,7 @@ function App() {
   
   return (
         <Router>
-          <Header />
+          <Header/>
           <Switch>
             <Route exact path="/">
               {state.isAuthenticated ? <Redirect to="/show" /> : <Login />}    

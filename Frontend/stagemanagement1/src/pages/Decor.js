@@ -4,6 +4,7 @@ import DecorForm from '../components/DecorForm';
 
 const DecorList = () => {
     const { decors } = useContext(DecorContext);
+
     const [decorInfo, setDecorInfo] = useState([
         {name: 'DJ window', department: 'auto', id: 1 },
         {name: 'DJ table', department: 'props', id: 2 },
@@ -13,13 +14,17 @@ const DecorList = () => {
     const [decorCount, setDecorCount] = useState(3);
 
     useEffect(() => {
-        console.log('useEffect hook ran', decors);
-    })
+        console.log('useEffect hook Decors ran', decors);
+    }, [decors])
+
+    useEffect(() => {
+        console.log('useEffect hook decorCount ran', decorCount);
+    }, [decorCount])
 
     return ( 
         <div style={{padding: "150px"}}>
             <ul>
-                {decorInfo.map(decor => {
+                {decors.map(decor => {
                     return ( <li key={decor.id}>name: {decor.name},  department: {decor.department}</li>)
                 })}
             </ul>
