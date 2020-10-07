@@ -15,7 +15,7 @@ public class ShowController {
     @Autowired
     private IShowService showService;
 
-    @GetMapping
+    @GetMapping(value = "/all")
     public List<Show> getShows() { return showService.getShows(); }
 
     @PostMapping(value = "/save")

@@ -70,13 +70,13 @@ public class DatabaseLoader implements CommandLineRunner {
 
         Show showProduction1 = new Show();
         showProduction1.setName("The Bodyguard");
-        showProduction1.setPosterArt("./assets/TheBodyGuard.svg");
+        showProduction1.setPosterArt("/assets/tbg-miro.svg");
         showProduction1.setStagemanager("Nanko Flutte");
         showService.saveShow(showProduction1);
 
         Show showProduction2 = new Show();
         showProduction2.setName("Jersey Boys");
-        showProduction2.setPosterArt("./assets/JerseyBoys.svg");
+        showProduction2.setPosterArt("/assets/jersey-boy-tim.svg");
         showProduction2.setStagemanager("Jan Suiker");
         showService.saveShow(showProduction2);
 
