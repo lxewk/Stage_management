@@ -19,9 +19,9 @@ export const LoginContainer = styled.div`
   background-position: right;
   padding-left: 5%;
   padding-right: 5%;
-  margin-top: 70px;
 
-  @media screen and (max-width: 700px){
+
+  @media screen and (max-width: 759px){
     justify-content: center;
     background-image: none;
   }

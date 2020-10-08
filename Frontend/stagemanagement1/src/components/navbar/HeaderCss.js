@@ -1,75 +1,87 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 import { colors } from '../../components/styled/global'
+import { Link } from 'react-router-dom'
 
 
 export const NavMenu = styled.ul`
-    display: grid;
-    grid-template-columns: repeat(7, auto);
-    grid-gap: 15px;
-    list-style: none;
-    text-align: center;
-    width: 60vw;
-    justify-content: end;
-    margin-right: 1rem;
-    background-color: pink;
+    display: flex;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+    height: 100%;
+    position: absolute;
+    right: 20px;
+    align-items: center;
+    background: pink;
+    
 
     @media screen and (max-width: 960px){
-        display: flex;
+        height: 100%;
+        width: 300px;
+        position: fixed;
+        right: -240px;
+        top: 70px;
+        background: rgba(73,63,252,1);
         flex-direction: column;
-        width: 100%;
-        height: 500px;
-        position: absolute;
-        top: 51px;
-        left: -100%;
-        transition: all 0.5s ease;
-    }
+        transition: 300ms ease all;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 
-    &:active {
-      @media screen and (max-width: 960px){
-        background: #6668f6;
-        left: 0;
-        transition: all 0.5s ease;
-        z-index: 1;
-      }  
-    }
-`;
-    
-export const MenuIcon = styled.div`
-    display: none;
-
-    @media screen and (max-width: 960px){
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        transform: translate(-100%, 60%);
-        font-size: 1.8rem;
-        cursor: pointer;
-    }
-`;
-
-export const NavLinks = styled.a`
-    color: ${colors.headerLogoWhite};
-    text-decoration: none;
-    padding: 0.5rem 1 rem;
-
-    &:hover {
-        background-color: #6d76f7;
-        border-radius: 4px;
-        transition: all 0.2s ease-out;
-    } 
-    
-    @media screen and (max-width: 960px){
-        text-align: center;
-        padding: 2 rem;
-        width: 100%;
-        display: table;
-
-        &:hover {
-            background-color: #7577fa;
-            border-radius: 0;
+        &:active {
+            right: 0; 
         }
     }
+
+    
+`;
+
+
+export const ListItem = styled.li`
+    list-style-type: none;
+    padding: 10px 20px;
+    
+    @media screen and (max-width: 759px){
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+`;
+    
+
+
+export const NavLinks = styled(Link)`
+    color: ${colors.headerLogoWhite};
+    text-decoration: none;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;  
+
+    @media screen and (max-width: 759px){
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+`;
+
+export const Icons = styled.i`
+    margin-right: 15px;
+    font-size: 20px;
+`;
+
+
+export const MenuIcon = styled.figure`
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    cursor: pointer;
+
+    @media screen and (max-width: 759px){
+        position: fixed;
+        right: 0;
+        top: 20px;
+    }
+
 `;
 
 export const Bars = styled.i`

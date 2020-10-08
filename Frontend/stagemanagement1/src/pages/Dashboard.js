@@ -11,7 +11,7 @@ export const Dashboard = () => {
 
     return (
         <div>
-            <h1 style={{padding: "100px"}}>DASHBOARD</h1>
+            <h1 style={{padding: "150px"}}>DASHBOARD</h1>
             {!authState.isAuthenticated &&
                 (<p>not logged in</p>)}
             {authState.isAuthenticated && strRole === '["ROLE_STAGEMANAGER"]' &&
