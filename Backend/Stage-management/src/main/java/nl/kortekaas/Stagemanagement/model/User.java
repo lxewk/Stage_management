@@ -2,11 +2,10 @@ package nl.kortekaas.Stagemanagement.model;
 
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "users", schema = "public")
 public class User {
 
     @Id
@@ -18,7 +17,7 @@ public class User {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial", name = "USER_ID")
+    @Column(columnDefinition = "serial", name = "user_id")
     private long id;
 
     private String username;

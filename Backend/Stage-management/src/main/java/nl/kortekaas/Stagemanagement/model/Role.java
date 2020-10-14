@@ -3,11 +3,10 @@ package nl.kortekaas.Stagemanagement.model;
 import nl.kortekaas.Stagemanagement.model.enums.ERole;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @Entity
+@Table(name = "role", schema = "public")
 public class Role {
     
     @Id
@@ -19,7 +18,7 @@ public class Role {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial", name = "ROLE_ID")
+    @Column(columnDefinition = "serial", name = "role_id")
     private long id;
 
     @Enumerated(EnumType.STRING)

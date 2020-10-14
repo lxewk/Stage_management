@@ -1,22 +1,22 @@
-import React, {  useContext, useEffect }  from "react";
-import { AuthContext } from './contexts/AuthContex';
-import "./App.css";
+import React, {  useContext, useEffect }  from "react"
+import { AuthContext } from './contexts/AuthContex'
+import "./App.css"
 
-import Header from "./components/navbar/Header";
+import Header from "./components/header/Header"
 import {
   Login,
   Show,
   Dashboard,
   Decor,
-} from './pages';
+} from './pages'
 
 import { 
   BrowserRouter as Router,
   Switch, 
   Route,
   Redirect 
-} from "react-router-dom";
-import DecorContextProvider from "./contexts/DecorContext";
+} from "react-router-dom"
+import DecorContextProvider from "./contexts/DecorContext"
 
 
 
@@ -46,7 +46,7 @@ function App() {
           <Header/>
           <Switch>
             <Route exact path="/">
-              {state.isAuthenticated ? <Redirect to="/show" /> : <Login />}    
+              {state.isAuthenticated ? <Redirect to="/show" /> : <Login />}  
             </Route>
             <Route exact path="/show">
               <Show

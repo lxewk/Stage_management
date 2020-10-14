@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 
 @Entity
+@Table(name = "item", schema = "public")
 public class Item {
 
     @Id
@@ -19,7 +20,7 @@ public class Item {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial", name = "ITEM_ID")
+    @Column(columnDefinition = "serial", name = "item_id")
     private long id;
 
     private String itemName;

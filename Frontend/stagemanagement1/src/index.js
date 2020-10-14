@@ -1,15 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import { AuthContextProvider } from './contexts/AuthContex';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import * as serviceWorker from './serviceWorker'
+import { AuthContextProvider } from './contexts/AuthContex'
+import { NavLinkContextProvider } from './contexts/NavLinkContext'
 
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
-     <App />
+      <NavLinkContextProvider>
+        <App />
+      </NavLinkContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root')

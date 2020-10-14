@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "TRACKS")
+@Table(name = "tracks", schema = "public")
 public class Track {
 
     @Id
@@ -18,7 +18,7 @@ public class Track {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial", name = "TRACK_ID")
+    @Column(columnDefinition = "serial", name = "track_id")
     private long id;
 
     private String crewName;

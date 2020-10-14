@@ -33,52 +33,52 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws IOException {
 
-        User stagemanager = new User();
-        stagemanager.setUsername("jSuiker");
-        stagemanager.setPassword("smbw");
-        userService.registerUser(stagemanager, ERole.ROLE_STAGEMANAGER);
+//        User stagemanager = new User();
+//        stagemanager.setUsername("jSuiker");
+//        stagemanager.setPassword("smbw");
+//        userService.registerUser(stagemanager, ERole.ROLE_STAGEMANAGER);
+//
+//        User deputy = new User();
+//        deputy.setUsername("lTates");
+//        deputy.setPassword("dsmbw");
+//        userService.registerUser(deputy, ERole.ROLE_DEPUTY);
+//
+//        User assistant = new User();
+//        assistant.setUsername("jVervelde");
+//        assistant.setPassword("asmbw");
+//        userService.registerUser(assistant, ERole.ROLE_ASSISTANT);
+//
+//        User crew = new User();
+//        crew.setUsername("eKortekaas");
+//        crew.setPassword("crewbw");
+//        userService.registerUser(crew, ERole.ROLE_CREW);
+//
+//        User props = new User();
+//        props.setUsername("pvdHelm");
+//        props.setPassword("propsbw");
+//        userService.registerUser(props, ERole.ROLE_PROPS);
+//
+//        User creative = new User();
+//        creative.setUsername("cToren");
+//        creative.setPassword("creabw");
+//        userService.registerUser(creative, ERole.ROLE_CREATIVE);
+//
+//        User production = new User();
+//        production.setUsername("aWelter");
+//        production.setPassword("prodbw");
+//        userService.registerUser(production, ERole.ROLE_PRODUCTION);
 
-        User deputy = new User();
-        deputy.setUsername("lTates");
-        deputy.setPassword("dsmbw");
-        userService.registerUser(deputy, ERole.ROLE_DEPUTY);
-
-        User assistant = new User();
-        assistant.setUsername("jVervelde");
-        assistant.setPassword("asmbw");
-        userService.registerUser(assistant, ERole.ROLE_ASSISTANT);
-
-        User crew = new User();
-        crew.setUsername("eKortekaas");
-        crew.setPassword("crewbw");
-        userService.registerUser(crew, ERole.ROLE_CREW);
-
-        User props = new User();
-        props.setUsername("pvdHelm");
-        props.setPassword("propsbw");
-        userService.registerUser(props, ERole.ROLE_PROPS);
-
-        User creative = new User();
-        creative.setUsername("cToren");
-        creative.setPassword("creabw");
-        userService.registerUser(creative, ERole.ROLE_CREATIVE);
-
-        User production = new User();
-        production.setUsername("aWelter");
-        production.setPassword("prodbw");
-        userService.registerUser(production, ERole.ROLE_PRODUCTION);
-
-        Show showProduction1 = new Show();
-        showProduction1.setName("The Bodyguard");
-        showProduction1.setPosterArt("/assets/tbg-miro.svg");
-        showProduction1.setStagemanager("Nanko Flutte");
-        showService.saveShow(showProduction1);
-
-        Show showProduction2 = new Show();
-        showProduction2.setName("Jersey Boys");
-        showProduction2.setPosterArt("/assets/jersey-boy-tim.svg");
-        showProduction2.setStagemanager("Jan Suiker");
-        showService.saveShow(showProduction2);
+//        Show showProduction1 = new Show();
+//        showProduction1.setName("The Bodyguard");
+//        showProduction1.setPosterArt("april");
+//        showProduction1.setStagemanager("Nanko Flutte");
+//        showService.saveShow(showProduction1);
+//
+//        Show showProduction2 = new Show();
+//        showProduction2.setName("Jersey Boys");
+//        showProduction2.setPosterArt("tim");
+//        showProduction2.setStagemanager("Jan Suiker");
+//        showService.saveShow(showProduction2);
 
     }
 }

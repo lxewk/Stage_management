@@ -2,14 +2,9 @@ import React, { useEffect, useContext, useState} from 'react'
 import Axios from 'axios'
 import { AuthContext } from '../contexts/AuthContex'
 import { Redirect } from 'react-router-dom'
-
-import  {
-    HomeContainer,
-    ContainerShowCard,
-    HomeError 
-}  from '../components/styled/elements'
+import styled from 'styled-components'
+import { colors } from '../components/styled/global'
 import ShowButton from '../components/styled/button/ShowButton'
-
 import { Dashboard } from '.'
 
 
@@ -21,6 +16,7 @@ export const Show = (props) => {
     const [loading, toggleLoading] = useState(false)
  
     useEffect(() => {
+        console.log('useEffect-Hook Show ran', authState.isAuthenticated);
         const fetchData = async () => {
             toggleLoading(true);
             try {
@@ -31,7 +27,6 @@ export const Show = (props) => {
                         }
                       }); 
                 setShowDetails(result.data)
-                console.log(showDetails)
                 toggleLoading(false)
             } catch {
                 setError(error)
@@ -40,7 +35,7 @@ export const Show = (props) => {
             }
         }
         fetchData()
-    }, [])
+    }, [error])
      
     return (
         <>  
@@ -58,7 +53,8 @@ export const Show = (props) => {
                                    <ContainerShowCard
                                         key={showDetail.name}
                                         > 
-                                            <ShowButton onClick={() => {
+                                            <ShowButton 
+                                                onClick={() => {
                                                     if (authState.isAuthenticated) {
                                                         return <Dashboard />;
                                                     } else {
@@ -79,3 +75,67 @@ export const Show = (props) => {
 };
 
 export default Show;
+
+
+// Styled-components
+
+ const HomeContainer = styled.div`
+  padding-top: 250px;
+  margin-left: 8%;
+  margin-right: 8%;
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+   
+
+  @media screen and (max-width: 780px){
+    justify-content: space-around;
+  }
+
+  @media screen and (min-width: 1400px){
+    margin: auto;
+    width: 1400px;
+  }
+`;
+
+ const ContainerShowCard = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+  width: 550px;
+
+  /* @media screen and (max-width: 780px){
+    justify-content: space-around;
+  } */
+
+`;
+
+ const HomeLoader = styled.span`
+  align-self: center;
+  width: 100%;
+  text-align: center;
+`;
+
+ const HomeError = styled.span`
+  width: 100%;
+  align-self: center;
+  color: ${colors.headerBlue};
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+`;
+
+//  const ShowCardText = styled.h2`
+//   color: ${colors.red};
+//   text-align: center;
+//   font-size: 2rem;
+// `;
+
+//  const ShowCardManaged = styled.span`
+//   color: ${colors.red};
+//   text-align: center;
+// `;

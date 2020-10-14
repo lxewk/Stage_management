@@ -1,17 +1,47 @@
-import React, { useContext, useState } from 'react';
-import { DecorContext } from '../contexts/DecorContext';
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../contexts/AuthContex'
+import { DecorContext } from '../contexts/DecorContext'
+import axios from 'axios'
 
 const NewDecorForm = () => {
-    const { dispatch } = useContext(DecorContext);
+    const { state: authState } = useContext(AuthContext)
+    const { decors, decorDispatch } = useContext(DecorContext);
     const [name, setName] = useState('');
     const [department, setDepartment] = useState('');
+    const [data, setData] = useState('')
+    const [error, setError] = useState(false)
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch({type: 'ADD_DECOR', decor: {
+        decorDispatch({type: 'ADD_DECOR', decor: {
             name, department
         }});
-        setName('');
-        setDepartment('');
+
+        const fetchData = async () => {
+            try {
+                data = await axios({
+                    method: 'post',
+                    url: 'http://localhost:8080/api/item/save',
+                    data: JSON.stringify({
+                        itemName: name,
+                        department: department,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${authState.token}`
+                    }
+                })
+                setData(data)
+                console.log(data)
+            } catch (error) {
+                setError(error)
+                console.log(error)
+            }
+        }
+        fetchData()
+
+        setName('')
+        setDepartment('')
     }
 
     return (

@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "show", schema = "public")
 public class Show {
 
     @Id
@@ -16,7 +17,7 @@ public class Show {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial", name = "SHOW_ID")
+    @Column(columnDefinition = "serial", name = "show_id")
     private long id;
 
     private String name;

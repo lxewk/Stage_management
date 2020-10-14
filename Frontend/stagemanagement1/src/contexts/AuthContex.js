@@ -8,6 +8,7 @@ const initialState = {
   user: null,
   token: null,
   role: "",
+  visible: false,
 };
 
 

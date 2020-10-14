@@ -1,10 +1,10 @@
 package nl.kortekaas.Stagemanagement.model;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity
+@Table(name = "risk", schema = "public")
 public class Risk {
 
     @Id
@@ -16,7 +16,7 @@ public class Risk {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial", name = "RISK_ID")
+    @Column(columnDefinition = "serial", name = "risk_id")
     private long id;
 
     private String possibleRisks;
