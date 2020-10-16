@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "role", schema = "public")
+//@Table(name = "role", schema = "public")
 public class Role {
     
     @Id

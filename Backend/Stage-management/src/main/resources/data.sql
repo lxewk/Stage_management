@@ -17,13 +17,13 @@ INSERT INTO role(name) VALUES('ROLE_PROPS');
 INSERT INTO role(name) VALUES('ROLE_CREATIVE');
 INSERT INTO role(name) VALUES('ROLE_PRODUCTION');
 
-INSERT INTO users(username, password, roles) VALUES('jSuiker', 'smbw', 'ROLE_STAGEMANAGER');
-INSERT INTO users(username, password, roles) VALUES('lTates', 'dsmbw', 'ROLE_DEPUTY');
-INSERT INTO users(username, password, roles) VALUES('jVervelde', 'asmbw', 'ROLE_ASSISTANT');
-INSERT INTO users(username, password, roles) VALUES('eKortekaas', 'crewbw', 'ROLE_CREW');
-INSERT INTO users(username, password, roles) VALUES('pvdHelm', 'propsbw', 'ROLE_PROPS');
-INSERT INTO users(username, password, roles) VALUES('cToren', 'creabw', 'ROLE_CREATIVE');
-INSERT INTO users(username, password, roles) VALUES('aWelter', 'prodbw', 'ROLE_PRODUCTION');
+-- INSERT INTO users(username, password, roles) VALUES('jSuiker', 'smbw', 'ROLE_STAGEMANAGER');
+-- INSERT INTO users(username, password, roles) VALUES('lTates', 'dsmbw', 'ROLE_DEPUTY');
+-- INSERT INTO users(username, password, roles) VALUES('jVervelde', 'asmbw', 'ROLE_ASSISTANT');
+-- INSERT INTO users(username, password, roles) VALUES('eKortekaas', 'crewbw', 'ROLE_CREW');
+-- INSERT INTO users(username, password, roles) VALUES('pvdHelm', 'propsbw', 'ROLE_PROPS');
+-- INSERT INTO users(username, password, roles) VALUES('cToren', 'creabw', 'ROLE_CREATIVE');
+-- INSERT INTO users(username, password, roles) VALUES('aWelter', 'prodbw', 'ROLE_PRODUCTION');
 
-INSERT INTO show(name, posterArt, stagemanager) VALUES('The Bodyguard', 'april', 'Nanko Flutte');
-INSERT INTO show(name, posterArt, stagemanager) VALUES('Jersey Boys', 'tim', 'Jan Suiker');
+-- INSERT INTO show(name, posterArt, stagemanager) VALUES('The Bodyguard', 'april', 'Nanko Flutte');
+-- INSERT INTO show(name, posterArt, stagemanager) VALUES('Jersey Boys', 'tim', 'Jan Suiker');
