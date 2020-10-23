@@ -5,16 +5,17 @@ import  tim  from '../../../assets/jersey-boy-tim.svg'
 
 
 export const ShowBtn = styled(Link)`
+  box-sizing: border-box;
   color: ${colors.red};
   text-align: right;
   text-decoration: none;
   font-size: 2vw;
   font-weight: bold;
-  padding: 35px 30px;
-  height: 350px;
+  padding: 35px 35px;
+  height: 450px;
   width: 550px;
   cursor: pointer;
-  background-color: ${colors.beam};
+  background-color: ${colors.lavenderBlush};
   background-image: url(${tim});
   background-repeat: no-repeat;
   background-position: 50% 25%;
@@ -24,8 +25,14 @@ export const ShowBtn = styled(Link)`
     background-color: ${colors.gray};
   }
 
-  @media screen and (max-width: 780px){
-    justify-content: space-between;
+  @media screen and (max-width: 600px){
+    background-image: none;
+    height: 100px;
+    width: auto;
+    font-size: 5vw;
+    text-align: center;
+    padding: 25px 10px 10px 10px;
+    margin: 0;
   }
 
 `;

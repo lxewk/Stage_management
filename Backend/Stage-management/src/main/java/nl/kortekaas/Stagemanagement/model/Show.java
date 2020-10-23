@@ -1,11 +1,9 @@
 package nl.kortekaas.Stagemanagement.model;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity
-//@Table(name = "show", schema = "public")
 public class Show {
 
     @Id

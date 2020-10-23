@@ -38,39 +38,42 @@ export const Show = (props) => {
     }, [error])
      
     return (
-        <>  
-            <HomeContainer >           
-                {!authState.isAuthenticated && error !== null &&
-                    (<HomeError>something went wrong: {error}</HomeError>)}
-                {authState.isAuthenticated && loading === true &&
-                    (<p>Loading...</p>)}
+			<>  
+        <HomeContainer >           
+					{!authState.isAuthenticated && error !== null &&
+						(<HomeError>something went wrong: {error}</HomeError>)}
+					{authState.isAuthenticated && loading === true &&
+						(<p>Loading...</p>)}
 
-                <div className="row">         
-                    {showDetails !== null && 
-                        <>
-                            {showDetails.map((showDetail) => {
-                                return(
-                                   <ContainerShowCard
-                                        key={showDetail.name}
-                                        > 
-                                            <ShowButton 
-                                                onClick={() => {
-                                                    if (authState.isAuthenticated) {
-                                                        return <Dashboard />;
-                                                    } else {
-                                                        return <Redirect to="/" />
-                                                    }
-                                                }}
-                                                label={showDetail.name}
-                                            />   
-                                    </ContainerShowCard> 
-                                )
-                            })}
-                        </>
-                    }
-                </div>                             
-            </HomeContainer>
-        </>
+					<div className="row">         
+						{showDetails !== null && 
+							<>
+								{showDetails.map((showDetail) => {
+									return(
+										<ContainerShowCard
+											key={showDetail.name}
+											> 
+												<ShowButton 
+													onClick={() => {
+														if (authState.isAuthenticated) {
+																return <Dashboard />;
+														} else {
+																return <Redirect to="/" />
+														}
+													}}
+													label={showDetail.name} 
+												/> 
+												<div>
+													<p>Managed by {showDetail.stagemanager}</p>
+												</div>  
+										</ContainerShowCard> 
+									)
+								})}
+							</>
+						}
+					</div>                             
+        </HomeContainer>
+			</>
     );   
 };
 
@@ -79,38 +82,40 @@ export default Show;
 
 // Styled-components
 
- const HomeContainer = styled.div`
+const HomeContainer = styled.div`
   padding-top: 250px;
-  margin-left: 8%;
-  margin-right: 8%;
+  margin: 0 60px 0 20px;
   
   .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-   
-
-  @media screen and (max-width: 780px){
+    width: 100%;
+		display: flex;
     justify-content: space-around;
+
+    @media screen and (max-width: 600px){
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
   }
 
-  @media screen and (min-width: 1400px){
-    margin: auto;
-    width: 1400px;
+  @media screen and (max-width: 600px){
+      display: flex;
+      padding-top: 150px;
+      height: 400px;
   }
 `;
 
  const ContainerShowCard = styled.div`
-  display: flex;
+	display: flex;
+	flex-direction: column;
   justify-content: center;
-  align-items: center;
-  height: 350px;
+  height: 450px;
   width: 550px;
 
-  /* @media screen and (max-width: 780px){
-    justify-content: space-around;
-  } */
+  @media screen and (max-width: 600px){
+    height: auto;
+    width: 50%;
+  }
 
 `;
 
@@ -129,13 +134,3 @@ export default Show;
   text-align: center;
 `;
 
-//  const ShowCardText = styled.h2`
-//   color: ${colors.red};
-//   text-align: center;
-//   font-size: 2rem;
-// `;
-
-//  const ShowCardManaged = styled.span`
-//   color: ${colors.red};
-//   text-align: center;
-// `;

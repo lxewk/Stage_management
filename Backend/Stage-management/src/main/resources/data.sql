@@ -9,21 +9,21 @@ toevoegen. Daarom is er ook geen Service & repo voor de user-rollen geprogrammee
 database te krijgen is via SQL statements in dit bestand.
  */
 
-INSERT INTO role(name) VALUES('ROLE_STAGEMANAGER');
-INSERT INTO role(name) VALUES('ROLE_DEPUTY');
-INSERT INTO role(name) VALUES('ROLE_ASSISTANT');
-INSERT INTO role(name) VALUES('ROLE_CREW');
-INSERT INTO role(name) VALUES('ROLE_PROPS');
-INSERT INTO role(name) VALUES('ROLE_CREATIVE');
-INSERT INTO role(name) VALUES('ROLE_PRODUCTION');
+INSERT INTO role(name, role_id) VALUES('ROLE_STAGEMANAGER', 1);
+INSERT INTO role(name, role_id) VALUES('ROLE_DEPUTY', 2);
+INSERT INTO role(name, role_id) VALUES('ROLE_ASSISTANT', 3);
+INSERT INTO role(name, role_id) VALUES('ROLE_CREW', 4);
+INSERT INTO role(name, role_id) VALUES('ROLE_PROPS', 5);
+INSERT INTO role(name, role_id) VALUES('ROLE_CREATIVE', 6);
+INSERT INTO role(name, role_id) VALUES('ROLE_PRODUCTION', 7);
 
--- INSERT INTO users(username, password, roles) VALUES('jSuiker', 'smbw', 'ROLE_STAGEMANAGER');
--- INSERT INTO users(username, password, roles) VALUES('lTates', 'dsmbw', 'ROLE_DEPUTY');
--- INSERT INTO users(username, password, roles) VALUES('jVervelde', 'asmbw', 'ROLE_ASSISTANT');
--- INSERT INTO users(username, password, roles) VALUES('eKortekaas', 'crewbw', 'ROLE_CREW');
--- INSERT INTO users(username, password, roles) VALUES('pvdHelm', 'propsbw', 'ROLE_PROPS');
--- INSERT INTO users(username, password, roles) VALUES('cToren', 'creabw', 'ROLE_CREATIVE');
--- INSERT INTO users(username, password, roles) VALUES('aWelter', 'prodbw', 'ROLE_PRODUCTION');
+INSERT INTO users(username, password, roles, user_id) VALUES('jSuiker', 'smbw', 'ROLE_STAGEMANAGER', 1);
+INSERT INTO users(username, password, roles, user_id) VALUES('lTates', 'dsmbw', 'ROLE_DEPUTY', 2);
+INSERT INTO users(username, password, roles, user_id) VALUES('jVervelde', 'asmbw', 'ROLE_ASSISTANT', 3);
+INSERT INTO users(username, password, roles, user_id) VALUES('eKortekaas', 'crewbw', 'ROLE_CREW', 4);
+INSERT INTO users(username, password, roles, user_id) VALUES('pvdHelm', 'propsbw', 'ROLE_PROPS', 5);
+INSERT INTO users(username, password, roles, user_id) VALUES('cToren', 'creabw', 'ROLE_CREATIVE', 6);
+INSERT INTO users(username, password, roles, user_id) VALUES('aWelter', 'prodbw', 'ROLE_PRODUCTION', 7);
 
--- INSERT INTO show(name, posterArt, stagemanager) VALUES('The Bodyguard', 'april', 'Nanko Flutte');
--- INSERT INTO show(name, posterArt, stagemanager) VALUES('Jersey Boys', 'tim', 'Jan Suiker');
+INSERT INTO show(name, posterArt, stagemanager, show_id) VALUES('The Bodyguard', 'april', 'Nanko Flutte', 1);
+INSERT INTO show(name, posterArt, stagemanager, show_id) VALUES('Jersey Boys', 'tim', 'Jan Suiker', 2);

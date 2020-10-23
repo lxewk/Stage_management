@@ -47,8 +47,8 @@ public class UserController {
     @PostMapping(value = "/new")
     public void registerNewUser(@RequestBody User newUser, ERole newRole) {  userService.registerUser(newUser, newRole); }
 
-    @PostMapping(value = "/role")
-    public ResponseEntity<MessageResponse> setUserRole(@RequestBody UserRequest userRequest) {
-        return userService.addRoleToUser(userRequest);
-    }
+    @PostMapping(value = "/track")
+    public ResponseEntity<MessageResponse> addNewTrackToUser(@RequestBody UserRequest userRequest)
+    { return userService.addTrackToUser(userRequest); }
+
 }

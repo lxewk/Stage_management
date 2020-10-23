@@ -8,6 +8,7 @@ import {
   Show,
   Dashboard,
   Decor,
+  Account,
 } from './pages'
 
 import { 
@@ -57,8 +58,11 @@ function App() {
               <Route exact path="/dashboard">
                 <Dashboard />
               </Route>
-              <Route exact path="/Decor">
+              <Route exact path="/decor">
                 <Decor />
+              </Route>
+              <Route exact path="/account">
+                <Account />
               </Route>
             </DecorContextProvider>
             <Route path="*" component={() => "404 NOT FOUND"} />

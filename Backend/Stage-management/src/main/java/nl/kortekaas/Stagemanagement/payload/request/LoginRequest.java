@@ -1,7 +1,5 @@
 package nl.kortekaas.Stagemanagement.payload.request;
 
-import nl.kortekaas.Stagemanagement.model.Role;
-
 import java.util.List;
 
 public class LoginRequest {

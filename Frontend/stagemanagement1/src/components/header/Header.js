@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { NavLinkContext } from '../../contexts/NavLinkContext'
+import { AuthContext } from '../../contexts/AuthContex' 
 
 import { HeaderButton } from '../../components/styled/button/HeaderLogoutButton'
 
@@ -18,6 +19,7 @@ import { NavMenu,
 
 export const Header = () => {
   const { navLinks } = useContext(NavLinkContext)
+  const { state: authState } = useContext(AuthContext)
   
   const [clicked, setClicked] = useState(false)
   const [hoverIndex, setHoverIndex] = useState(-1)
@@ -28,10 +30,10 @@ export const Header = () => {
   
   return (
     <HeaderContainer>
-      <HeaderLogo >
-        <LogoItalic>STAGE</LogoItalic> <LogoSpan><i>M</i>anagement</LogoSpan> 
-      </HeaderLogo>
-
+        <HeaderLogo >
+          <LogoItalic>STAGE</LogoItalic> <LogoSpan><i>M</i>anagement</LogoSpan> 
+        </HeaderLogo>
+      {authState.isAuthenticated && (
       <NavMenu 
         className={clicked ? 'active' : '' }
         >   
@@ -54,9 +56,9 @@ export const Header = () => {
         })}
         <HeaderButton />
         <MenuIcon onClick={ () => setClicked(!clicked) }>
-          <Bars className='fas fa-bars'/>
+          <Bars className='ion-navicon-round'/>
         </MenuIcon>
-      </NavMenu>
+      </NavMenu>)}
     </HeaderContainer>
   );
 };

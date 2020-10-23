@@ -24,13 +24,19 @@ public class User {
     private String password;
     private int todo;
     private int note;
-    private String track;
+
 
     @ManyToMany
     @JoinTable (name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
+    @ManyToMany
+    @JoinTable (name = "user_track",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "track_id"))
+    private Set<Track> tracks;
 
 
     public User() {}
@@ -40,7 +46,6 @@ public class User {
         this.password = "";
         this.todo = 0;
         this.note = 0;
-        this.track = "";
     }
 
 
@@ -72,9 +77,9 @@ public class User {
 
     public void setNote(int note) { this.note = note; }
 
-    public String getTrack() { return track; }
+    public Set<Track> getTracks() { return tracks; }
 
-    public void setTrack(String track) { this.track = track; }
+    public void setTracks(Set<Track> tracks) { this.tracks = tracks; }
 
     public Set<Role> getRoles() {
         return roles;

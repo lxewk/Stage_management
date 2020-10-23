@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 
 @Entity
-//@Table(name = "tracks", schema = "public")
 public class Track {
 
     @Id

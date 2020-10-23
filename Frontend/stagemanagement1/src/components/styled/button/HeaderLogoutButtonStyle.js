@@ -8,7 +8,7 @@ export const HeaderBut = styled(Link)`
     border: none;
     align-self: center;
     cursor: pointer;
-    font-size: 13px;
+    font-size: xx-small;
     text-decoration: none;
     color: ${colors.headerLogoWhite};
     margin-left: 15px;
@@ -23,13 +23,14 @@ export const HeaderBut = styled(Link)`
        margin-right: 5px; 
     }
 
-    @media screen and (max-width: 992px){
+    @media screen and (max-width: 1200px){
+        display: flex;
         width: 100%;
         padding-right: 0;
         padding-left: 0;
 
         i {
-            margin-right: 170px;
+            margin-right: 175px;
             margin-left: 13px;
         }
     }
