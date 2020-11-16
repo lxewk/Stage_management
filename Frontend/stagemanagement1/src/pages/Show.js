@@ -2,8 +2,12 @@ import React, { useEffect, useContext, useState} from 'react'
 import Axios from 'axios'
 import { AuthContext } from '../contexts/AuthContex'
 import { Redirect } from 'react-router-dom'
+
 import styled from 'styled-components'
 import { colors } from '../components/styled/global'
+// import  tim  from '../assets/jersey-boy-tim.svg'
+// import  april  from '../assets/april.svg'
+
 import ShowButton from '../components/styled/button/ShowButton'
 import { Dashboard } from '.'
 
@@ -51,7 +55,8 @@ export const Show = (props) => {
 								{showDetails.map((showDetail) => {
 									return(
 										<ContainerShowCard
-											key={showDetail.name}
+                      key={showDetail.name}
+                      style={{backgroundImage: `url(${showDetail.posterArt})`}}
 											> 
 												<ShowButton 
 													onClick={() => {
@@ -61,10 +66,12 @@ export const Show = (props) => {
 																return <Redirect to="/" />
 														}
 													}}
-													label={showDetail.name} 
+                          label={showDetail.name} 
+                          
 												/> 
 												<div>
-													<p>Managed by {showDetail.stagemanager}</p>
+													<ManagedBy>Managed by </ManagedBy>
+                          <ManagedBy>{showDetail.stagemanager}</ManagedBy>
 												</div>  
 										</ContainerShowCard> 
 									)
@@ -111,6 +118,15 @@ const HomeContainer = styled.div`
   justify-content: center;
   height: 450px;
   width: 550px;
+  background-color: ${colors.gray};
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+  background-repeat: no-repeat;
+  background-position: 50% 25%;
+
+  &:hover {
+    background-color: ${colors.logincardblue};
+  }
 
   @media screen and (max-width: 600px){
     height: auto;
@@ -119,10 +135,17 @@ const HomeContainer = styled.div`
 
 `;
 
- const HomeLoader = styled.span`
-  align-self: center;
-  width: 100%;
-  text-align: center;
+ const ManagedBy = styled.p`
+  display: inline-block;
+  margin-block-start: 0;
+  margin-block-end: 5px;
+  margin-inline-start: 5px;
+  margin-inline-end: 0px;
+  font-size: small;
+
+  @media screen and (max-width: 600px){
+    font-size: xx-small;
+  }
 `;
 
  const HomeError = styled.span`
@@ -134,3 +157,6 @@ const HomeContainer = styled.div`
   text-align: center;
 `;
 
+
+
+// background-image: url(${tim}), url(${april}); 

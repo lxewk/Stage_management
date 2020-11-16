@@ -9,6 +9,7 @@ import {
   Dashboard,
   Decor,
   Account,
+  AddPage,
 } from './pages'
 
 import { 
@@ -57,6 +58,9 @@ function App() {
             <DecorContextProvider>
               <Route exact path="/dashboard">
                 <Dashboard />
+              </Route>
+              <Route exact path="/addItem">
+                <AddPage />
               </Route>
               <Route exact path="/decor">
                 <Decor />

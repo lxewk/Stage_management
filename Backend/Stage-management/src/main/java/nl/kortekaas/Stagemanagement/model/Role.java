@@ -1,8 +1,11 @@
 package nl.kortekaas.Stagemanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import nl.kortekaas.Stagemanagement.model.enums.ERole;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -17,7 +20,7 @@ public class Role {
             name = "native",
             strategy = "native"
     )
-    @Column(columnDefinition = "serial", name = "role_id")
+    @Column(name = "role_id")
     private long id;
 
     @Enumerated(EnumType.STRING)
@@ -26,7 +29,8 @@ public class Role {
 
     public Role() {}
 
-    public Role(ERole harry) {
+    @JsonCreator
+    public Role(@JsonProperty("harry") ERole harry) {
         this.name = harry;
     }
 

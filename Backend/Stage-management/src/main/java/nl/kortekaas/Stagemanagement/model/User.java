@@ -1,5 +1,8 @@
 package nl.kortekaas.Stagemanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import nl.kortekaas.Stagemanagement.model.enums.ERole;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Set;
@@ -20,23 +23,22 @@ public class User {
     @Column(columnDefinition = "serial", name = "user_id")
     private long id;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_role",
+    joinColumns = { @JoinColumn(name = "user_id") },
+    inverseJoinColumns = { @JoinColumn(name = "role_id") })
+    private Set <Role> roles;
+
+    @ManyToMany
+    @JoinTable (name = "user_track",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "track_id"))
+    private Set <Track> tracks;
+
     private String username;
     private String password;
     private int todo;
     private int note;
-
-
-    @ManyToMany
-    @JoinTable (name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
-
-    @ManyToMany
-    @JoinTable (name = "user_track",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "track_id"))
-    private Set<Track> tracks;
 
 
     public User() {}
@@ -89,3 +91,5 @@ public class User {
         this.roles = roles;
     }
 }
+
+

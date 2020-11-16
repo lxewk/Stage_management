@@ -4,6 +4,7 @@ import nl.kortekaas.Stagemanagement.model.User;
 import nl.kortekaas.Stagemanagement.model.enums.ERole;
 import nl.kortekaas.Stagemanagement.payload.request.UserRequest;
 import nl.kortekaas.Stagemanagement.payload.response.MessageResponse;
+import nl.kortekaas.Stagemanagement.persistence.UserRepository;
 import nl.kortekaas.Stagemanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +16,15 @@ import java.util.List;
 @RequestMapping("/api/user")
 public class UserController {
 
-    @Autowired
-    UserService userService;
+
+    private UserService userService;
+    private UserRepository userRepository;
+
+    public UserController(UserService userService, UserRepository userRepository) {
+        this.userService = userService;
+        this.userRepository = userRepository;
+    }
+
 
     @GetMapping(value = "/stagemanager")
     public String stagemanagerAccess() { return userService.generateStagemanagerContent(); }
