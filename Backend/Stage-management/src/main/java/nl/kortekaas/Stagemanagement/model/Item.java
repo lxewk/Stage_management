@@ -24,6 +24,7 @@ public class Item {
     private long id;
 
     private String itemName;
+    private String description;
 
     @Enumerated(EnumType.STRING)
     private EDepartment department;
@@ -34,8 +35,9 @@ public class Item {
 
     public Item() {}
 
-    private Item(String itemName, EDepartment department) {
+    private Item(String itemName, String description, EDepartment department, EPreset preset) {
         this.itemName = itemName;
+        this.description = description;
         this.department = department;
         this.preset = getPreset();
     }
@@ -51,6 +53,12 @@ public class Item {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
+    }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public EDepartment getDepartment() {

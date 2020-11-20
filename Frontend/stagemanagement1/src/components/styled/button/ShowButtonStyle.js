@@ -18,7 +18,7 @@ export const ShowBtn = styled(Link)`
   
   
 
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 667px){
     background-image: none;
     height: 100px;
     width: auto;

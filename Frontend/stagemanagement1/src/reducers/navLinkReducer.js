@@ -30,16 +30,16 @@ export const navLinkReducer = (state, action) => {
                 {
                     title: 'Decor',
                     path: '/decor',
-                    icon: 'ion-paintbucket'
+                    icon: 'ion-hammer'
                 },
                 {
                     title: 'Props',
-                    path: '/props',
+                    path: '/prop',
                     icon: 'ion-android-color-palette'
                 },
                 {
                     title: 'Automation',
-                    path: '/auto',
+                    path: '/automation',
                     icon: 'ion-ios-gear'
                 },
                 {
@@ -69,16 +69,16 @@ export const navLinkReducer = (state, action) => {
                 {
                     title: 'Decor',
                     path: '/decor',
-                    icon: 'ion-paintbucket'
+                    icon: 'ion-hammer'
                 },
                 {
                     title: 'Props',
-                    path: '/props',
+                    path: '/prop',
                     icon: 'ion-android-color-palette'
                 },
                 {
                     title: 'Automation',
-                    path: '/auto',
+                    path: '/automation',
                     icon: 'ion-ios-gear'
                 },
                 {
@@ -98,16 +98,16 @@ export const navLinkReducer = (state, action) => {
                 {
                     title: 'Decor',
                     path: '/decor',
-                    icon: 'ion-paintbucket'
+                    icon: 'ion-hammer'
                 },
                 {
                     title: 'Props',
-                    path: '/props',
+                    path: '/prop',
                     icon: 'ion-android-color-palette'
                 },
                 {
                     title: 'Automation',
-                    path: '/auto',
+                    path: '/automation',
                     icon: 'ion-ios-gear'
                 },
                 {
@@ -127,16 +127,16 @@ export const navLinkReducer = (state, action) => {
                 {
                     title: 'Decor',
                     path: '/decor',
-                    icon: 'ion-paintbucket'
+                    icon: 'ion-hammer'
                 },
                 {
                     title: 'Props',
-                    path: '/props',
+                    path: '/prop',
                     icon: 'ion-android-color-palette'
                 },
                 {
                     title: 'Automation',
-                    path: '/auto',
+                    path: '/automation',
                     icon: 'ion-ios-gear'
                 },
                 {
@@ -161,16 +161,16 @@ export const navLinkReducer = (state, action) => {
                 {
                     title: 'Decor',
                     path: '/decor',
-                    icon: 'ion-paintbucket'
+                    icon: 'ion-hammer'
                 },
                 {
                     title: 'Props',
-                    path: '/props',
+                    path: '/prop',
                     icon: 'ion-android-color-palette'
                 },
                 {
                     title: 'Automation',
-                    path: '/auto',
+                    path: '/automation',
                     icon: 'ion-ios-gear'
                 },
             ]
@@ -185,16 +185,16 @@ export const navLinkReducer = (state, action) => {
                 {
                     title: 'Decor',
                     path: '/decor',
-                    icon: 'ion-paintbucket'
+                    icon: 'ion-hammer'
                 },
                 {
                     title: 'Props',
-                    path: '/props',
+                    path: '/prop',
                     icon: 'ion-android-color-palette'
                 },
                 {
                     title: 'Automation',
-                    path: '/auto',
+                    path: '/automation',
                     icon: 'ion-ios-gear'
                 },
             ]
@@ -209,16 +209,16 @@ export const navLinkReducer = (state, action) => {
                 {
                     title: 'Decor',
                     path: '/decor',
-                    icon: 'ion-paintbucket'
+                    icon: 'ion-hammer'
                 },
                 {
                     title: 'Props',
-                    path: '/props',
+                    path: '/prop',
                     icon: 'ion-android-color-palette'
                 },
                 {
                     title: 'Automation',
-                    path: '/auto',
+                    path: '/automation',
                     icon: 'ion-ios-gear'
                 },
             ]

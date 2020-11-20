@@ -98,14 +98,14 @@ const HomeContainer = styled.div`
 		display: flex;
     justify-content: space-around;
 
-    @media screen and (max-width: 600px){
+    @media screen and (max-width: 667px){
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
     }
   }
 
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 667px){
       display: flex;
       padding-top: 150px;
       height: 400px;
@@ -116,11 +116,10 @@ const HomeContainer = styled.div`
 	display: flex;
 	flex-direction: column;
   justify-content: center;
-  height: 450px;
-  width: 550px;
+  height: 460px;
+  width: 560px;
   background-color: ${colors.gray};
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
   background-repeat: no-repeat;
   background-position: 50% 25%;
 
@@ -128,9 +127,10 @@ const HomeContainer = styled.div`
     background-color: ${colors.logincardblue};
   }
 
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 667px){
     height: auto;
     width: 50%;
+    background-image: none;
   }
 
 `;
@@ -143,7 +143,7 @@ const HomeContainer = styled.div`
   margin-inline-end: 0px;
   font-size: small;
 
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 667px){
     font-size: xx-small;
   }
 `;

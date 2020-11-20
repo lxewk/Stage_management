@@ -7,9 +7,13 @@ import {
   Login,
   Show,
   Dashboard,
-  Decor,
-  Account,
+  DecorPage,
+  AccountPage,
   AddPage,
+  PlaylistPage,
+  PropPage,
+  AutomationPage,
+  TrackPage,
 } from './pages'
 
 import { 
@@ -59,14 +63,26 @@ function App() {
               <Route exact path="/dashboard">
                 <Dashboard />
               </Route>
+              <Route exact path="/playlist">
+                <PlaylistPage />
+              </Route>
               <Route exact path="/addItem">
                 <AddPage />
               </Route>
               <Route exact path="/decor">
-                <Decor />
+                <DecorPage />
+              </Route>
+              <Route exact path="/prop">
+                <PropPage />
+              </Route>
+              <Route exact path="/automation">
+                <AutomationPage />
+              </Route>
+              <Route exact path="/track">
+                <TrackPage />
               </Route>
               <Route exact path="/account">
-                <Account />
+                <AccountPage />
               </Route>
             </DecorContextProvider>
             <Route path="*" component={() => "404 NOT FOUND"} />
